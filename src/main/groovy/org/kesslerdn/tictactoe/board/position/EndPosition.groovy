@@ -1,4 +1,4 @@
-package org.kesslerdn.board.position
+package org.kesslerdn.tictactoe.board.position
 
 class EndPosition implements Position{
 	String value;

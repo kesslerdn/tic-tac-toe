@@ -1,22 +1,23 @@
-package org.kesslerdn.board
+package org.kesslerdn.tictactoe.board
 
 import groovy.util.GroovyTestCase
 
-import org.kesslerdn.board.position.Position
+import org.kesslerdn.tictactoe.board.Board;
+import org.kesslerdn.tictactoe.board.position.Position;
 
-class NewGameTest extends GroovyTestCase {
+class BoardTest extends GroovyTestCase {
 
 	void testStart_WithoutPositions() {
-		TicTacToe game = new TicTacToe();
-		assert '' == game.board()
+		Board board = new Board();
+		assert '' == board.display()
 	}
 	
 	void testStart_WithPositions(){
-		TicTacToe game = new TicTacToe([new TestPosition("1"), 
+		Board board = new Board([new TestPosition("1"), 
 			new TestPosition("2"), 
 			new TestPosition("3")]);;
 		
-		assert 'test 1,test 2,test 3,' == game.board()
+		assert 'test 1,test 2,test 3,' == board.display()
 	}
 }
 

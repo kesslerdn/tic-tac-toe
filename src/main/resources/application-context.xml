@@ -6,18 +6,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<bean id="ticTacToe" class="org.kesslerdn.board.TicTacToe" scope="prototype">
+	<bean id="ticTacToe" class="org.kesslerdn.tictactoe.board.Board" scope="prototype">
 		<constructor-arg name="positions">
 			<list>
-				<bean class="org.kesslerdn.board.position.StartPosition" c:value="1"/>
-				<bean class="org.kesslerdn.board.position.CenterPosition" c:value="2"/>
-				<bean class="org.kesslerdn.board.position.EndPosition" c:value="3"/>
-				<bean class="org.kesslerdn.board.position.StartPosition" c:value="4"/>
-				<bean class="org.kesslerdn.board.position.CenterPosition" c:value="5"/>
-				<bean class="org.kesslerdn.board.position.EndPosition" c:value="6"/>
-				<bean class="org.kesslerdn.board.position.StartPosition" c:value="7"/>
-				<bean class="org.kesslerdn.board.position.CenterPosition" c:value="8"/>
-				<bean class="org.kesslerdn.board.position.EndPosition" c:value="9"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="1"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" c:value="2"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="3"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="4"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" c:value="5"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="6"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="7"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" c:value="8"/>
+				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="9"/>
 			</list>
 		</constructor-arg>
 	</bean>

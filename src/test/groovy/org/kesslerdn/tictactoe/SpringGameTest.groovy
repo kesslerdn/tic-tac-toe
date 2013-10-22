@@ -1,4 +1,4 @@
-package org.kesslerdn.board
+package org.kesslerdn.tictactoe
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,8 @@ import groovy.util.GroovyTestCase
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kesslerdn.board.position.Position
+import org.kesslerdn.tictactoe.board.Board;
+import org.kesslerdn.tictactoe.board.position.Position;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,13 +16,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 class SpringGameTest extends GroovyTestCase {
 
 	@Resource
-	private TicTacToe game
+	private Board board
 	
 	@Test
 	void testSpringConfiguration() {
 		assert '''|1|2|3|
 |4|5|6|
 |7|8|9|
-''' == game.board()
+''' == board.display()
 	}
 }

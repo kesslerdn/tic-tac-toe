@@ -1,9 +1,9 @@
-package org.kesslerdn.board;
+package org.kesslerdn.tictactoe.board.position;
 
-import org.kesslerdn.board.position.CenterPosition;
-import org.kesslerdn.board.position.EndPosition;
-import org.kesslerdn.board.position.Position;
-import org.kesslerdn.board.position.StartPosition;
+import org.kesslerdn.tictactoe.board.position.CenterPosition;
+import org.kesslerdn.tictactoe.board.position.EndPosition;
+import org.kesslerdn.tictactoe.board.position.Position;
+import org.kesslerdn.tictactoe.board.position.StartPosition;
 
 import groovy.util.GroovyTestCase
 
