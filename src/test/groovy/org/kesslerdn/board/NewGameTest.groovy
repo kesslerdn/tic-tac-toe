@@ -2,13 +2,35 @@ package org.kesslerdn.board
 
 import groovy.util.GroovyTestCase
 
+import org.kesslerdn.board.position.Position
+
 class NewGameTest extends GroovyTestCase {
 
-	void testStart() {
-		TicTacToe game = TicTacToe.instance();
-		assert '''|1|2|3|
-|4|5|6|
-|7|8|9|
-''' == game.board()
+	void testStart_WithoutPositions() {
+		TicTacToe game = new TicTacToe();
+		assert '' == game.board()
 	}
+	
+	void testStart_WithPositions(){
+		TicTacToe game = new TicTacToe([new TestPosition("1"), 
+			new TestPosition("2"), 
+			new TestPosition("3")]);;
+		
+		assert 'test 1,test 2,test 3,' == game.board()
+	}
+}
+
+class TestPosition implements Position{
+
+	String value;
+	
+	TestPosition(String value){
+		this.value = value
+	}
+	
+	@Override
+	public String write() {
+		"test ${value},"
+	}
+	
 }
