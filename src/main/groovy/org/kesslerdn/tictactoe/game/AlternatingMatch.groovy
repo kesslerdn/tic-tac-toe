@@ -8,7 +8,7 @@ public class AlternatingMatch implements Match {
 
 	Board board;
 	GameControl gameControl;
-	Iterator<String> players;
+	Turn players;
 	Tracker tracker;
 	
 	@Override

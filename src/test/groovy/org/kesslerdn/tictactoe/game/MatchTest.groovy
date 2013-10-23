@@ -31,7 +31,7 @@ class MatchTest extends GroovyTestCase{
 	@Mock
 	Board board;
 	@Mock
-	Iterator<String> players;
+	Turn players;
 
 	@Test
 	public void testStart() {
