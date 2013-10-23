@@ -8,12 +8,12 @@ import org.kesslerdn.tictactoe.board.position.Position;
 class TicTacToeBoardTest extends GroovyTestCase {
 
 	void testStart_WithoutPositions() {
-		TicTacToeBoard board = new TicTacToeBoard();
+		Board board = new TicTacToeBoard();
 		assert '' == board.display()
 	}
 	
 	void testStart_WithPositions(){
-		TicTacToeBoard board = new TicTacToeBoard([new TestPosition("1"), 
+		Board board = new TicTacToeBoard([new TestPosition("1"), 
 			new TestPosition("2"), 
 			new TestPosition("3")])
 		
@@ -21,7 +21,7 @@ class TicTacToeBoardTest extends GroovyTestCase {
 	}
 	
 	void testStart_MarkPosition(){
-		TicTacToeBoard board = new TicTacToeBoard([new TestPosition("1"),
+		Board board = new TicTacToeBoard([new TestPosition("1"),
 			new TestPosition("2"),
 			new TestPosition("3")])
 		
@@ -30,19 +30,4 @@ class TicTacToeBoardTest extends GroovyTestCase {
 		assert 'test 1,test A,test 3,' == board.display()
 		
 	}
-}
-
-class TestPosition implements Position{
-
-	String value;
-	
-	TestPosition(String value){
-		this.value = value
-	}
-	
-	@Override
-	public String write() {
-		"test ${value},"
-	}
-	
 }

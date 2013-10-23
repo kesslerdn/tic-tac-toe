@@ -1,22 +1,19 @@
 package org.kesslerdn.tictactoe
 
-import javax.annotation.Resource;
+import javax.annotation.Resource
 
-import groovy.util.GroovyTestCase
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.kesslerdn.tictactoe.board.TicTacToeBoard;
-import org.kesslerdn.tictactoe.board.position.Position;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.kesslerdn.tictactoe.board.Board
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/application-context.xml")
 class SpringBoardTest extends GroovyTestCase {
 
 	@Resource
-	private TicTacToeBoard board
+	private Board board
 	
 	@Test
 	void testSpringConfiguration() {
