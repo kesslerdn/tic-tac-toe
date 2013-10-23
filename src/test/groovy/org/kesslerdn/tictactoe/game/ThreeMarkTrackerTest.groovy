@@ -33,7 +33,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 	@Test
 	void testIsActive_Horizontal_Top_Different(){
 		Board board = new TicTacToeBoard(positions)
-		assert tracker.isActive(board)
+		assert tracker.isActive(board) == false
 	}
 
 	private Position createPosition(String value){
