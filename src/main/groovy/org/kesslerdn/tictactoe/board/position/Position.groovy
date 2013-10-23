@@ -1,5 +1,6 @@
 package org.kesslerdn.tictactoe.board.position
 
 interface Position {
-	String write();
+	String value
+	String write()
 }

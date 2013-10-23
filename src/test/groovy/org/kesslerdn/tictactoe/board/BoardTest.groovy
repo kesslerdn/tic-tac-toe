@@ -2,22 +2,33 @@ package org.kesslerdn.tictactoe.board
 
 import groovy.util.GroovyTestCase
 
-import org.kesslerdn.tictactoe.board.Board;
+import org.kesslerdn.tictactoe.board.TicTacToeBoard;
 import org.kesslerdn.tictactoe.board.position.Position;
 
 class BoardTest extends GroovyTestCase {
 
 	void testStart_WithoutPositions() {
-		Board board = new Board();
+		TicTacToeBoard board = new TicTacToeBoard();
 		assert '' == board.display()
 	}
 	
 	void testStart_WithPositions(){
-		Board board = new Board([new TestPosition("1"), 
+		TicTacToeBoard board = new TicTacToeBoard([new TestPosition("1"), 
 			new TestPosition("2"), 
-			new TestPosition("3")]);;
+			new TestPosition("3")])
 		
 		assert 'test 1,test 2,test 3,' == board.display()
+	}
+	
+	void testStart_MarkPosition(){
+		TicTacToeBoard board = new TicTacToeBoard([new TestPosition("1"),
+			new TestPosition("2"),
+			new TestPosition("3")])
+		
+		assert 'test 1,test 2,test 3,' == board.display()
+		board.mark("2", "A")
+		assert 'test 1,test A,test 3,' == board.display()
+		
 	}
 }
 
