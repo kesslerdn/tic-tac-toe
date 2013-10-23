@@ -7,7 +7,7 @@ class ThreeMarkTracker implements Tracker {
 
 	@Override
 	public Boolean isActive(Board board) {
-		checkRows(board) || checkColumns(board)
+		checkRows(board) || checkColumns(board) || checkDiagonals(board)
 	}
 
 	private Boolean checkRows(Board board){
@@ -20,6 +20,11 @@ class ThreeMarkTracker implements Tracker {
 		areTheSame(board, 0, 3, 6) ||
 		areTheSame(board, 1, 4, 7) ||
 		areTheSame(board, 2, 5, 8)
+	}
+	
+	private Boolean checkDiagonals(Board board){
+		areTheSame(board, 0, 4, 8) ||
+		areTheSame(board, 2, 4, 6)
 	}
 
 	private Boolean areTheSame(Board board, int first, int second, int third){
