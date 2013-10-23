@@ -8,10 +8,10 @@
 
 	<context:component-scan base-package="org.kesslerdn.tictactoe"/>
 	
-	<bean id="ticTacToeBoard" class="org.kesslerdn.tictactoe.board.TicTacToeBoard" scope="prototype">
-		<constructor-arg name="positions">
-			<list>
-				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="1"/>
+	<bean id="positions" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+	            <bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="1"/>
 				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" c:value="2"/>
 				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="3"/>
 				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="4"/>
@@ -19,9 +19,9 @@
 				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="6"/>
 				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" c:value="7"/>
 				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" c:value="8"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="9"/>
-			</list>
-		</constructor-arg>
+				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" c:value="9"/>                
+	        </list>
+	    </constructor-arg>
 	</bean>
 	
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.TwoPlayerTurn" c:first="X" c:second="O"/>

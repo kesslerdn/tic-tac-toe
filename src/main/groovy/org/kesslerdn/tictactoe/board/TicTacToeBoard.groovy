@@ -1,17 +1,14 @@
 package org.kesslerdn.tictactoe.board
 
-import org.kesslerdn.tictactoe.board.position.CenterPosition;
-import org.kesslerdn.tictactoe.board.position.EndPosition;
-import org.kesslerdn.tictactoe.board.position.Position;
-import org.kesslerdn.tictactoe.board.position.StartPosition;
+import javax.annotation.Resource
 
+import org.kesslerdn.tictactoe.board.position.Position
+import org.springframework.stereotype.Component
+
+@Component
 class TicTacToeBoard implements Board{
 
-	List<Position> positions
-	
-	TicTacToeBoard(List<Position> positions = []){
-		this.positions = new ArrayList<List>(positions)
-	}
+	@Resource List<Position> positions
 
 	@Override
 	String display(){

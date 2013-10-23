@@ -25,7 +25,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[0] = createPosition("A")
 		positions[1] = createPosition("A")
 		positions[2] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -35,7 +35,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[3] = createPosition("A")
 		positions[4] = createPosition("A")
 		positions[5] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -45,7 +45,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[6] = createPosition("A")
 		positions[7] = createPosition("A")
 		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -55,7 +55,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[0] = createPosition("A")
 		positions[3] = createPosition("A")
 		positions[6] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -65,7 +65,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[1] = createPosition("A")
 		positions[4] = createPosition("A")
 		positions[7] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -75,7 +75,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[2] = createPosition("A")
 		positions[5] = createPosition("A")
 		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -85,7 +85,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[0] = createPosition("A")
 		positions[4] = createPosition("A")
 		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
@@ -95,14 +95,14 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[2] = createPosition("A")
 		positions[4] = createPosition("A")
 		positions[6] = createPosition("A")
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		
 		assert tracker.isActive(board) == false
 	}
 
 	@Test
 	void testIsActive_AllDifferent(){
-		Board board = new TicTacToeBoard(positions)
+		Board board = new TicTacToeBoard(positions:positions)
 		assert tracker.isActive(board)
 	}
 

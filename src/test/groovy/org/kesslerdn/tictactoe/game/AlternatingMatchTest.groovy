@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.view.GameControl
 import org.mockito.InOrder
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
@@ -32,13 +33,11 @@ class AlternatingMatchTest extends GroovyTestCase{
 	Board board;
 	@Mock
 	Turn players;
-
+	@InjectMocks
+	Match match = new AlternatingMatch()
+	
 	@Test
 	public void testStart() {
-		
-		Match match = new AlternatingMatch(gameControl: gameControl, 
-			tracker: tracker, board: board, players:players)
-		
 		when(gameControl.request(USER_PROMPT)).thenReturn(POSITION_ONE, POSITION_TWO, POSITION_THREE)
 		when(players.next()).thenReturn(PLAYER_ONE, PLAYER_TWO, PLAYER_ONE)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -80,10 +79,6 @@ class AlternatingMatchTest extends GroovyTestCase{
 	
 	@Test
 	public void testStart_WithInactiveBoard() {
-		
-		Match match = new AlternatingMatch(gameControl: gameControl,
-			tracker: tracker, board: board, players:players)
-		
 		when(tracker.isActive(board)).thenReturn(false)
 		
 		shouldFail(IllegalStateException){

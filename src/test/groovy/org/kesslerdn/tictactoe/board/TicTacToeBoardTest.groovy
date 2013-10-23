@@ -13,7 +13,7 @@ class TicTacToeBoardTest extends GroovyTestCase {
 	}
 	
 	void testStart_WithPositions(){
-		Board board = new TicTacToeBoard([new TestPosition("1"), 
+		Board board = new TicTacToeBoard(positions:[new TestPosition("1"), 
 			new TestPosition("2"), 
 			new TestPosition("3")])
 		
@@ -21,7 +21,7 @@ class TicTacToeBoardTest extends GroovyTestCase {
 	}
 	
 	void testStart_MarkPosition(){
-		Board board = new TicTacToeBoard([new TestPosition("1"),
+		Board board = new TicTacToeBoard(positions:[new TestPosition("1"),
 			new TestPosition("2"),
 			new TestPosition("3")])
 		
