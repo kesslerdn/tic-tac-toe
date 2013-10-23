@@ -29,7 +29,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		
 		assert tracker.isActive(board)
 	}
-	
+
 	@Test
 	void testIsActive_Horizontal_Middle_Same(){
 		positions[3] = createPosition("A")
@@ -51,7 +51,37 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 	}
 
 	@Test
-	void testIsActive_Horizontal_Top_Different(){
+	void testIsActive_Verticle_Left_Same(){
+		positions[0] = createPosition("A")
+		positions[3] = createPosition("A")
+		positions[6] = createPosition("A")
+		Board board = new TicTacToeBoard(positions)
+		
+		assert tracker.isActive(board)
+	}
+	
+	@Test
+	void testIsActive_Verticle_Center_Same(){
+		positions[1] = createPosition("A")
+		positions[4] = createPosition("A")
+		positions[7] = createPosition("A")
+		Board board = new TicTacToeBoard(positions)
+		
+		assert tracker.isActive(board)
+	}
+	
+	@Test
+	void testIsActive_Verticle_Right_Same(){
+		positions[2] = createPosition("A")
+		positions[5] = createPosition("A")
+		positions[8] = createPosition("A")
+		Board board = new TicTacToeBoard(positions)
+		
+		assert tracker.isActive(board)
+	}
+
+	@Test
+	void testIsActive_AllDifferent(){
 		Board board = new TicTacToeBoard(positions)
 		assert tracker.isActive(board) == false
 	}
