@@ -1,15 +1,19 @@
 package org.kesslerdn.tictactoe.game;
 
+import javax.annotation.Resource;
+
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.view.GameControl
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class AlternatingMatch implements Match {
 
-	Board board;
-	GameControl gameControl;
-	Turn players;
-	Tracker tracker;
+	@Resource private Board board;
+	@Resource private GameControl gameControl;
+	@Resource private Turn players;
+	@Resource private Tracker tracker;
 	
 	@Override
 	public void start() {

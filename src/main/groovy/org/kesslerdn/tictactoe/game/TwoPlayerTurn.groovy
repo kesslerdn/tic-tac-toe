@@ -2,6 +2,8 @@ package org.kesslerdn.tictactoe.game
 
 import java.util.Iterator
 
+import org.springframework.stereotype.Component;
+
 class TwoPlayerTurn implements Turn {
 
 	private List<String> players

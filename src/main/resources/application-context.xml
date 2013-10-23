@@ -23,5 +23,8 @@
 			</list>
 		</constructor-arg>
 	</bean>
-
+	
+	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.TwoPlayerTurn" c:first="X" c:second="O"/>
+	
+	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	
 </beans>
