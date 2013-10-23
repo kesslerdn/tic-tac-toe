@@ -12,7 +12,7 @@ import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.class)
-class MatchTest extends GroovyTestCase{
+class AlternatingMatchTest extends GroovyTestCase{
 
 	static final shouldFail = new GroovyTestCase().&shouldFail
 	

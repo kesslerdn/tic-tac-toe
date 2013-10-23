@@ -5,7 +5,7 @@ import groovy.util.GroovyTestCase
 import org.kesslerdn.tictactoe.board.TicTacToeBoard;
 import org.kesslerdn.tictactoe.board.position.Position;
 
-class BoardTest extends GroovyTestCase {
+class TicTacToeBoardTest extends GroovyTestCase {
 
 	void testStart_WithoutPositions() {
 		TicTacToeBoard board = new TicTacToeBoard();
