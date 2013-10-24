@@ -11,7 +11,7 @@ public class ConsoleGameControl implements GameControl {
 	
 	@Override
 	public String request(String message) {
-		print message
+		print "$message:"
 		bufferedReader.readLine()
 	}
 

@@ -34,6 +34,6 @@ class ThreeMarkTracker implements Tracker {
 	}
 	
 	private String extractValue(Board board, int index){
-		board.positions[index].write()
+		board.positions[index].value
 	}
 }

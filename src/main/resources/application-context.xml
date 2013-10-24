@@ -23,8 +23,9 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-	
-	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.TwoPlayerTurn" c:first="X" c:second="O"/>
+	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" c:mark="X"/>
+	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" c:mark="O"/>
+	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	
 	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	
 </beans>
