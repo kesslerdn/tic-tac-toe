@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe
+package org.kesslerdn.tictactoe.integration
 
 import javax.annotation.Resource
 
