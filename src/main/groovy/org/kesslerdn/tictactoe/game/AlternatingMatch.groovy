@@ -17,8 +17,6 @@ public class AlternatingMatch implements Match {
 	
 	@Override
 	public void start() {
-		if(!tracker.isActive(board)) throw new IllegalStateException();
-		
 		def currentPlayer
 		while(tracker.isActive(board)){
 			currentPlayer = players.next()

@@ -19,7 +19,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		
 		tracker = new ThreeMarkTracker()
 	}
-	
+
 	@Test
 	void testIsActive_Horizontal_Top_Same(){
 		positions[0] = createPosition("A")
