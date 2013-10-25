@@ -9,23 +9,82 @@
 
 	<context:component-scan base-package="org.kesslerdn.tictactoe"/>
 	
+	<bean id="topLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="1" p:index="1"/>
+	<bean id="topCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="2" p:index="2"/>
+	<bean id="topRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="3" p:index="3"/>
+	<bean id="middleLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="4" p:index="4"/>
+	<bean id="middleCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="5" p:index="5"/>
+	<bean id="middleRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="6" p:index="6"/>
+	<bean id="bottomLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="7" p:index="7"/>
+	<bean id="bottomCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="8" p:index="8"/>
+	<bean id="bottomRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="9" p:index="9"/>
+	
 	<bean id="positions" class="java.util.ArrayList">
 	    <constructor-arg>
 	        <list>
-	            <bean class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="1"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="2"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="3"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="4"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="5"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="6"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.StartPosition" p:value="7"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="8"/>
-				<bean class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="9"/>                
+	            <ref bean="topLeftPosition"/>      
+	            <ref bean="topCenterPosition"/>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleLeftPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="middleRightPosition"/>
+				<ref bean="bottomLeftPosition"/>
+				<ref bean="bottomCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
 	        </list>
 	    </constructor-arg>
 	</bean>
+	
+	<bean id="rows" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+	        	<list>
+	        		<ref bean="topLeftPosition"/>      
+		            <ref bean="topCenterPosition"/>
+					<ref bean="topRightPosition"/>
+	        	</list>
+	        	<list>
+					<ref bean="middleLeftPosition"/>
+					<ref bean="middleCenterPosition"/>
+					<ref bean="middleRightPosition"/>
+				</list>
+	        	<list>
+					<ref bean="bottomLeftPosition"/>
+					<ref bean="bottomCenterPosition"/>
+					<ref bean="bottomRightPosition"/>    
+	        	</list>
+	        	<list>
+		            <ref bean="topLeftPosition"/>      
+					<ref bean="middleCenterPosition"/>
+					<ref bean="bottomRightPosition"/>    
+	        	</list>
+	        	<list>
+					<ref bean="topRightPosition"/>
+					<ref bean="middleCenterPosition"/>
+					<ref bean="bottomLeftPosition"/>
+	        	</list>
+	        	<list>
+		            <ref bean="topLeftPosition"/>      
+					<ref bean="middleLeftPosition"/>
+					<ref bean="bottomLeftPosition"/>
+	        	</list>
+	        	<list>
+		            <ref bean="topCenterPosition"/>
+					<ref bean="middleCenterPosition"/>
+					<ref bean="bottomCenterPosition"/>
+	        	</list>
+	        	<list>
+					<ref bean="topRightPosition"/>
+					<ref bean="middleRightPosition"/>
+					<ref bean="bottomRightPosition"/>    
+	        	</list>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
 	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark="X" p:gameControl-ref="consoleGameControl"/>
-	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark="O" p:gameControl-ref="consoleGameControl"/>
+	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" 
+		p:mark="O" p:opposingMark="X" p:gameControl-ref="consoleGameControl" p:rowAnalyzer-ref="threePositionRowAnalyzer"/>
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	
 	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	

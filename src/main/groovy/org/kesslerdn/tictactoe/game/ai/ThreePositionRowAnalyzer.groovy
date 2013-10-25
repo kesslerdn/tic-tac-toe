@@ -1,7 +1,9 @@
 package org.kesslerdn.tictactoe.game.ai
 
 import org.kesslerdn.tictactoe.board.position.Position
+import org.springframework.stereotype.Component
 
+@Component
 class ThreePositionRowAnalyzer implements RowAnalyzer {
 
 	@Override
