@@ -35,49 +35,97 @@
 	    </constructor-arg>
 	</bean>
 	
+	<bean id="horizontalTopRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+        		<ref bean="topLeftPosition"/>      
+	            <ref bean="topCenterPosition"/>
+				<ref bean="topRightPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="horizontalMiddleRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="middleLeftPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="middleRightPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="horizontalBottomRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="bottomLeftPosition"/>
+				<ref bean="bottomCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="diagonalLeftToRightRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topLeftPosition"/>      
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="diagonalRightToLeftRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomLeftPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleLeftRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topLeftPosition"/>      
+				<ref bean="middleLeftPosition"/>
+				<ref bean="bottomLeftPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleCenterRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topCenterPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomCenterPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleRightRow" class="java.util.ArrayList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleRightPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
 	<bean id="rows" class="java.util.ArrayList">
 	    <constructor-arg>
 	        <list>
-	        	<list>
-	        		<ref bean="topLeftPosition"/>      
-		            <ref bean="topCenterPosition"/>
-					<ref bean="topRightPosition"/>
-	        	</list>
-	        	<list>
-					<ref bean="middleLeftPosition"/>
-					<ref bean="middleCenterPosition"/>
-					<ref bean="middleRightPosition"/>
-				</list>
-	        	<list>
-					<ref bean="bottomLeftPosition"/>
-					<ref bean="bottomCenterPosition"/>
-					<ref bean="bottomRightPosition"/>    
-	        	</list>
-	        	<list>
-		            <ref bean="topLeftPosition"/>      
-					<ref bean="middleCenterPosition"/>
-					<ref bean="bottomRightPosition"/>    
-	        	</list>
-	        	<list>
-					<ref bean="topRightPosition"/>
-					<ref bean="middleCenterPosition"/>
-					<ref bean="bottomLeftPosition"/>
-	        	</list>
-	        	<list>
-		            <ref bean="topLeftPosition"/>      
-					<ref bean="middleLeftPosition"/>
-					<ref bean="bottomLeftPosition"/>
-	        	</list>
-	        	<list>
-		            <ref bean="topCenterPosition"/>
-					<ref bean="middleCenterPosition"/>
-					<ref bean="bottomCenterPosition"/>
-	        	</list>
-	        	<list>
-					<ref bean="topRightPosition"/>
-					<ref bean="middleRightPosition"/>
-					<ref bean="bottomRightPosition"/>    
-	        	</list>
+	        	<ref bean="horizontalTopRow"/>
+	        	<ref bean="horizontalMiddleRow"/>
+	        	<ref bean="horizontalBottomRow"/>
+	        	<ref bean="diagonalRightToLeftRow"/>
+	        	<ref bean="diagonalLeftToRightRow"/>
+	        	<ref bean="verticleLeftRow"/>
+	        	<ref bean="verticleCenterRow"/>
+	        	<ref bean="verticleRightRow"/>
 	        </list>
 	    </constructor-arg>
 	</bean>
