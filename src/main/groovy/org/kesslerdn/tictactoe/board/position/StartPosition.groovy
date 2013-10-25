@@ -1,11 +1,8 @@
 package org.kesslerdn.tictactoe.board.position
 
 class StartPosition implements Position{
+	Integer index
 	String value;
-
-	StartPosition(String value){
-		this.value = value;
-	}
 	
 	@Override
 	public String write() {

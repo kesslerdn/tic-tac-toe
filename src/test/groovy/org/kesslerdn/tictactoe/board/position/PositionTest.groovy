@@ -10,17 +10,17 @@ import groovy.util.GroovyTestCase
 public class PositionTest extends GroovyTestCase{
 
 	void testStartPosition(){
-		Position position = new StartPosition("1");
+		Position position = new StartPosition(value:"1");
 		assert "|1|" == position.write();
 	}
 
 	void testCenterPosition(){
-		Position position = new CenterPosition("1");
+		Position position = new CenterPosition(value:"1");
 		assert "1" == position.write();
 	}
 
 	void testEndPosition(){
-		Position position = new EndPosition("1");
+		Position position = new EndPosition(value:"1");
 		assert '''|1|
 ''' == position.write();
 	}

@@ -3,9 +3,9 @@ package org.kesslerdn.tictactoe.game
 import org.junit.Before;
 import org.junit.Test
 import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.board.TestPosition
 import org.kesslerdn.tictactoe.board.TicTacToeBoard
 import org.kesslerdn.tictactoe.board.position.Position
+import org.kesslerdn.tictactoe.board.position.TestPosition;
 
 class ThreeMarkTrackerTest extends GroovyTestCase {
 	private List<Position> positions

@@ -1,9 +1,6 @@
 package org.kesslerdn.tictactoe.board
 
-import groovy.util.GroovyTestCase
-
-import org.kesslerdn.tictactoe.board.TicTacToeBoard;
-import org.kesslerdn.tictactoe.board.position.Position;
+import org.kesslerdn.tictactoe.board.position.TestPosition
 
 class TicTacToeBoardTest extends GroovyTestCase {
 
