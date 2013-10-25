@@ -4,6 +4,7 @@ import org.kesslerdn.tictactoe.board.Board;
 import org.kesslerdn.tictactoe.view.GameControl;
 
 class HumanPlayer implements Player {
+	
 	String mark
 	GameControl gameControl
 

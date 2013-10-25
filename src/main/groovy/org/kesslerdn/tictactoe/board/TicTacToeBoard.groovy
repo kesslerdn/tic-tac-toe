@@ -1,5 +1,7 @@
 package org.kesslerdn.tictactoe.board
 
+import java.util.List;
+
 import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.position.Position
@@ -9,7 +11,8 @@ import org.springframework.stereotype.Component
 class TicTacToeBoard implements Board{
 
 	@Resource List<Position> positions
-
+	@Resource List<List<Position>> rows
+	
 	@Override
 	String display(){
 		String value = ""

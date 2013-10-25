@@ -36,7 +36,5 @@ class HumanPlayerTest extends GroovyTestCase {
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
 		inOrder.verify(board).mark(POSITION, MARK)
-
-		
 	}
 }

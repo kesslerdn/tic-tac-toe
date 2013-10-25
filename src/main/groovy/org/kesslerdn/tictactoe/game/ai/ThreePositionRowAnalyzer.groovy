@@ -5,14 +5,14 @@ import org.kesslerdn.tictactoe.board.position.Position
 class ThreePositionRowAnalyzer implements RowAnalyzer {
 
 	@Override
-	public Boolean isVulnerable(String opponentMark, List<Position> row) {
-		row.count{it.value == opponentMark} == 2
+	public Boolean isVulnerable(String opposingMark, List<Position> row) {
+		row.count{it.value == opposingMark} == 2
 	}
 
 	@Override
-	public Integer firstOpenPosition(String opponentMark, String playerMark,
+	public Integer firstOpenPosition(String opposingMark, String playerMark,
 			List<Position> row) {
-		List<Position> openPositions = row.findAll{![opponentMark, playerMark].contains(it.value)}
+		List<Position> openPositions = row.findAll{![opposingMark, playerMark].contains(it.value)}
 		if(openPositions.empty){
 			null
 		}else{
