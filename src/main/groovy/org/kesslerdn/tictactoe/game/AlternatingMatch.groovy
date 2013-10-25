@@ -21,10 +21,8 @@ public class AlternatingMatch implements Match {
 		
 		def currentPlayer
 		while(tracker.isActive(board)){
-			gameControl.status(board.display())
 			currentPlayer = players.next()
-			String position = gameControl.request("Player ${currentPlayer.mark} please select a position")
-			board.mark(position, currentPlayer.mark)
+			currentPlayer.play(board)
 		}
 		
 		gameControl.status(board.display())

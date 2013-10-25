@@ -1,5 +1,9 @@
 package org.kesslerdn.tictactoe.game.player
 
-class Player {
-	String mark
+import org.kesslerdn.tictactoe.board.Board
+import org.kesslerdn.tictactoe.view.GameControl
+
+interface Player {	
+	void play(Board board)
+	String getMark()
 }
