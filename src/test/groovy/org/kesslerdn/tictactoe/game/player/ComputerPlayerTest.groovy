@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
-import org.kesslerdn.tictactoe.game.ai.RowAnalyzer
+import org.kesslerdn.tictactoe.game.ai.PositionLocator;
 import org.kesslerdn.tictactoe.view.GameControl
 import org.mockito.InOrder
 import org.mockito.InjectMocks
@@ -19,7 +19,6 @@ import org.mockito.runners.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.class)
 class ComputerPlayerTest extends GroovyTestCase {
 	static final String MARK = "X"
-	static final String OPPOSING_MARK = "Y"
 	static final String USER_PROMPT = 'please select a position'
 	static final String DISPLAY_OUTPUT = "display"
 	static final Integer FIRST_POSITION = 1
@@ -29,9 +28,9 @@ class ComputerPlayerTest extends GroovyTestCase {
 	private List<Position> secondRow
 	
 	@Mock private Board board
-	@Mock private RowAnalyzer rowAnalyzer
 	@Mock private GameControl gameControl
-	@InjectMocks private ComputerPlayer player = new ComputerPlayer(mark:MARK, opposingMark:OPPOSING_MARK)
+	@Mock private PositionLocator positionLocator
+	@InjectMocks private ComputerPlayer player = new ComputerPlayer(mark:MARK)
 	
 	@Before
 	public void setUp(){
@@ -46,36 +45,16 @@ class ComputerPlayerTest extends GroovyTestCase {
 	}
 	
 	@Test
-	public void testPlay_WithOneVulnerablePosition(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(FIRST_POSITION)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(SECOND_POSITION)
+	public void testPlay(){
+		when(positionLocator.locate(board)).thenReturn(FIRST_POSITION.toString())
 		
-		InOrder inOrder = inOrder(gameControl, board)
+		InOrder inOrder = inOrder(gameControl, board, positionLocator)
 		
 		player.play(board)
 		
 		inOrder.verify(board).display()
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(board).getRows()
-		inOrder.verify(board).mark(SECOND_POSITION.toString(), MARK)
-	}
-	
-	@Test
-	public void testPlay_WithNoVulnerablePositions(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(FIRST_POSITION)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(SECOND_POSITION)
-		
-		InOrder inOrder = inOrder(gameControl, board)
-		
-		player.play(board)
-		
-		inOrder.verify(board).display()
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(board, times(2)).getRows()
+		inOrder.verify(positionLocator).locate(board)
 		inOrder.verify(board).mark(FIRST_POSITION.toString(), MARK)
 	}
 }

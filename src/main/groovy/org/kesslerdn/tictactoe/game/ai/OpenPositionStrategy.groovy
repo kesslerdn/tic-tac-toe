@@ -1,12 +1,16 @@
 package org.kesslerdn.tictactoe.game.ai
 
-import org.kesslerdn.tictactoe.board.Board
+import javax.annotation.Resource
 
+import org.kesslerdn.tictactoe.board.Board
+import org.springframework.stereotype.Component
+
+@Component
 class OpenPositionStrategy implements PositionStrategy {
 
-	String mark
-	String opposingMark
-	RowAnalyzer rowAnalyzer
+	@Resource(name="secondMark") String mark
+	@Resource(name="firstMark") String opposingMark
+	@Resource RowAnalyzer rowAnalyzer
 
 	@Override
 	public String findPosition(Board board) {

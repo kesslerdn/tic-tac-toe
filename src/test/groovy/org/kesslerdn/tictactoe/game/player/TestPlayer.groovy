@@ -12,7 +12,11 @@ class TestPlayer implements Player {
 	
 	@Override
 	public void play(Board board) {
-		board.mark(testingPositions[i], mark)
+		String position = testingPositions[i]
+		if(!board.isOpen(position)){
+			 throw new IllegalStateException("Position $position does not work on: \n" + board.display())
+		}
+		board.mark(position, mark)
 		i++
 	}
 }
