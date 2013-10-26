@@ -19,12 +19,14 @@ class ComputerPlayer implements Player {
 		gameControl.status(board.display())
 		List<List<Position>> rows = board.rows
 		rows.each{ row ->
-			if(rowAnalyzer.isVulnerable(opposingMark, row)){
+			if(rowAnalyzer.isVulnerable(opposingMark,mark, row)){
 				strategicPlays << rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
 			}else{
 				plays << rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
 			}
 		}
+		strategicPlays = strategicPlays.findAll{it != null}
+		plays = plays.findAll{it != null}
 		if(strategicPlays.empty){
 			board.mark(plays[0].toString(), mark)
 		}else{

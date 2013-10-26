@@ -7,20 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 class ThreeMarkTracker implements Tracker {
 	
-	private int turnCount
-	
 	@Override
 	public Boolean isActive(Board board) {
-		turnCount++
-		if(isIncompleteRound()) {
-			true
-		}else{
-			checkRows(board) && checkColumns(board) && checkDiagonals(board)
-		}
-	}
-	
-	private Boolean isIncompleteRound(){
-		turnCount % 2 != 0
+		checkRows(board) && checkColumns(board) && checkDiagonals(board)
 	}
 
 	private Boolean checkRows(Board board){

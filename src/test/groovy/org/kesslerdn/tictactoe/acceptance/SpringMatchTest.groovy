@@ -42,7 +42,11 @@ class SpringMatchTest extends GroovyTestCase {
 							"X","X","O",
 							"X","8","O"),
 						
-							'Player X won']
+			expectedBoard(  "X","O","O",
+							"X","X","O",
+							"X","8","O"),
+						
+							'Player ?? won']
 		
 		match.start();
 	}
@@ -66,9 +70,9 @@ class SpringMatchTest extends GroovyTestCase {
  
 			expectedBoard(  "O","2","X",
 							"O","X","X",
-							"O","8","X"),
-						
-							'Player X won']
+							"O","8","9"),
+ 
+							'Player ?? won']
 	
 		match.start();
 	}

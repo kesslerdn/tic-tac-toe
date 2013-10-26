@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component
 class ThreePositionRowAnalyzer implements RowAnalyzer {
 
 	@Override
-	public Boolean isVulnerable(String opposingMark, List<Position> row) {
-		row.count{it.value == opposingMark} == 2
+	public Boolean isVulnerable(String opposingMark, String playerMark,
+			List<Position> row) {
+		row.count{it.value == opposingMark} == 2 && row.count{it.value == playerMark} != 1
 	}
 
 	@Override

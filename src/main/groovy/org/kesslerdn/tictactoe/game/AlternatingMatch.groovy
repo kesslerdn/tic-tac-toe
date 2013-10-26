@@ -19,11 +19,11 @@ public class AlternatingMatch implements Match {
 	public void start() {
 		def currentPlayer
 		while(tracker.isActive(board)){
-			currentPlayer = players.next()
-			currentPlayer.play(board)
+			players.next().play(board)
+			players.next().play(board)
 		}
 		
 		gameControl.status(board.display())
-		gameControl.status("Player ${currentPlayer.mark} won")
+		gameControl.status("Player ?? won")
 	}
 }

@@ -33,9 +33,9 @@ class AlternatingMatchTest extends GroovyTestCase{
 	@Test
 	public void testStart() {
 		when(firstPlayer.mark).thenReturn(MARK_ONE)
-		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer)
+		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
-		when(tracker.isActive(board)).thenReturn(true, true, true, false)		
+		when(tracker.isActive(board)).thenReturn(true, true, false)		
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, gameControl)
 		
@@ -44,17 +44,18 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
-
+		inOrder.verify(secondPlayer).play(board)
+		
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player $MARK_ONE won")
+		inOrder.verify(gameControl).status("Player ?? won")
 	}
 	
 	@Test
 	public void testStart_Tie() {
 		when(firstPlayer.mark).thenReturn(MARK_ONE)
-		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer)
+		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
-		when(tracker.isActive(board)).thenReturn(true, true, true, false)
+		when(tracker.isActive(board)).thenReturn(true, true, false)
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, gameControl)
 		
@@ -63,8 +64,9 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
-
+		inOrder.verify(secondPlayer).play(board)
+		
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player $MARK_ONE won")
+		inOrder.verify(gameControl).status("Player ?? won")
 	}
 }

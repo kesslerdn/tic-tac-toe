@@ -14,7 +14,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testIsVulnerable_True_FirstTwo(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition("A"), new TestPosition("")])
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("A"), new TestPosition("")])
 	}
 	
 	@Test
@@ -25,7 +25,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_True_LastTwo(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition(""), new TestPosition("A"), new TestPosition("A")])
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition(""), new TestPosition("A"), new TestPosition("A")])
 	}
 	
 	@Test
@@ -36,7 +36,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_True_FirstAndLast(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition(""), new TestPosition("A")])
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("A")])
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_False_All(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition("A"), new TestPosition("A")]) == false
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("A"), new TestPosition("A")]) == false
 	}
 	
 	@Test
@@ -58,7 +58,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_False_Mixed(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition("B"), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("B"), new TestPosition("")]) == false
 	}
 	
 	@Test
@@ -69,7 +69,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_False_TwoEmpty(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_False_AllEmpty(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testIsVulnerable_False_NoMatchingMark(){
-		assert rowAnalyzer.isVulnerable("A", [new TestPosition("Z"), new TestPosition("Z"), new TestPosition("Z")]) == false
+		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("Z"), new TestPosition("Z"), new TestPosition("Z")]) == false
 	}
 	
 	@Test

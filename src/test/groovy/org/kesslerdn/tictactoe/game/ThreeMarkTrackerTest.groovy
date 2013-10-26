@@ -27,7 +27,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[2] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 
@@ -38,7 +37,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[5] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 	
@@ -49,7 +47,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[8] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 
@@ -60,7 +57,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[6] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 	
@@ -71,7 +67,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[7] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 	
@@ -82,7 +77,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[8] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 
@@ -93,7 +87,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[8] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 
@@ -104,14 +97,12 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions[6] = createPosition("A")
 		Board board = new TicTacToeBoard(positions:positions)
 		
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == false
 	}
 
 	@Test
 	void testIsActive_AllDifferent(){
 		Board board = new TicTacToeBoard(positions:positions)
-		assert tracker.isActive(board) == true
 		assert tracker.isActive(board) == true
 	}
 
