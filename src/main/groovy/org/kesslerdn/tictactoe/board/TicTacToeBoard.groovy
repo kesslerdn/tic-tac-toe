@@ -25,4 +25,9 @@ class TicTacToeBoard implements Board{
 		Position position = positions.find{it.value == positionValue}
 		position.value = value
 	}
+
+	@Override
+	public Boolean isOpen(String position) {
+		return null;
+	}
 }

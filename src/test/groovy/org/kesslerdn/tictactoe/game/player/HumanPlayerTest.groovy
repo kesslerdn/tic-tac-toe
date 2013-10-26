@@ -26,6 +26,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	@Test
 	public void testPlay(){
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		when(board.isOpen(POSITION)).thenReturn(true)
 		when(gameControl.request(anyString())).thenReturn(POSITION)
 		
 		InOrder inOrder = inOrder(gameControl, board)
@@ -35,6 +36,31 @@ class HumanPlayerTest extends GroovyTestCase {
 		inOrder.verify(board).display()
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
+		inOrder.verify(board).isOpen(POSITION)
 		inOrder.verify(board).mark(POSITION, MARK)
 	}
+	
+	
+	@Test
+	public void testPlay_SamePositionTwice(){
+		String takenPosition = "2"
+		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		when(board.isOpen(takenPosition)).thenReturn(false)
+		when(board.isOpen(POSITION)).thenReturn(true)
+		when(gameControl.request(anyString())).thenReturn(takenPosition, POSITION)
+		
+		InOrder inOrder = inOrder(gameControl, board)
+		
+		player.play(board)
+		
+		inOrder.verify(board).display()
+		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
+		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
+		inOrder.verify(board).isOpen(takenPosition)
+		inOrder.verify(gameControl).status("Player $MARK selected $takenPosition. This is an invalid move.")
+		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
+		inOrder.verify(board).isOpen(POSITION)
+		inOrder.verify(board).mark(POSITION, MARK)
+	}
+
 }
