@@ -14,7 +14,7 @@ import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.class)
-class DefensiveStrategyTest extends GroovyTestCase {
+class DefensivePositionStrategyTest extends GroovyTestCase {
 
 	static final String MARK = "X"
 	static final String OPPOSING_MARK = "Y"
@@ -24,7 +24,7 @@ class DefensiveStrategyTest extends GroovyTestCase {
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
-	@InjectMocks Strategy strategy = new DefensiveStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new DefensivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	
 	@Before

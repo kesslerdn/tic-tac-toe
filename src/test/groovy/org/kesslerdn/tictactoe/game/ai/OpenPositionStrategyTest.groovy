@@ -24,7 +24,7 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
-	@InjectMocks Strategy strategy = new OpenPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new OpenPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	
 	@Before

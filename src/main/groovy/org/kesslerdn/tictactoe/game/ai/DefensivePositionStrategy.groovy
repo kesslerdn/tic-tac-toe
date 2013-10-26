@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.game.ai
 
 import org.kesslerdn.tictactoe.board.Board
 
-class DefensiveStrategy implements Strategy {
+class DefensivePositionStrategy implements PositionStrategy {
 
 	String mark
 	String opposingMark
