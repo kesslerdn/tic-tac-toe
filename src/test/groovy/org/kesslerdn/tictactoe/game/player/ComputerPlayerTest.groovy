@@ -52,17 +52,13 @@ class ComputerPlayerTest extends GroovyTestCase {
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
 		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(SECOND_POSITION)
 		
-		InOrder inOrder = inOrder(gameControl, rowAnalyzer, board)
+		InOrder inOrder = inOrder(gameControl, board)
 		
 		player.play(board)
 		
 		inOrder.verify(board).display()
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(board).getRows()
-		inOrder.verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
-		inOrder.verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
-		inOrder.verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
-		inOrder.verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
 		inOrder.verify(board).mark(SECOND_POSITION.toString(), MARK)
 	}
 	
@@ -73,17 +69,13 @@ class ComputerPlayerTest extends GroovyTestCase {
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
 		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(SECOND_POSITION)
 		
-		InOrder inOrder = inOrder(gameControl, rowAnalyzer, board)
+		InOrder inOrder = inOrder(gameControl, board)
 		
 		player.play(board)
 		
 		inOrder.verify(board).display()
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(board).getRows()
-		inOrder.verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
-		inOrder.verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
-		inOrder.verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
-		inOrder.verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
+		inOrder.verify(board, times(2)).getRows()
 		inOrder.verify(board).mark(FIRST_POSITION.toString(), MARK)
 	}
 }

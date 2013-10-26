@@ -14,25 +14,30 @@ class ComputerPlayer implements Player {
 	
 	@Override
 	public void play(Board board) {
-		List<Integer> strategicPlays = []
-		List<Integer> plays = []
+		boolean marked
 		gameControl.status(board.display())
-		List<List<Position>> rows = board.rows
-		rows.each{ row ->
-			if(rowAnalyzer.isVulnerable(opposingMark,mark, row)){
-				strategicPlays << rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
-			}else{
-				plays << rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
+		marked = blockOpponet(board, marked)
+		playOpenPosition(board, marked)
+	}
+
+	private boolean blockOpponet(Board board, boolean marked) {
+		board.rows.each{ row ->
+			if(!marked && rowAnalyzer.isVulnerable(opposingMark,mark, row)){
+				Integer play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
+				board.mark(play.toString(), mark)
+				marked = true
 			}
 		}
-		strategicPlays = strategicPlays.findAll{it != null}
-		plays = plays.findAll{it != null}
-		if(strategicPlays.empty){
-			if(plays[0] == null) throw new IllegalStateException("Plays: $plays ; Board: ${board.display()}")
-			board.mark(plays[0].toString(), mark)
-		}else{
-			if(strategicPlays[0] == null) throw new IllegalStateException("Strategic plays: $strategicPlays ; Board: ${board.display()}")
-			board.mark(strategicPlays[0].toString(), mark)
+		return marked
+	}
+
+	private boolean playOpenPosition(Board board, boolean marked) {
+		board.rows.each{row ->
+			Integer play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
+			if(!marked && play != null){
+				board.mark(play.toString(), mark)
+				marked = true
+			}
 		}
 	}
 }

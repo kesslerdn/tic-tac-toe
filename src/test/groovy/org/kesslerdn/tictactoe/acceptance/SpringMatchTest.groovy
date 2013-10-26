@@ -51,7 +51,6 @@ class SpringMatchTest extends GroovyTestCase {
 		match.start();
 	}
 
-
 	@Test
 	void testStart_WithTopRight() {
 		firstPlayer.testingPositions = ["3","5","6", "9"]
@@ -102,6 +101,35 @@ class SpringMatchTest extends GroovyTestCase {
 							"O","O","X"),
 						
 							'This game ended in a tie!']
+	
+		match.start();
+	}
+	
+	@Test
+	void testStart_ThrowingTheGame() {
+		firstPlayer.testingPositions = ["3","8","6", "7"]
+		gameControl.expectedMessages  = [
+			expectedBoard(  "1","2","X",
+							"4","5","6",
+							"7","8","9"),
+						
+			expectedBoard(  "O","2","X",
+							"4","5","6",
+							"7","X","9"),
+						
+			expectedBoard(  "O","O","X",
+							"4","5","X",
+							"7","X","9"),
+ 
+			expectedBoard(  "O","O","X",
+							"4","5","X",
+							"X","X","O"),
+ 
+			expectedBoard(  "O","O","X",
+							"4","O","X",
+							"X","X","O"),
+ 
+							"Player 'O' won!"]
 	
 		match.start();
 	}
