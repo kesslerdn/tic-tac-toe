@@ -4,13 +4,23 @@ import org.kesslerdn.tictactoe.board.Board
 
 class OffensivePositionStrategy implements PositionStrategy {
 
+	String mark
+	String opposingMark
+	RowAnalyzer rowAnalyzer
+	
 	@Override
 	public String findPosition(Board board) {
-		return null;
+		String position
+		board.rows.each{ row ->
+			if(rowAnalyzer.isAdvantagious(opposingMark,mark, row)){
+				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row).toString()
+			}
+		}
+		position
 	}
-
+	
 	@Override
 	public Boolean isValid(Board board) {
-		return false;
+		findPosition(board) != null
 	}
 }
