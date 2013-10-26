@@ -1,7 +1,7 @@
 package org.kesslerdn.tictactoe.game.player
 
 import static org.mockito.Mockito.*
-import static junit.framework.Assert.*
+import static org.junit.Assert.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
