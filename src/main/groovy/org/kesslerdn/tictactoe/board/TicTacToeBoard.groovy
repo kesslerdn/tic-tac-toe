@@ -1,7 +1,5 @@
 package org.kesslerdn.tictactoe.board
 
-import java.util.List;
-
 import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.position.Position

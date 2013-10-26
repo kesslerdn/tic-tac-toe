@@ -28,8 +28,10 @@ class ComputerPlayer implements Player {
 		strategicPlays = strategicPlays.findAll{it != null}
 		plays = plays.findAll{it != null}
 		if(strategicPlays.empty){
+			if(plays[0] == null) throw new IllegalStateException("Plays: $plays ; Board: ${board.display()}")
 			board.mark(plays[0].toString(), mark)
 		}else{
+			if(strategicPlays[0] == null) throw new IllegalStateException("Strategic plays: $strategicPlays ; Board: ${board.display()}")
 			board.mark(strategicPlays[0].toString(), mark)
 		}
 	}

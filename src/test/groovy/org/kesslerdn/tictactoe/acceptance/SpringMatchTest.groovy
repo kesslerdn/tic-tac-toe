@@ -77,6 +77,35 @@ class SpringMatchTest extends GroovyTestCase {
 		match.start();
 	}
 	
+	@Test
+	void testStart_WithCenter() {
+		firstPlayer.testingPositions = ["5","3","4","2", "9"]
+		gameControl.expectedMessages  = [
+			expectedBoard(  "1","2","3",
+							"4","X","6",
+							"7","8","9"),
+						
+			expectedBoard(  "O","2","X",
+							"4","X","6",
+							"7","8","9"),
+						
+			expectedBoard(  "O","2","X",
+							"X","X","6",
+							"O","8","9"),
+						
+			expectedBoard(  "O","X","X",
+							"X","X","O",
+							"O","8","9"),
+						
+			expectedBoard(  "O","X","X",
+							"X","X","O",
+							"O","O","X"),
+						
+							'This game ended in a tie!']
+	
+		match.start();
+	}
+
 	private String expectedBoard(String one, String two, String three, 
 		String four, String five, String six, 
 		String seven, String eight, String nine){
