@@ -10,13 +10,14 @@ class OpenPositionStrategy implements Strategy {
 
 	@Override
 	public String findPosition(Board board) {
+		String position
 		board.rows.each{row ->
 			Integer play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
-			if(play != null){
-				return play.toString()
+			if(play != null && position == null){
+				position = play.toString()
 			}
 		}
-		null
+		position
 	}
 
 	@Override
