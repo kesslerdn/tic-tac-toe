@@ -9,100 +9,73 @@ import org.kesslerdn.tictactoe.board.position.TestPosition;
 
 class ThreeMarkTrackerTest extends GroovyTestCase {
 	private List<Position> positions
-	private Tracker tracker;
+	private List<List<Position>> rows
+	private Tracker tracker
+	private Board board
+	private Position first
+	private Position second
+	private Position third
+	private Position fourth
+	private Position fifth
+	private Position sixth
+	private Position seventh
+	private Position eighth
+	private Position nineth
 	
 	@Before
 	void setUp(){
-		positions = [createPosition("1"), createPosition("2"), createPosition("3"), 
-			createPosition("4"), createPosition("5"), createPosition("6"), 
-				createPosition("7"), createPosition("8"), createPosition("9")]
+		first = createPosition("1")
+		second = createPosition("2")
+		third = createPosition("3")
+		fourth = createPosition("4")
+		fifth = createPosition("5")
+		sixth = createPosition("6")
+
+		positions = [first, second, third, fourth, fifth, sixth]
+		rows = [[first,second,third],[fourth,fifth, sixth]]
 		
 		tracker = new ThreeMarkTracker()
+		board = new TicTacToeBoard(positions:positions, rows:rows)
 	}
 
 	@Test
-	void testIsActive_Horizontal_Top_Same(){
-		positions[0] = createPosition("A")
-		positions[1] = createPosition("A")
-		positions[2] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
+	void testIsActive_FirstRow_Same(){
+		first.value = "A"
+		second.value = "A"
+		third.value = "A"
 		
 		assert tracker.isActive(board) == false
 	}
 
 	@Test
-	void testIsActive_Horizontal_Middle_Same(){
-		positions[3] = createPosition("A")
-		positions[4] = createPosition("A")
-		positions[5] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
+	void testIsActive_SecondRow_Same(){
+		fourth.value = "A"
+		fifth.value = "A"
+		sixth.value = "A"
 		
 		assert tracker.isActive(board) == false
 	}
 	
 	@Test
-	void testIsActive_Horizontal_Bottom_Same(){
-		positions[6] = createPosition("A")
-		positions[7] = createPosition("A")
-		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
+	void testIsActive_FirstRow_Different(){
+		first.value = "A"
+		second.value = "B"
+		third.value = "A"
 		
-		assert tracker.isActive(board) == false
+		assert tracker.isActive(board) == true
 	}
 
 	@Test
-	void testIsActive_Verticle_Left_Same(){
-		positions[0] = createPosition("A")
-		positions[3] = createPosition("A")
-		positions[6] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
+	void testIsActive_SecondRow_Different(){
+		fourth.value = "A"
+		fifth.value = "A"
+		sixth.value = "B"
 		
-		assert tracker.isActive(board) == false
-	}
-	
-	@Test
-	void testIsActive_Verticle_Center_Same(){
-		positions[1] = createPosition("A")
-		positions[4] = createPosition("A")
-		positions[7] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
-		
-		assert tracker.isActive(board) == false
-	}
-	
-	@Test
-	void testIsActive_Verticle_Right_Same(){
-		positions[2] = createPosition("A")
-		positions[5] = createPosition("A")
-		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
-		
-		assert tracker.isActive(board) == false
-	}
-
-	@Test
-	void testIsActive_Diagonal_LeftToRight_Same(){
-		positions[0] = createPosition("A")
-		positions[4] = createPosition("A")
-		positions[8] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
-		
-		assert tracker.isActive(board) == false
-	}
-
-	@Test
-	void testIsActive_Diagonal_RightToLeft_Same(){
-		positions[2] = createPosition("A")
-		positions[4] = createPosition("A")
-		positions[6] = createPosition("A")
-		Board board = new TicTacToeBoard(positions:positions)
-		
-		assert tracker.isActive(board) == false
+		assert tracker.isActive(board) == true
 	}
 
 	@Test
 	void testIsActive_AllDifferent(){
-		Board board = new TicTacToeBoard(positions:positions)
 		assert tracker.isActive(board) == true
 	}
 
