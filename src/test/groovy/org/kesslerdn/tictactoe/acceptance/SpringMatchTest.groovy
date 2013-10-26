@@ -24,7 +24,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_WithTopLeft() {
-		firstPlayer.testingPositions = ["1","5","4", "7"]
+		firstPlayer.testingPositions = ["1","5","4", "7", "8"]
 		gameControl.expectedMessages = [
 			expectedBoard(  "X","2","3",
 							"4","5","6",
@@ -44,7 +44,7 @@ class SpringMatchTest extends GroovyTestCase {
 						
 			expectedBoard(  "X","O","O",
 							"X","X","O",
-							"X","8","O"),
+							"X","X","O"),
 						
 							'This game ended in a tie!']
 		
