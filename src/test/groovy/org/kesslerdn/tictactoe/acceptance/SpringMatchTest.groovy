@@ -46,7 +46,7 @@ class SpringMatchTest extends GroovyTestCase {
 							"X","X","O",
 							"X","8","O"),
 						
-							'Player ?? won']
+							'This game ended in a tie!']
 		
 		match.start();
 	}
@@ -72,7 +72,7 @@ class SpringMatchTest extends GroovyTestCase {
 							"O","X","X",
 							"O","8","9"),
  
-							'Player ?? won']
+							"Player 'O' won!"]
 	
 		match.start();
 	}

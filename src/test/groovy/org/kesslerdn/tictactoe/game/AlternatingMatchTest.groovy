@@ -7,7 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.game.player.Player
-import org.kesslerdn.tictactoe.view.GameControl
+import org.kesslerdn.tictactoe.view.Score
 import org.mockito.InOrder
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -21,12 +21,12 @@ class AlternatingMatchTest extends GroovyTestCase{
 	static final String MARK_ONE = "X"
 	static final String DISPLAY_OUTPUT = "display"
 
-	@Mock GameControl gameControl;
 	@Mock Tracker tracker;
 	@Mock Board board;
 	@Mock Player firstPlayer
 	@Mock Player secondPlayer
 	@Mock Turn players;
+	@Mock Score score;
 	@InjectMocks
 	Match match = new AlternatingMatch()
 	
@@ -37,7 +37,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)		
 		
-		InOrder inOrder = inOrder(firstPlayer, secondPlayer, gameControl)
+		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
 		match.start();
 				
@@ -45,9 +45,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
-		
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player ?? won")
+		inOrder.verify(score).display(board)
 	}
 	
 	@Test
@@ -57,7 +55,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)
 		
-		InOrder inOrder = inOrder(firstPlayer, secondPlayer, gameControl)
+		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
 		match.start();
 				
@@ -65,8 +63,6 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
-		
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player ?? won")
+		inOrder.verify(score).display(board)
 	}
 }

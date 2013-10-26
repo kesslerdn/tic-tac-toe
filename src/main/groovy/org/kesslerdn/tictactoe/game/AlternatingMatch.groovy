@@ -1,19 +1,19 @@
 package org.kesslerdn.tictactoe.game;
 
-import javax.annotation.Resource;
+import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.view.GameControl
-import org.springframework.stereotype.Component;
+import org.kesslerdn.tictactoe.view.Score
+import org.springframework.stereotype.Component
 
 
 @Component
 public class AlternatingMatch implements Match {
 
 	@Resource private Board board;
-	@Resource private GameControl gameControl;
 	@Resource private Turn players;
 	@Resource private Tracker tracker;
+	@Resource private Score score
 	
 	@Override
 	public void start() {
@@ -22,8 +22,6 @@ public class AlternatingMatch implements Match {
 			players.next().play(board)
 			players.next().play(board)
 		}
-		
-		gameControl.status(board.display())
-		gameControl.status("Player ?? won")
+		score.display(board)
 	}
 }

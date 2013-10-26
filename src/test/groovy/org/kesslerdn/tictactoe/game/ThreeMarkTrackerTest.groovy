@@ -34,7 +34,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions = [first, second, third, fourth, fifth, sixth]
 		rows = [[first,second,third],[fourth,fifth, sixth]]
 		
-		tracker = new ThreeMarkTracker(firstMark: "A", secondMark: "B")
+		tracker = new ThreeMarkTracker()
 		board = new TicTacToeBoard(positions:positions, rows:rows)
 	}
 	

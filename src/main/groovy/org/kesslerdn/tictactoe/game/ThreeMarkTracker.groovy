@@ -10,10 +10,6 @@ import org.springframework.stereotype.Component
 class ThreeMarkTracker implements Tracker {
 	
 	private int turnCount
-	@Resource
-	private String firstMark
-	@Resource
-	private String secondMark
 	
 	@Override
 	public Boolean isActive(Board board) {
