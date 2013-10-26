@@ -2,9 +2,16 @@ package org.kesslerdn.tictactoe.game.ai
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 
 class ThreePositionRowAnalyzerTest extends GroovyTestCase {
+
+	static final String OPPOSING_MARK = "A"
+
+	static final String PLAYER_MARK = "B"
+
+	static final String NEITHER_MARK = "Z"
 	
 	private ThreePositionRowAnalyzer rowAnalyzer
 	@Before
@@ -14,89 +21,123 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testIsVulnerable_True_FirstTwo(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("A"), new TestPosition("")])
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
 	}
-	
+
 	@Test
 	public void testFirstOpenPosition_FirstTwo(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, "A"), new TestPosition(2, "A"), new TestPosition(3, "")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
 		assert 3 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_True_LastTwo(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition(""), new TestPosition("A"), new TestPosition("A")])
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
 	}
 	
 	@Test
 	public void testFirstOpenPosition_LastTwo(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, ""), new TestPosition(2, "A"), new TestPosition(3, "A")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
 		assert 1 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_True_FirstAndLast(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("A")])
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", OPPOSING_MARK))
 	}
 	
 	@Test
 	public void testFirstOpenPosition_FirstAndLast(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, ""), new TestPosition(2, "A"), new TestPosition(3, "A")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
 		assert 1 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_All(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("A"), new TestPosition("A")]) == false
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_All(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, "A"), new TestPosition(2, "A"), new TestPosition(3, "A")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK))
 		assert null == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_Mixed(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition("B"), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, "")) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_Mixed(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, "A"), new TestPosition(2, "B"), new TestPosition(3, "")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, ""))
 		assert 3 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_TwoEmpty(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", "")) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_TwoEmpty(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, "A"), new TestPosition(2, ""), new TestPosition(3, "")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
 		assert 2 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_AllEmpty(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("A"), new TestPosition(""), new TestPosition("")]) == false
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", "")) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_AllEmpty(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, ""), new TestPosition(2, ""), new TestPosition(3, "")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", "", ""))
 		assert 1 == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_NoMatchingMark(){
-		assert rowAnalyzer.isVulnerable("A", "B", [new TestPosition("Z"), new TestPosition("Z"), new TestPosition("Z")]) == false
+		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_NoMatchingMark(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition("A", "B", [new TestPosition(1, "Z"), new TestPosition(2, "Z"), new TestPosition(3, "Z")])
+		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK))
 		assert 1 == openPosition
+	}
+	
+	@Test
+	public void testIsAdvantagious_True_FirstOne(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, "", ""))
+	}
+	
+	@Test
+	public void testIsAdvantagious_True_FirstTwo(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
+	}
+	
+	@Test
+	public void testIsAdvantagious_True_LastOne(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", "", PLAYER_MARK))
+	}
+	
+	@Test
+	public void testIsAdvantagious_True_LastTwo(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
+	}
+
+	@Test
+	public void testIsAdvantagious_True_OneOpponentMark(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, OPPOSING_MARK, "")) == false
+	}
+	
+	@Test
+	public void testIsAdvantagious_True_OnlyOpponentMarks(){
+		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, "")) == false
+	}
+
+	private List<Position> createRow(String firstMark, String secondMark, String thirdMark){
+		[new TestPosition(1, firstMark), new TestPosition(2, secondMark), new TestPosition(3, thirdMark)]
 	}
 }

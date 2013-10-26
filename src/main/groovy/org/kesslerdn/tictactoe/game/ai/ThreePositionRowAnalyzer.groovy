@@ -1,5 +1,7 @@
 package org.kesslerdn.tictactoe.game.ai
 
+import java.util.List;
+
 import org.kesslerdn.tictactoe.board.position.Position
 import org.springframework.stereotype.Component
 
@@ -7,11 +9,17 @@ import org.springframework.stereotype.Component
 class ThreePositionRowAnalyzer implements RowAnalyzer {
 
 	@Override
+	public Boolean isAdvantagious(String opposingMark, String playerMark,
+			List<Position> row) {
+		count(row,opposingMark) == 0 && count(row, playerMark) != 0
+	}
+			
+	@Override
 	public Boolean isVulnerable(String opposingMark, String playerMark,
 			List<Position> row) {
-		row.count{it.value == opposingMark} == 2 && row.count{it.value == playerMark} != 1
+		count(row,opposingMark) == 2 && count(row, playerMark) != 1
 	}
-
+		
 	@Override
 	public Integer firstOpenPosition(String opposingMark, String playerMark,
 			List<Position> row) {
@@ -21,5 +29,9 @@ class ThreePositionRowAnalyzer implements RowAnalyzer {
 		}else{
 			openPositions[0].index
 		}
+	}
+			
+	private Integer count(List<Position> row, String mark){
+		row.count{it.value == mark}
 	}
 }
