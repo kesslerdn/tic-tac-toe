@@ -34,10 +34,10 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions = [first, second, third, fourth, fifth, sixth]
 		rows = [[first,second,third],[fourth,fifth, sixth]]
 		
-		tracker = new ThreeMarkTracker()
+		tracker = new ThreeMarkTracker(firstMark: "A", secondMark: "B")
 		board = new TicTacToeBoard(positions:positions, rows:rows)
 	}
-
+	
 	@Test
 	void testIsActive_FirstRow_Same(){
 		first.value = "A"
@@ -72,6 +72,45 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		sixth.value = "B"
 		
 		assert tracker.isActive(board) == true
+	}
+	
+	@Test
+	void testIsActive_CalculateScore_All(){
+		first.value = "A"
+		second.value = "A"
+		third.value = "A"
+		
+		assert 1 == tracker.calculateScore("A", board)
+	}
+	
+	@Test
+	void testIsActive_CalculateScore_None(){
+		first.value = "A"
+		second.value = "A"
+		third.value = "A"
+		
+		assert 0 == tracker.calculateScore("B", board)
+	}
+	
+	@Test
+	void testIsActive_CalculateScore_IncompleteRow(){
+		first.value = "B"
+		second.value = "A"
+		third.value = "B"
+		
+		assert 0 == tracker.calculateScore("B", board)
+	}
+
+	@Test
+	void testIsActive_CalculateScore_TwoRows(){
+		first.value = "A"
+		second.value = "A"
+		third.value = "A"
+		fourth.value = "A"
+		fifth.value = "A"
+		sixth.value = "A"
+		
+		assert 2 == tracker.calculateScore("A", board)
 	}
 
 	@Test

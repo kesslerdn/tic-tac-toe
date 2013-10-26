@@ -1,5 +1,7 @@
 package org.kesslerdn.tictactoe.game
 
+import javax.annotation.Resource
+
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.springframework.stereotype.Component
@@ -8,20 +10,31 @@ import org.springframework.stereotype.Component
 class ThreeMarkTracker implements Tracker {
 	
 	private int turnCount
+	@Resource
+	private String firstMark
+	@Resource
+	private String secondMark
 	
 	@Override
 	public Boolean isActive(Board board) {
-		checkRows(board.rows)
-	}
-
-	private Boolean checkRows(List<List<Position>> rows){
 		Boolean isActive = true
-		rows.each { row ->
+		board.rows.each { row ->
 			if(areSame(row)){
 				 isActive = false
 			}
 		}
 		isActive
+	}
+	
+	@Override
+	public Integer calculateScore(String mark, Board board) {
+		Integer score = 0
+		board.rows.each { row ->
+			if(areSame(row) && mark == row[0].value){
+				 score++
+			}
+		}
+		score
 	}
 	
 	private Boolean areSame(List<Position> row){

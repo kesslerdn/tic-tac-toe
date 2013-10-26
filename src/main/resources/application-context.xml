@@ -129,10 +129,15 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-	
-	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark="X" p:gameControl-ref="consoleGameControl"/>
+	<bean id="firstMark" class="java.lang.String">
+    	<constructor-arg type="String" value="X"/>
+    </bean>
+	<bean id="secondMark" class="java.lang.String">
+    	<constructor-arg type="String" value="O"/>
+    </bean>
+	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark-ref="firstMark" p:gameControl-ref="consoleGameControl"/>
 	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" 
-		p:mark="O" p:opposingMark="X" p:gameControl-ref="consoleGameControl" p:rowAnalyzer-ref="threePositionRowAnalyzer"/>
+		p:mark-ref="secondMark" p:opposingMark-ref="firstMark" p:gameControl-ref="consoleGameControl" p:rowAnalyzer-ref="threePositionRowAnalyzer"/>
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	
 	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	
