@@ -22,6 +22,9 @@ public class AlternatingMatch implements Match {
 			players.next().play(board)
 			players.next().play(board)
 		}
+		if(!score.hasWinner(board)){
+			players.next().play(board)
+		}
 		score.display(board)
 	}
 }

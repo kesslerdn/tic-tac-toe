@@ -65,4 +65,37 @@ class FinalScoreTest extends GroovyTestCase{
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(gameControl).status("Player '$SECOND_MARK' won!")
 	}
+
+	@Test
+	public void testHasWinner_Tie() {
+		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		
+		InOrder inOrder = inOrder(gameControl)
+
+		assert !score.hasWinner(board)
+	}
+
+	@Test
+	public void testHasWinner_PlayerOneWins() {
+		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(0)
+		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		
+		InOrder inOrder = inOrder(gameControl)
+
+		assert score.hasWinner(board)
+	}
+
+	@Test
+	public void testHasWinner_PlayerTwoWins() {
+		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(0)
+		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		
+		InOrder inOrder = inOrder(gameControl)
+
+		assert score.hasWinner(board)
+	}
 }

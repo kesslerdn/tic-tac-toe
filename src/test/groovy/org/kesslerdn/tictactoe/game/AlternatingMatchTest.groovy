@@ -36,6 +36,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)		
+		when(score.hasWinner(board)).thenReturn(true)
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
@@ -45,6 +46,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(score).hasWinner(board)
 		inOrder.verify(score).display(board)
 	}
 	
@@ -54,6 +56,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)
+		when(score.hasWinner(board)).thenReturn(true)
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
@@ -63,6 +66,36 @@ class AlternatingMatchTest extends GroovyTestCase{
 		inOrder.verify(secondPlayer).play(board)
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(score).hasWinner(board)
 		inOrder.verify(score).display(board)
 	}
+	
+	
+	@Test
+	public void testStart_NineMoveMax() {
+		when(firstPlayer.mark).thenReturn(MARK_ONE)
+		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer, 
+			firstPlayer, secondPlayer, firstPlayer, secondPlayer,
+			firstPlayer, secondPlayer)
+		when(board.display()).thenReturn(DISPLAY_OUTPUT)
+		when(tracker.isActive(board)).thenReturn(true, true, true, true, false)
+		when(score.hasWinner(board)).thenReturn(false)
+		
+		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
+		
+		match.start();
+				
+		inOrder.verify(firstPlayer).play(board)
+		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(firstPlayer).play(board)
+		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(firstPlayer).play(board)
+		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(firstPlayer).play(board)
+		inOrder.verify(secondPlayer).play(board)
+		inOrder.verify(score).hasWinner(board)
+		inOrder.verify(firstPlayer).play(board)
+		inOrder.verify(score).display(board)
+	}
+
 }
