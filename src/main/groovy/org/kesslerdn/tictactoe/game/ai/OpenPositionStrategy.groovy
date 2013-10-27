@@ -16,7 +16,7 @@ class OpenPositionStrategy implements PositionStrategy {
 	public String findPosition(Board board) {
 		String position
 		board.rows.each{row ->
-			Integer play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
+			String play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
 			if(play != null && position == null){
 				position = play.toString()
 			}

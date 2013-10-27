@@ -169,31 +169,6 @@ class SpringMatchTest extends GroovyTestCase {
 	}
 	
 	@Test
-	void testStart_ScenarioSeven() {
-		firstPlayer.testingPositions = ["2","6","8", "4", "8"]
-		gameControl.expectedMessages  = [
-			expectedBoard(  "1","X","3",
-							"4","5","6",
-							"7","8","9"),
-						
-			expectedBoard(  "1","X","3",
-							"4","O","X",
-							"7","8","9"),
-						
-			expectedBoard(  "1","X","O",
-							"4","O","X",
-							"7","X","9"),
- 
-			expectedBoard(  "1","X","O",
-							"4","O","X",
-							"O","X","9"),
-						
-							"Player 'O' won!"]
-	
-		match.start();
-	}
-	
-	@Test
 	void testStart_ScenarioSix() {
 		firstPlayer.testingPositions = ["9","7","1", "3", "8"]
 		gameControl.expectedMessages  = [
@@ -218,6 +193,60 @@ class SpringMatchTest extends GroovyTestCase {
 							"X","O","X"),
 						
 							"Player 'O' won!"]
+	
+		match.start();
+	}
+	
+	@Test
+	void testStart_ScenarioSeven() {
+		firstPlayer.testingPositions = ["2","6","8", "4", "8"]
+		gameControl.expectedMessages  = [
+			expectedBoard(  "1","X","3",
+							"4","5","6",
+							"7","8","9"),
+						
+			expectedBoard(  "1","X","3",
+							"4","O","X",
+							"7","8","9"),
+						
+			expectedBoard(  "1","X","O",
+							"4","O","X",
+							"7","X","9"),
+ 
+			expectedBoard(  "1","X","O",
+							"4","O","X",
+							"O","X","9"),
+						
+							"Player 'O' won!"]
+	
+		match.start();
+	}
+
+	@Test
+	void testStart_ScenarioEight() {
+		firstPlayer.testingPositions = ["5","9","3", "7"]
+		gameControl.expectedMessages  = [
+			expectedBoard(  "1","2","3",
+							"4","X","6",
+							"7","8","9"),
+						
+			expectedBoard(  "O","2","3",
+							"4","X","6",
+							"7","8","X"),
+						
+			expectedBoard(  "O","O","X",
+							"4","X","6",
+							"7","8","X"),
+ 
+			expectedBoard(  "O","O","X",
+							"4","X","O",
+							"X","8","X"),
+ 
+			expectedBoard(  "O","O","X",
+							"O","X","O",
+							"X","8","X"),
+						
+							"Player 'X' won!"]
 	
 		match.start();
 	}

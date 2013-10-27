@@ -27,7 +27,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_FirstTwo(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
-		assert 3 == openPosition
+		assert "3" == openPosition
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_LastTwo(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert 1 == openPosition
+		assert "1" == openPosition
 	}
 
 	@Test
@@ -49,7 +49,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_FirstAndLast(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert 1 == openPosition
+		assert "1" == openPosition
 	}
 
 	@Test
@@ -71,7 +71,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_Mixed(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, ""))
-		assert 3 == openPosition
+		assert "3" == openPosition
 	}
 
 	@Test
@@ -82,7 +82,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_TwoEmpty(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
-		assert 2 == openPosition
+		assert "2" == openPosition
 	}
 
 	@Test
@@ -93,7 +93,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_AllEmpty(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", "", ""))
-		assert 1 == openPosition
+		assert "1" == openPosition
 	}
 
 	@Test
@@ -104,7 +104,7 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	@Test
 	public void testFirstOpenPosition_NoMatchingMark(){
 		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK))
-		assert 1 == openPosition
+		assert "1" == openPosition
 	}
 	
 	@Test

@@ -16,7 +16,7 @@ class DefensivePositionStrategy implements PositionStrategy {
 		String position
 		board.rows.each{ row ->
 			if(rowAnalyzer.isVulnerable(opposingMark,mark, row)){
-				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row).toString()
+				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
 			}
 		}
 		position

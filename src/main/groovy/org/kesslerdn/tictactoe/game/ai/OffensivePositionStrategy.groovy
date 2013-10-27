@@ -17,7 +17,7 @@ class OffensivePositionStrategy implements PositionStrategy {
 		String position
 		board.rows.each{ row ->
 			if(position == null && rowAnalyzer.isAdvantagious(opposingMark,mark, row)){
-				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row).toString()
+				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
 			}
 		}
 		position

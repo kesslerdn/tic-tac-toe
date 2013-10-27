@@ -21,13 +21,13 @@ class ThreePositionRowAnalyzer implements RowAnalyzer {
 	}
 		
 	@Override
-	public Integer firstOpenPosition(String opposingMark, String playerMark,
+	public String firstOpenPosition(String opposingMark, String playerMark,
 			List<Position> row) {
 		List<Position> openPositions = row.findAll{![opposingMark, playerMark].contains(it.value)}
 		if(openPositions.empty){
 			null
 		}else{
-			openPositions[0].index
+			openPositions[0].index.toString()
 		}
 	}
 			

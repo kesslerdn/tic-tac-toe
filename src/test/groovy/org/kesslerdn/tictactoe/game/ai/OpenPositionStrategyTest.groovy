@@ -40,8 +40,8 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	
 	@Test
 	void testFindPosition_firstRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		String position = strategy.findPosition(board)
 		
@@ -51,8 +51,8 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	
 	@Test
 	void testIsValid_firstRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		assert strategy.isValid(board)
 	}
@@ -60,7 +60,7 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	@Test
 	void testFindPosition_secondRow(){
 		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		String position = strategy.findPosition(board)
 		
@@ -72,7 +72,7 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	@Test
 	void testIsValid_secondRow(){
 		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 				
 		assert strategy.isValid(board)
 	}
