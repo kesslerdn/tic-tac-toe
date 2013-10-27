@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.game.player.Player
+import org.kesslerdn.tictactoe.game.player.Turn;
 import org.kesslerdn.tictactoe.view.Score
 import org.mockito.InOrder
 import org.mockito.InjectMocks

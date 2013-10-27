@@ -1,6 +1,5 @@
 package org.kesslerdn.tictactoe.game.player
 
-import org.kesslerdn.tictactoe.game.Turn
 
 class TwoPlayerTurn implements Turn {
 

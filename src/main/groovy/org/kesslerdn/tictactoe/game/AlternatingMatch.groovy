@@ -3,6 +3,7 @@ package org.kesslerdn.tictactoe.game;
 import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.Board
+import org.kesslerdn.tictactoe.game.player.Turn;
 import org.kesslerdn.tictactoe.view.Score
 import org.springframework.stereotype.Component
 

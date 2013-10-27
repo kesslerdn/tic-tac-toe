@@ -4,9 +4,10 @@ import static org.junit.Assert.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.game.Turn;
 import org.mockito.Mock
+
 import static org.mockito.Mockito.*
+
 import org.mockito.runners.MockitoJUnitRunner
 
 
