@@ -13,19 +13,11 @@ class OpenPositionStrategy implements PositionStrategy {
 	@Resource RowAnalyzer rowAnalyzer
 
 	@Override
-	public String findPosition(Board board) {
-		String position
-		board.rows.each{row ->
-			String play = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
-			if(play != null && position == null){
-				position = play.toString()
-			}
+	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
+		board.rows.each{ row ->
+			List<String> openPositions = rowAnalyzer.openPositions(opposingMark, mark, row)
+			openPositions.each{positionCounter.add(it)}
 		}
-		position
-	}
-
-	@Override
-	public Boolean isValid(Board board) {
-		findPosition(board) != null
+		positionCounter
 	}
 }

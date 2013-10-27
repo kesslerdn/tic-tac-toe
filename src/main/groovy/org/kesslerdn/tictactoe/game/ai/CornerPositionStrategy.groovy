@@ -13,29 +13,30 @@ class CornerPositionStrategy implements PositionStrategy {
 	@Resource RowAnalyzer rowAnalyzer
 	
 	@Override
-	public String findPosition(Board board) {
-		
+	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
 		String topLeft = board.positions[0].value
 		String topRight = board.positions[2].value
 		String bottomLeft = board.positions[6].value
 		String bottomRight = board.positions[8].value
-		
+
+		String centerPosition = board.positions[4].value
+		if(centerPosition != opposingMark && centerPosition != mark) positionCounter.add("5")
+
 		String position
 		if (isOpenPosition(topLeft)){
-			 position = "1"
-		}else if (isOpenPosition(topRight)){
-			position = "3"
-		}else if (isOpenPosition(bottomLeft)){
-			position = "7"
-		}else if (isOpenPosition(bottomRight)){
-			position = "9"
+			 positionCounter.add("1")
 		}
-		position
-	}
-	
-	@Override
-	public Boolean isValid(Board board) {
-		findPosition(board) != null
+		if (isOpenPosition(topRight)){
+			positionCounter.add("3")
+		}
+		if (isOpenPosition(bottomLeft)){
+			positionCounter.add("7")
+		}
+		if (isOpenPosition(bottomRight)){
+			positionCounter.add("9")
+		}
+		
+		positionCounter;
 	}
 	
 	private Boolean isOpenPosition(String value){

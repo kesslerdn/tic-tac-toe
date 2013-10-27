@@ -5,15 +5,14 @@ import org.kesslerdn.tictactoe.board.Board
 class StrategicPositionLocator implements PositionLocator {
 
 	List<PositionStrategy> positionStrategies
+	PositionCounterFactory positionCounterFactory
 	
 	@Override
 	public String locate(Board board) {
-		String position
+		PositionCounter positionCounter = positionCounterFactory.create()
 		positionStrategies.each{ strategy ->
-			if(position == null && strategy.isValid(board)){
-				position = strategy.findPosition(board)
-			}
+			strategy.addPositions(board, positionCounter)
 		}
-		position
+		positionCounter.largest()
 	}
 }

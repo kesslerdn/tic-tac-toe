@@ -10,16 +10,11 @@ class CenterPositionStrategy implements PositionStrategy {
 
 	@Resource(name="secondMark") String mark
 	@Resource(name="firstMark") String opposingMark
-	@Resource RowAnalyzer rowAnalyzer
-	
+
 	@Override
-	public String findPosition(Board board) {
+	public PositionCounter addPositions(Board board,PositionCounter positionCounter) {
 		String centerPosition = board.positions[4].value
-		centerPosition != opposingMark && centerPosition != mark ? "5" : null
-	}
-	
-	@Override
-	public Boolean isValid(Board board) {
-		findPosition(board) != null
+		if(centerPosition != opposingMark && centerPosition != mark) positionCounter.add("5")
+		positionCounter;
 	}
 }

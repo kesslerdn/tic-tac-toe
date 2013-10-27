@@ -23,6 +23,7 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	private List<Position> secondRow
 
 	@Mock RowAnalyzer rowAnalyzer
+	@Mock PositionCounter counter
 	@Mock Board board
 	@InjectMocks PositionStrategy strategy = new OpenPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
@@ -39,62 +40,32 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	}
 	
 	@Test
-	void testFindPosition_firstRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-		
-		String position = strategy.findPosition(board)
-		
-		assert "1" == position
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
+	void testAddPosition_ReturnsSamePositionCounter(){
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		assertSame(actualCounter, counter)
 	}
 	
 	@Test
-	void testIsValid_firstRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+	void testFindPosition(){
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		assert strategy.isValid(board)
-	}
-
-	@Test
-	void testFindPosition_secondRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		strategy.addPositions(board, counter)
 		
-		String position = strategy.findPosition(board)
-		
-		assert "2" == position
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
+		verify(counter).add("1")
+		verify(counter).add("2")
+		verify(counter).add("3")
 	}
 	
 	@Test
-	void testIsValid_secondRow(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-				
-		assert strategy.isValid(board)
-	}
-
-	@Test
-	void testFindPosition_Neither(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(null)
+	void testFindPosition_EmptyList(){
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn([])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert position == null
-		
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
-	}
-
-	@Test
-	void testIsValid_Neither(){
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(null)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(null)
-		
-		assert strategy.isValid(board) == false
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
+		verify(counter).add("2")
 	}
 }

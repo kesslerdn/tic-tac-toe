@@ -24,6 +24,7 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
+	@Mock PositionCounter counter
 	@InjectMocks PositionStrategy strategy = new OffensivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	
@@ -39,73 +40,51 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	}
 	
 	@Test
-	void testFindPosition_firstRow(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-		
-		String position = strategy.findPosition(board)
-		
-		assert "1" == position
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
+	void testAddPosition_ReturnsSamePositionCounter(){
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		assertSame(actualCounter, counter)
 	}
 	
 	@Test
-	void testIsValid_firstRow(){
+	void testFindPosition_firstRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		assert strategy.isValid(board)
+		strategy.addPositions(board, counter)
+		
+		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
+		verify(counter).add("1")
+		verify(counter).add("3")
 	}
 
 	@Test
 	void testFindPosition_secondRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert "2" == position
 		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, secondRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
-	}
-	
-	@Test
-	void testIsValid_secondRow(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-				
-		assert strategy.isValid(board)
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, secondRow)
+		verify(counter).add("2")
 	}
 
 	@Test
 	void testFindPosition_Neither(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert position == null
 		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, secondRow)
-	}
-
-	@Test
-	void testIsValid_Neither(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-		
-		assert strategy.isValid(board) == false
+		verifyZeroInteractions(counter)
 	}
 }

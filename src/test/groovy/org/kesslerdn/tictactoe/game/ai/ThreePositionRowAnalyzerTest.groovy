@@ -26,8 +26,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
 	@Test
 	public void testFirstOpenPosition_FirstTwo(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
-		assert "3" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
+		assert ["3"] == openPosition
 	}
 
 	@Test
@@ -37,8 +37,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_LastTwo(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert "1" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
+		assert ["1"] == openPosition
 	}
 
 	@Test
@@ -48,8 +48,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_FirstAndLast(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert "1" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
+		assert ["1"] == openPosition
 	}
 
 	@Test
@@ -59,8 +59,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_All(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK))
-		assert null == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK))
+		assert [] == openPosition
 	}
 
 	@Test
@@ -70,8 +70,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_Mixed(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, ""))
-		assert "3" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, ""))
+		assert ["3"] == openPosition
 	}
 
 	@Test
@@ -81,8 +81,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_TwoEmpty(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
-		assert "2" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
+		assert ["2", "3"] == openPosition
 	}
 
 	@Test
@@ -92,8 +92,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_AllEmpty(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow("", "", ""))
-		assert "1" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", "", ""))
+		assert ["1", "2", "3"] == openPosition
 	}
 
 	@Test
@@ -103,8 +103,8 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testFirstOpenPosition_NoMatchingMark(){
-		Integer openPosition = rowAnalyzer.firstOpenPosition(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK))
-		assert "1" == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK))
+		assert ["1", "2", "3"] == openPosition
 	}
 	
 	@Test

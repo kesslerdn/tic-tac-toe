@@ -4,6 +4,5 @@ import org.kesslerdn.tictactoe.board.Board;
 
 
 interface PositionStrategy {
-	Boolean isValid(Board board)
-	String findPosition(Board board)
+	PositionCounter addPositions(Board board, PositionCounter positionCounter)
 }

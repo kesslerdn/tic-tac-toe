@@ -20,55 +20,28 @@ class StrategicPositionLocatorTest extends GroovyTestCase {
 	@Mock PositionStrategy firstStrategy
 	@Mock PositionStrategy secondStrategy
 	@Mock PositionStrategy thirdStrategy
+	@Mock PositionCounter counter
+	@Mock PositionCounterFactory positionCounterFactory
 	@Mock Board board
 	
 	PositionLocator positionLocator
 	
 	@Before
 	void setUp(){
-		when(firstStrategy.isValid(board)).thenReturn(false)
-		when(secondStrategy.isValid(board)).thenReturn(false)
-		when(thirdStrategy.isValid(board)).thenReturn(false)
-		
-		when(firstStrategy.findPosition(board)).thenReturn(FIRST_POSITION)
-		when(secondStrategy.findPosition(board)).thenReturn(SECOND_POSITION)
-		when(thirdStrategy.findPosition(board)).thenReturn(THIRD_POSITION)
+		when(counter.largest()).thenReturn(FIRST_POSITION)
+		when(positionCounterFactory.create()).thenReturn(counter)
 		
 		positionLocator = new StrategicPositionLocator(
-		positionStrategies:[firstStrategy, secondStrategy, thirdStrategy])
+		positionStrategies:[firstStrategy, secondStrategy, thirdStrategy],
+		positionCounterFactory: positionCounterFactory)
 	}
 	
 	@Test
-	void testLocate_firstStrategy(){
-		when(firstStrategy.isValid(board)).thenReturn(true)
-		
+	void testLocate(){
 		assert FIRST_POSITION == positionLocator.locate(board)
-	}
-	
-	@Test
-	void testLocate_secondStrategy(){
-		when(secondStrategy.isValid(board)).thenReturn(true)
 		
-		assert SECOND_POSITION == positionLocator.locate(board)
-	}
-	
-	@Test
-	void testLocate_thirdStrategy(){
-		when(thirdStrategy.isValid(board)).thenReturn(true)
-		
-		assert THIRD_POSITION == positionLocator.locate(board)
-	}
-	
-	@Test
-	void testLocate_noStrategy(){
-		assert null == positionLocator.locate(board)
-	}
-	
-	@Test
-	void testLocate_firstValidStrategy(){
-		when(secondStrategy.isValid(board)).thenReturn(true)
-		when(thirdStrategy.isValid(board)).thenReturn(true)
-		
-		assert SECOND_POSITION == positionLocator.locate(board)
+		verify(firstStrategy).addPositions(board, counter)
+		verify(secondStrategy).addPositions(board, counter)
+		verify(thirdStrategy).addPositions(board, counter)
 	}
 }

@@ -23,6 +23,7 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 	private List<Position> secondRow
 
 	@Mock RowAnalyzer rowAnalyzer
+	@Mock PositionCounter counter
 	@Mock Board board
 	@InjectMocks PositionStrategy strategy = new DefensivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
@@ -37,75 +38,53 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 		
 		when(board.getRows()).thenReturn(rows)
 	}
-	
+		
+	@Test
+	void testAddPosition_ReturnsSamePositionCounter(){
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		assertSame(actualCounter, counter)
+	}
+
 	@Test
 	void testFindPosition_firstRow(){
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert "1" == position
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, firstRow)
-	}
-	
-	@Test
-	void testIsValid_firstRow(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-		
-		assert strategy.isValid(board)
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
+		verify(counter).add("1")
+		verify(counter).add("3")
 	}
 
 	@Test
 	void testFindPosition_secondRow(){
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert "2" == position
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
-		verify(rowAnalyzer).firstOpenPosition(OPPOSING_MARK, MARK, secondRow)
-	}
-	
-	@Test
-	void testIsValid_secondRow(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-				
-		assert strategy.isValid(board)
+		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, secondRow)
+		verify(counter).add("2")
 	}
 
 	@Test
 	void testFindPosition_Neither(){
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1"])
+		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
-		String position = strategy.findPosition(board)
+		strategy.addPositions(board, counter)
 		
-		assert position == null
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
-	}
-
-	@Test
-	void testIsValid_Neither(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
-		
-		assert strategy.isValid(board) == false
+		verifyZeroInteractions(counter)
 	}
 }

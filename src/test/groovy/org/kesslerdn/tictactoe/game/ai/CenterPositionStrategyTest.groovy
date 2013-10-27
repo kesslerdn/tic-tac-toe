@@ -13,8 +13,6 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
-import com.google.common.base.Splitter.Strategy;
-
 @RunWith(MockitoJUnitRunner.class)
 class CenterPositionStrategyTest extends GroovyTestCase {
 
@@ -25,6 +23,7 @@ class CenterPositionStrategyTest extends GroovyTestCase {
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
+	@Mock PositionCounter counter
 	@InjectMocks PositionStrategy strategy = new CenterPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	@Before
@@ -36,36 +35,21 @@ class CenterPositionStrategyTest extends GroovyTestCase {
 	}
 	
 	@Test
-	void testFindPosition_available(){	
-		assert "5" == strategy.findPosition(board)
+	void testAddPosition_ReturnsSamePositionCounter(){	
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		assertSame(actualCounter, counter)
 	}
 	
 	@Test
-	void testIsValid_available(){
-		assert strategy.isValid(board)
+	void testAddPosition(){	
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		verify(counter).add("5")
 	}
 	
 	@Test
-	void testFindPosition_withOpposingMark(){
+	void testAddPosition_CenterFilled(){	
 		positions[4] = new TestPosition(OPPOSING_MARK)
-		assert null == strategy.findPosition(board)
-	}
-	
-	@Test
-	void testIsValid_withOpposingMark(){
-		positions[4] = new TestPosition(OPPOSING_MARK)
-		assert !strategy.isValid(board)
-	}
-	
-	@Test
-	void testFindPosition_withPlayerMark(){
-		positions[4] = new TestPosition(MARK)
-		assert null == strategy.findPosition(board)
-	}
-	
-	@Test
-	void testIsValid_withPlayerMark(){
-		positions[4] = new TestPosition(MARK)
-		assert !strategy.isValid(board)
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		verifyZeroInteractions(counter)
 	}
 }

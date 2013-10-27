@@ -145,6 +145,9 @@
     			<ref bean="openPositionStrategy"/>
     		</list>
     	</property>
+    	<property name="positionCounterFactory">
+    		<bean class="org.kesslerdn.tictactoe.game.ai.StrategicPositionCounterFactory"/>
+    	</property>
     </bean>
 	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark-ref="firstMark" p:gameControl-ref="consoleGameControl"/>
 	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" 

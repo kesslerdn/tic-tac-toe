@@ -13,8 +13,6 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
-import com.google.common.base.Splitter.Strategy;
-
 @RunWith(MockitoJUnitRunner.class)
 class CornerPositionStrategyTest extends GroovyTestCase {
 
@@ -23,8 +21,8 @@ class CornerPositionStrategyTest extends GroovyTestCase {
 
 	private List<Position> positions
 
-	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
+	@Mock PositionCounter counter
 	@InjectMocks PositionStrategy strategy = new CornerPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	@Before
@@ -34,41 +32,38 @@ class CornerPositionStrategyTest extends GroovyTestCase {
 					new TestPosition("7"), new TestPosition("8"), new TestPosition("9"),]
 		when(board.getPositions()).thenReturn(positions)
 	}
-
+	
 	@Test
-	void testFindPosition_allAvailable(){	
-		assert "1" == strategy.findPosition(board)
+	void testAddPosition_ReturnsSamePositionCounter(){
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		assertSame(actualCounter, counter)
 	}
 	
 	@Test
-	void testIsValid_allAvailable(){
-		assert strategy.isValid(board)
-	}
-	
-	@Test
-	void testFindPosition_leftCornerTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
-		assert "3" == strategy.findPosition(board)
+	void testAddPosition(){
+		PositionCounter actualCounter = strategy.addPositions(board, counter)
+		verify(counter).add("1")
+		verify(counter).add("3")
+		verify(counter).add("7")
+		verify(counter).add("9")
 	}
 	
 	@Test
 	void testIsValid_leftCornerTaken(){
 		positions[0] = new TestPosition(OPPOSING_MARK)
-		assert strategy.isValid(board)
+		strategy.addPositions(board, counter)
+		verify(counter).add("3")
+		verify(counter).add("7")
+		verify(counter).add("9")
 	}
 	
 	@Test
 	void testFindPosition_topCornersTaken(){
 		positions[0] = new TestPosition(OPPOSING_MARK)
 		positions[2] = new TestPosition(OPPOSING_MARK)
-		assert "7" == strategy.findPosition(board)
-	}
-	
-	@Test
-	void testIsValid_topCornersTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
-		positions[2] = new TestPosition(OPPOSING_MARK)
-		assert strategy.isValid(board)
+		strategy.addPositions(board, counter)
+		verify(counter).add("7")
+		verify(counter).add("9")
 	}
 	
 	@Test
@@ -76,14 +71,7 @@ class CornerPositionStrategyTest extends GroovyTestCase {
 		positions[0] = new TestPosition(OPPOSING_MARK)
 		positions[2] = new TestPosition(OPPOSING_MARK)
 		positions[6] = new TestPosition(OPPOSING_MARK)
-		assert "9" == strategy.findPosition(board)
-	}
-	
-	@Test
-	void testIsValid_allButBottomRightTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
-		positions[2] = new TestPosition(OPPOSING_MARK)
-		positions[6] = new TestPosition(OPPOSING_MARK)
-		assert strategy.isValid(board)
+		strategy.addPositions(board, counter)
+		verify(counter).add("9")
 	}
 }

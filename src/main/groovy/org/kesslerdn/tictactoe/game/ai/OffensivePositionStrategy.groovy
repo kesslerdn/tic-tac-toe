@@ -13,18 +13,13 @@ class OffensivePositionStrategy implements PositionStrategy {
 	@Resource RowAnalyzer rowAnalyzer
 	
 	@Override
-	public String findPosition(Board board) {
-		String position
+	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
 		board.rows.each{ row ->
-			if(position == null && rowAnalyzer.isAdvantagious(opposingMark,mark, row)){
-				position = rowAnalyzer.firstOpenPosition(opposingMark, mark, row)
+			if(rowAnalyzer.isAdvantagious(opposingMark,mark, row)){
+				List<String> openPositions = rowAnalyzer.openPositions(opposingMark, mark, row)
+				openPositions.each{positionCounter.add(it)}
 			}
 		}
-		position
-	}
-	
-	@Override
-	public Boolean isValid(Board board) {
-		findPosition(board) != null
+		positionCounter
 	}
 }
