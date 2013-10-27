@@ -41,8 +41,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	@Test
 	void testFindPosition_firstRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		String position = strategy.findPosition(board)
 		
@@ -54,8 +54,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	@Test
 	void testIsValid_firstRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		assert strategy.isValid(board)
 	}
@@ -64,8 +64,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	void testFindPosition_secondRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		String position = strategy.findPosition(board)
 		
@@ -79,8 +79,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	void testIsValid_secondRow(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 				
 		assert strategy.isValid(board)
 	}
@@ -89,8 +89,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	void testFindPosition_Neither(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		String position = strategy.findPosition(board)
 		
@@ -103,8 +103,8 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	void testIsValid_Neither(){
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
 		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn(1)
-		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn(2)
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, firstRow)).thenReturn("1")
+		when(rowAnalyzer.firstOpenPosition(OPPOSING_MARK, MARK, secondRow)).thenReturn("2")
 		
 		assert strategy.isValid(board) == false
 	}
