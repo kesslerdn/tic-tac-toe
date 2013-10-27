@@ -41,4 +41,18 @@ class StrategicPositionCounterTest extends GroovyTestCase {
 		counter.add("D")
 		assert "C" == counter.largest()
 	}
+	
+	
+	@Test
+	void testLargest_Tie(){
+		counter.add("A")
+		counter.add("B")
+		counter.add("A")
+		counter.add("B")
+		counter.add("A")
+		counter.add("B")
+		counter.add("C")
+		assert "A" == counter.largest()
+	}
+
 }
