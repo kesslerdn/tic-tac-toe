@@ -11,5 +11,6 @@ interface Board {
 	String display()
 	void mark(String positionValue, String value)
 	List<List<Position>> getRows()
+	List<Position> getPositions()
 	Boolean isOpen(String position)
 }

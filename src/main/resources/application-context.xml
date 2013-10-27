@@ -139,7 +139,9 @@
     	<property name="positionStrategies">
     		<list>
     			<ref bean="defensivePositionStrategy"/>
-    			<ref bean="offensivePositionStrategy"/>
+   				<ref bean="offensivePositionStrategy"/>
+    			<ref bean="centerPositionStrategy"/>
+    			<ref bean="cornerPositionStrategy"/>
     			<ref bean="openPositionStrategy"/>
     		</list>
     	</property>
