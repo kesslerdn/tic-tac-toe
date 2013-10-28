@@ -1,6 +1,6 @@
 package org.kesslerdn.tictactoe.game.player
 
-import org.kesslerdn.tictactoe.ai.PositionLocator;
+import org.kesslerdn.tictactoe.ai.strategy.PositionLocator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.view.GameControl
 

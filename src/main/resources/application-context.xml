@@ -129,7 +129,7 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-    <bean id="positionLocator" class="org.kesslerdn.tictactoe.ai.StrategicPositionLocator">
+    <bean id="positionLocator" class="org.kesslerdn.tictactoe.ai.strategy.cumulative.StrategicPositionLocator">
     	<property name="positionStrategies">
     		<list>
     			<ref bean="winningPositionStrategy"/>

@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.ai.PositionLocator;
+import org.kesslerdn.tictactoe.ai.strategy.PositionLocator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition

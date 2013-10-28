@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -6,7 +6,10 @@ import static org.mockito.Mockito.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.ai.strategy.cumulative.PositionStrategy
+import org.kesslerdn.tictactoe.ai.PositionCounter;
+import org.kesslerdn.tictactoe.ai.PositionCounterFactory;
+import org.kesslerdn.tictactoe.ai.strategy.PositionLocator;
+import org.kesslerdn.tictactoe.ai.strategy.cumulative.StrategicPositionLocator;
 import org.kesslerdn.tictactoe.board.Board
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner

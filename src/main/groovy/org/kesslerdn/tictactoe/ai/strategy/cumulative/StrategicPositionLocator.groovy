@@ -1,6 +1,8 @@
-package org.kesslerdn.tictactoe.ai
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
-import org.kesslerdn.tictactoe.ai.strategy.cumulative.PositionStrategy
+import org.kesslerdn.tictactoe.ai.PositionCounter;
+import org.kesslerdn.tictactoe.ai.PositionCounterFactory;
+import org.kesslerdn.tictactoe.ai.strategy.PositionLocator;
 import org.kesslerdn.tictactoe.board.Board
 
 class StrategicPositionLocator implements PositionLocator {
