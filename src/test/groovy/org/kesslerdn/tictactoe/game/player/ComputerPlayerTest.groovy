@@ -52,9 +52,8 @@ class ComputerPlayerTest extends GroovyTestCase {
 		
 		player.play(board)
 		
-		inOrder.verify(board).display()
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(positionLocator).locate(board)
+		inOrder.verify(gameControl).status("Player $MARK played position ${FIRST_POSITION}.")
 		inOrder.verify(board).mark(FIRST_POSITION.toString(), MARK)
 	}
 }

@@ -6,6 +6,8 @@ import org.kesslerdn.tictactoe.board.position.Position
 
 interface RowAnalyzer {
 	Boolean isVulnerable(String opposingMark, String playerMark, List<Position> row)
+	Boolean isProactive(String opposingMark, String playerMark, List<Position> row)
 	Boolean isAdvantagious(String opposingMark, String playerMark, List<Position> row)
+	Boolean isWin(String opposingMark, String playerMark, List<Position> row)
 	List<String> openPositions(String opposingMark, String playerMark, List<Position> row)
 }

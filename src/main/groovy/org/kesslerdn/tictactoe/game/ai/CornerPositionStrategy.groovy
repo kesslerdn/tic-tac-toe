@@ -11,6 +11,7 @@ class CornerPositionStrategy implements PositionStrategy {
 	@Resource(name="secondMark") String mark
 	@Resource(name="firstMark") String opposingMark
 	@Resource RowAnalyzer rowAnalyzer
+	private static final int weight = 1
 	
 	@Override
 	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
@@ -24,16 +25,16 @@ class CornerPositionStrategy implements PositionStrategy {
 
 		String position
 		if (isOpenPosition(topLeft)){
-			 positionCounter.add("1")
+			 weight.times{positionCounter.add("1")}
 		}
 		if (isOpenPosition(topRight)){
-			positionCounter.add("3")
+			weight.times{positionCounter.add("3")}
 		}
 		if (isOpenPosition(bottomLeft)){
-			positionCounter.add("7")
+			weight.times{positionCounter.add("7")}
 		}
 		if (isOpenPosition(bottomRight)){
-			positionCounter.add("9")
+			weight.times{positionCounter.add("9")}
 		}
 		
 		positionCounter;

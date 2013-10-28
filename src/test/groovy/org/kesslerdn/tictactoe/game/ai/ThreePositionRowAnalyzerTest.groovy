@@ -20,6 +20,26 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	}
 	
 	@Test
+	public void testIsProactive_True_FirstOne(){
+		assert rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
+	}
+	
+	@Test
+	public void testIsProactive_False_FirstTwo(){
+		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
+	}
+	
+	@Test
+	public void testIsProactive_True_OneOfEach(){
+		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", PLAYER_MARK))
+	}
+	
+	@Test
+	public void testIsProactive_True_TwoOpponent(){
+		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, PLAYER_MARK))
+	}
+
+	@Test
 	public void testIsVulnerable_True_FirstTwo(){
 		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
 	}
@@ -113,18 +133,33 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	}
 	
 	@Test
-	public void testIsAdvantagious_True_FirstTwo(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
+	public void testIsWin_False_FirstOne(){
+		assert false == rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, "", ""))
+	}
+
+	@Test
+	public void testIsAdvantagious_False_FirstTwo(){
+		assert false == rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
 	}
 	
+	@Test
+	public void testIsWin_True_FirstTwo(){
+		assert rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
+	}
+
 	@Test
 	public void testIsAdvantagious_True_LastOne(){
 		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", "", PLAYER_MARK))
 	}
 	
 	@Test
-	public void testIsAdvantagious_True_LastTwo(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
+	public void testIsAdvantagious_False_LastTwo(){
+		assert false == rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
+	}
+	
+	@Test
+	public void testIsWin_True_LastTwo(){
+		assert rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
 	}
 
 	@Test

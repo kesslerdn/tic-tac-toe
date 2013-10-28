@@ -6,17 +6,17 @@ import org.kesslerdn.tictactoe.board.Board
 import org.springframework.stereotype.Component
 
 @Component
-class OffensivePositionStrategy implements PositionStrategy {
+class WinningPositionStrategy implements PositionStrategy {
 
 	@Resource(name="secondMark") String mark
 	@Resource(name="firstMark") String opposingMark
 	@Resource RowAnalyzer rowAnalyzer
-	private static final int weight = 1
+	private static final int weight = 5
 	
 	@Override
 	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
 		board.rows.each{ row ->
-			if(rowAnalyzer.isAdvantagious(opposingMark,mark, row)){
+			if(rowAnalyzer.isWin(opposingMark,mark, row)){
 				List<String> openPositions = rowAnalyzer.openPositions(opposingMark, mark, row)
 				openPositions.each{position ->
 					weight.times{positionCounter.add(position)}

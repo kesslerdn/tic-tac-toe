@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 @Component
 public class AlternatingMatch implements Match {
 
-	static final int MAX_ROUNDS = 4
+	static final int MAX_PLAYS = 9
 	@Resource private Board board;
 	@Resource private Turn players;
 	@Resource private Tracker tracker;
@@ -20,13 +20,9 @@ public class AlternatingMatch implements Match {
 	@Override
 	public void start() {
 		int round
-		while(tracker.isActive(board) && round < MAX_ROUNDS){
-			players.next().play(board)
+		while(tracker.isActive(board) && round < MAX_PLAYS){
 			players.next().play(board)
 			round++
-		}
-		if(!score.hasWinner(board)){
-			players.next().play(board)
 		}
 		score.display(board)
 	}

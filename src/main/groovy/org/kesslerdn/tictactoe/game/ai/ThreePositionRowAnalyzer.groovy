@@ -11,13 +11,25 @@ class ThreePositionRowAnalyzer implements RowAnalyzer {
 	@Override
 	public Boolean isAdvantagious(String opposingMark, String playerMark,
 			List<Position> row) {
-		count(row,opposingMark) == 0 && count(row, playerMark) != 0
+		count(row,opposingMark) == 0 && count(row, playerMark) == 1
 	}
 			
 	@Override
+	public Boolean isWin(String opposingMark, String playerMark,
+			List<Position> row) {
+		count(row,opposingMark) == 0 && count(row, playerMark) == 2
+	}
+			
+	@Override
+	public Boolean isProactive(String opposingMark, String playerMark,
+			List<Position> row) {
+		count(row,opposingMark) == 1 && count(row, playerMark) == 0
+	}
+		
+	@Override
 	public Boolean isVulnerable(String opposingMark, String playerMark,
 			List<Position> row) {
-		count(row,opposingMark) == 2 && count(row, playerMark) != 1
+		count(row,opposingMark) == 2 && count(row, playerMark) == 0
 	}
 		
 	@Override
@@ -30,4 +42,5 @@ class ThreePositionRowAnalyzer implements RowAnalyzer {
 	private Integer count(List<Position> row, String mark){
 		row.count{it.value == mark}
 	}
+
 }

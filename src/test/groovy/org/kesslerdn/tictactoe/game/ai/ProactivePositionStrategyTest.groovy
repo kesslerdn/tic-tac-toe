@@ -14,7 +14,7 @@ import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.class)
-class DefensivePositionStrategyTest extends GroovyTestCase {
+class ProactivePositionStrategyTest extends GroovyTestCase {
 
 	static final String MARK = "X"
 	static final String OPPOSING_MARK = "Y"
@@ -25,7 +25,7 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock PositionCounter counter
 	@Mock Board board
-	@InjectMocks PositionStrategy strategy = new DefensivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new ProactivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
 	
 	
 	@Before
@@ -47,44 +47,44 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 
 	@Test
 	void testFindPosition_firstRow(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
+		when(rowAnalyzer.isProactive(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
+		verify(rowAnalyzer).isProactive(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
-		verify(counter, times(4)).add("1")
-		verify(counter, times(4)).add("3")
+		verify(counter).add("1")
+		verify(counter).add("3")
 	}
 
 	@Test
 	void testFindPosition_secondRow(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
+		when(rowAnalyzer.isProactive(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
+		when(rowAnalyzer.isProactive(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
+		verify(rowAnalyzer).isProactive(OPPOSING_MARK, MARK, firstRow)
+		verify(rowAnalyzer).isProactive(OPPOSING_MARK, MARK, secondRow)
 		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, secondRow)
-		verify(counter, times(4)).add("2")
+		verify(counter).add("2")
 	}
 
 	@Test
 	void testFindPosition_Neither(){
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isVulnerable(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
+		when(rowAnalyzer.isProactive(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
+		when(rowAnalyzer.isProactive(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1"])
 		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
+		verify(rowAnalyzer).isProactive(OPPOSING_MARK, MARK, firstRow)
+		verify(rowAnalyzer).isProactive(OPPOSING_MARK, MARK, secondRow)
 		verifyZeroInteractions(counter)
 	}
 }

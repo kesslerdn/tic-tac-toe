@@ -19,7 +19,7 @@
 	<bean id="bottomCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:value="8" p:index="8"/>
 	<bean id="bottomRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:value="9" p:index="9"/>
 	
-	<bean id="positions" class="java.util.ArrayList">
+	<bean id="positions" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 	            <ref bean="topLeftPosition"/>      
@@ -35,7 +35,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="horizontalTopRow" class="java.util.ArrayList">
+	<bean id="horizontalTopRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
         		<ref bean="topLeftPosition"/>      
@@ -45,7 +45,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="horizontalMiddleRow" class="java.util.ArrayList">
+	<bean id="horizontalMiddleRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 				<ref bean="middleLeftPosition"/>
@@ -55,7 +55,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="horizontalBottomRow" class="java.util.ArrayList">
+	<bean id="horizontalBottomRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 				<ref bean="bottomLeftPosition"/>
@@ -65,7 +65,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="diagonalLeftToRightRow" class="java.util.ArrayList">
+	<bean id="diagonalLeftToRightRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 	            <ref bean="topLeftPosition"/>      
@@ -75,7 +75,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="diagonalRightToLeftRow" class="java.util.ArrayList">
+	<bean id="diagonalRightToLeftRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 				<ref bean="topRightPosition"/>
@@ -85,7 +85,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="verticleLeftRow" class="java.util.ArrayList">
+	<bean id="verticleLeftRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 	            <ref bean="topLeftPosition"/>      
@@ -95,7 +95,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="verticleCenterRow" class="java.util.ArrayList">
+	<bean id="verticleCenterRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 	            <ref bean="topCenterPosition"/>
@@ -105,7 +105,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="verticleRightRow" class="java.util.ArrayList">
+	<bean id="verticleRightRow" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 				<ref bean="topRightPosition"/>
@@ -115,7 +115,7 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="rows" class="java.util.ArrayList">
+	<bean id="rows" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>
 	        <list>
 	        	<ref bean="horizontalTopRow"/>
@@ -138,8 +138,10 @@
     <bean id="positionLocator" class="org.kesslerdn.tictactoe.game.ai.StrategicPositionLocator">
     	<property name="positionStrategies">
     		<list>
+    			<ref bean="winningPositionStrategy"/>
     			<ref bean="defensivePositionStrategy"/>
    				<ref bean="offensivePositionStrategy"/>
+    			<ref bean="proactivePositionStrategy"/>
     			<ref bean="centerPositionStrategy"/>
     			<ref bean="cornerPositionStrategy"/>
     			<ref bean="openPositionStrategy"/>

@@ -34,7 +34,7 @@ class ThreeMarkTracker implements Tracker {
 	}
 	
 	private Boolean areSame(List<Position> row){
-		def uniqueList = row.unique{a, b -> a.value.compareTo(b.value)}
+		def uniqueList = row.unique(false){a, b -> a.value.compareTo(b.value)}
 		uniqueList.size() == 1
 	}
 }

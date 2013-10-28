@@ -13,8 +13,8 @@ class ComputerPlayer implements Player {
 	@Override
 	public void play(Board board) {
 		boolean marked
-		gameControl.status(board.display())
-		String play = positionLocator.locate(board)
-		board.mark(play, mark)
+		String position = positionLocator.locate(board)
+		gameControl.status("Player $mark played position ${position}.")
+		board.mark(position, mark)
 	}
 }
