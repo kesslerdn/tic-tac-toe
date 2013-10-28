@@ -1,8 +1,7 @@
-package org.kesslerdn.tictactoe.ai
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.ai.strategy.cumulative.ThreePositionRowAnalyzer
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
