@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.rule
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
 import org.kesslerdn.tictactoe.ai.PositionCounter;
 import org.kesslerdn.tictactoe.board.Board;

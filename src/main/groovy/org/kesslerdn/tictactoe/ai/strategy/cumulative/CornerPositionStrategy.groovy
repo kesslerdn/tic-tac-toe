@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.rule
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
 import javax.annotation.Resource
 

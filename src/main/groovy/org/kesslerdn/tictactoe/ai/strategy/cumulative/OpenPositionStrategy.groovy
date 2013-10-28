@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.rule
+package org.kesslerdn.tictactoe.ai.strategy.cumulative
 
 import javax.annotation.Resource
 
@@ -8,20 +8,19 @@ import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
-class DefensivePositionStrategy implements PositionStrategy {
+class OpenPositionStrategy implements PositionStrategy {
+
 	private static final Mark mark = Mark.O
 	private static final Mark opposingMark = Mark.X
 	@Resource RowAnalyzer rowAnalyzer
-	private static final int weight = 4
+	private static final int weight = 1
 	
 	@Override
 	public PositionCounter addPositions(Board board, PositionCounter positionCounter) {
 		board.rows.each{ row ->
-			if(rowAnalyzer.isVulnerable(opposingMark,mark, row)){
-				List<Integer> openPositions = rowAnalyzer.openPositions(opposingMark, mark, row)
-				openPositions.each{position ->
-					weight.times{positionCounter.add(position)}
-				}
+			List<Integer> openPositions = rowAnalyzer.openPositions(opposingMark, mark, row)
+			openPositions.each{position ->
+				weight.times {positionCounter.add(position)}
 			}
 		}
 		positionCounter

@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.game.ai
+package org.kesslerdn.tictactoe.ai
 
 import org.junit.Before
 import org.junit.Test
