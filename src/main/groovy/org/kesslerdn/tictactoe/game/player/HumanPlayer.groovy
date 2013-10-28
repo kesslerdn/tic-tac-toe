@@ -13,7 +13,7 @@ class HumanPlayer implements Player {
 		gameControl.status(board.display())
 		String position = gameControl.request("Player $mark please select a position")
 		while(!board.isOpen(position)){
-			gameControl.status("Player $mark selected ${position}. This is an invalid move.")
+			gameControl.status("This is an invalid move.")
 			position = gameControl.request("Player $mark please select a position")
 		}
 		board.mark(position, mark)

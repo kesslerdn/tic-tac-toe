@@ -57,7 +57,7 @@ class HumanPlayerTest extends GroovyTestCase {
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
 		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
 		inOrder.verify(board).isOpen(takenPosition)
-		inOrder.verify(gameControl).status("Player $MARK selected $takenPosition. This is an invalid move.")
+		inOrder.verify(gameControl).status("This is an invalid move.")
 		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
 		inOrder.verify(board).isOpen(POSITION)
 		inOrder.verify(board).mark(POSITION, MARK)
