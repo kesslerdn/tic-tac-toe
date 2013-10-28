@@ -2,6 +2,8 @@ package org.kesslerdn.tictactoe.game.ai
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.ai.PositionCounter
+import org.kesslerdn.tictactoe.ai.StrategicPositionCounter
 
 class StrategicPositionCounterTest extends GroovyTestCase {
 

@@ -129,7 +129,7 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-    <bean id="positionLocator" class="org.kesslerdn.tictactoe.game.ai.StrategicPositionLocator">
+    <bean id="positionLocator" class="org.kesslerdn.tictactoe.ai.StrategicPositionLocator">
     	<property name="positionStrategies">
     		<list>
     			<ref bean="winningPositionStrategy"/>
@@ -142,7 +142,7 @@
     		</list>
     	</property>
     	<property name="positionCounterFactory">
-    		<bean class="org.kesslerdn.tictactoe.game.ai.StrategicPositionCounterFactory"/>
+    		<bean class="org.kesslerdn.tictactoe.ai.StrategicPositionCounterFactory"/>
     	</property>
     </bean>
 	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:gameControl-ref="consoleGameControl"/>

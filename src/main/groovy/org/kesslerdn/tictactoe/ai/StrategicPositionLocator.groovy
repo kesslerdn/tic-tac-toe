@@ -1,5 +1,6 @@
-package org.kesslerdn.tictactoe.game.ai
+package org.kesslerdn.tictactoe.ai
 
+import org.kesslerdn.tictactoe.ai.strategy.rule.PositionStrategy;
 import org.kesslerdn.tictactoe.board.Board
 
 class StrategicPositionLocator implements PositionLocator {

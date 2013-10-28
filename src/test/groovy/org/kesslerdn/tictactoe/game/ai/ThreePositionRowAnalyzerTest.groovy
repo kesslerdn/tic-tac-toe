@@ -2,6 +2,7 @@ package org.kesslerdn.tictactoe.game.ai
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.ai.strategy.rule.ThreePositionRowAnalyzer;
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark

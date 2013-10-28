@@ -1,5 +1,6 @@
-package org.kesslerdn.tictactoe.game.ai
+package org.kesslerdn.tictactoe.ai.strategy.rule
 
+import org.kesslerdn.tictactoe.ai.PositionCounter;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component

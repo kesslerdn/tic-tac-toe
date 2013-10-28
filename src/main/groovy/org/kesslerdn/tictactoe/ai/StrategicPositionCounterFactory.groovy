@@ -1,4 +1,5 @@
-package org.kesslerdn.tictactoe.game.ai
+package org.kesslerdn.tictactoe.ai
+
 
 class StrategicPositionCounterFactory implements PositionCounterFactory {
 

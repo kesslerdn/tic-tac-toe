@@ -6,10 +6,13 @@ import static org.mockito.Mockito.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.kesslerdn.tictactoe.ai.PositionCounter
+import org.kesslerdn.tictactoe.ai.strategy.rule.CenterPositionStrategy
+import org.kesslerdn.tictactoe.ai.strategy.rule.PositionStrategy
+import org.kesslerdn.tictactoe.ai.strategy.rule.RowAnalyzer
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
-import org.kesslerdn.tictactoe.game.player.Mark
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner

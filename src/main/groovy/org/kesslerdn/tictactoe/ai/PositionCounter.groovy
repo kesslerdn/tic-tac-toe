@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.game.ai
+package org.kesslerdn.tictactoe.ai
 
 interface PositionCounter {
 	void add(Integer position)
