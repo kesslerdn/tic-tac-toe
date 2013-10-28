@@ -55,8 +55,8 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 		
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
-		verify(counter).add("1")
-		verify(counter).add("3")
+		verify(counter, times(3)).add("1")
+		verify(counter, times(3)).add("3")
 	}
 
 	@Test
@@ -71,7 +71,7 @@ class DefensivePositionStrategyTest extends GroovyTestCase {
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, firstRow)
 		verify(rowAnalyzer).isVulnerable(OPPOSING_MARK, MARK, secondRow)
 		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, secondRow)
-		verify(counter).add("2")
+		verify(counter, times(3)).add("2")
 	}
 
 	@Test
