@@ -10,9 +10,14 @@ public class ConsoleGameControl implements GameControl {
 	@Resource private BufferedReader bufferedReader
 	
 	@Override
-	public String request(String message) {
+	public Integer request(String message) {
 		print "$message:"
-		bufferedReader.readLine()
+		String response = bufferedReader.readLine()
+		if(response.isInteger()){
+			response.toInteger()
+		}else{
+			-1
+		}
 	}
 
 	@Override

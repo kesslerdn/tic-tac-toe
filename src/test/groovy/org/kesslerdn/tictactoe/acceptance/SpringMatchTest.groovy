@@ -25,7 +25,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioOne() {
-		firstPlayer.testingPositions = ["1","3","4", "6", "8"]
+		firstPlayer.testingPositions = [1,3,4, 6, 8]
 		gameControl.expectedMessages = [
 			"Player O played position 5.",
 			"Player O played position 2.",
@@ -43,7 +43,7 @@ class SpringMatchTest extends GroovyTestCase {
 
 	@Test
 	void testStart_ScenarioTwo() {
-		firstPlayer.testingPositions = ["3","7","6", "1", "8"]
+		firstPlayer.testingPositions = [3,7,6, 1, 8]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 1.",
@@ -60,7 +60,7 @@ class SpringMatchTest extends GroovyTestCase {
 
 	@Test
 	void testStart_ScenarioThree() {
-		firstPlayer.testingPositions = ["5","4","9","2","7"]
+		firstPlayer.testingPositions = [5,4,9,2,7]
 		gameControl.expectedMessages  = [
 			"Player O played position 3.",
 			"Player O played position 6.",
@@ -78,7 +78,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioFour() {
-		firstPlayer.testingPositions = ["3","8","6", "7", "2"]
+		firstPlayer.testingPositions = [3,8,6, 7, 2]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 9.",
@@ -95,7 +95,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioFive() {
-		firstPlayer.testingPositions = ["1","4","3", "8", "6"]
+		firstPlayer.testingPositions = [1,4,3, 8, 6]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 7.",
@@ -113,7 +113,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioSix() {
-		firstPlayer.testingPositions = ["9","7","1", "3", "8"]
+		firstPlayer.testingPositions = [9,7,1, 3, 8]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 8.",
@@ -130,7 +130,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioSeven() {
-		firstPlayer.testingPositions = ["2","6","8", "4", "8"]
+		firstPlayer.testingPositions = [2,6,8, 4, 8]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 3.",
@@ -147,7 +147,7 @@ class SpringMatchTest extends GroovyTestCase {
 
 	@Test
 	void testStart_ScenarioEight() {
-		firstPlayer.testingPositions = ["5","9","7", "6", "2"]
+		firstPlayer.testingPositions = [5,9,7, 6, 2]
 		gameControl.expectedMessages  = [
 			"Player O played position 3.",
 			"Player O played position 1.",
@@ -164,7 +164,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioNine() {
-		firstPlayer.testingPositions = ["5","4","8", "7", "9"]
+		firstPlayer.testingPositions = [5,4,8, 7, 9]
 		gameControl.expectedMessages  = [
 			"Player O played position 3.",
 			"Player O played position 6.",
@@ -181,7 +181,7 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioTen() {
-		firstPlayer.testingPositions = ["1","8","3", "4", "6"]
+		firstPlayer.testingPositions = [1,8,3, 4, 6]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 7.",
@@ -199,7 +199,7 @@ class SpringMatchTest extends GroovyTestCase {
 	//1 & 4
 	@Test
 	void testStart_ScenarioEleven() {
-		firstPlayer.testingPositions = ["3","7","9", "6"]
+		firstPlayer.testingPositions = [3,7,9, 6]
 		gameControl.expectedMessages  = [
 			"Player O played position 5.",
 			"Player O played position 1.",

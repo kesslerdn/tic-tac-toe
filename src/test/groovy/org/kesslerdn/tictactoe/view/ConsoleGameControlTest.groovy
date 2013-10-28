@@ -18,6 +18,8 @@ class ConsoleGameControlTest {
 	
 	@Test
 	void testRequest(){
+		when(bufferedReader.readLine()).thenReturn("1")
+		
 		control.request("test");
 		
 		verify(bufferedReader).readLine()

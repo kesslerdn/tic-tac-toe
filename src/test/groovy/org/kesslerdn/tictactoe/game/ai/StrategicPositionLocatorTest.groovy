@@ -13,9 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.class)
 class StrategicPositionLocatorTest extends GroovyTestCase {
 
-	static final String FIRST_POSITION = "1"
-	static final String SECOND_POSITION = "1"
-	static final String THIRD_POSITION = "1"
+	static final Integer FIRST_POSITION = 1
 	
 	@Mock PositionStrategy firstStrategy
 	@Mock PositionStrategy secondStrategy

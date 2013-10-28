@@ -6,14 +6,14 @@ import org.kesslerdn.tictactoe.view.GameControl
 
 class ComputerPlayer implements Player {
 	
-	String mark
+	static final Mark mark = Mark.O
 	GameControl gameControl
 	PositionLocator positionLocator
 	
 	@Override
 	public void play(Board board) {
 		boolean marked
-		String position = positionLocator.locate(board)
+		Integer position = positionLocator.locate(board)
 		gameControl.status("Player $mark played position ${position}.")
 		board.mark(position, mark)
 	}

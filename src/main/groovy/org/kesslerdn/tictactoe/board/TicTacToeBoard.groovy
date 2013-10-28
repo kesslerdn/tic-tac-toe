@@ -3,6 +3,7 @@ package org.kesslerdn.tictactoe.board
 import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.position.Position
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
@@ -19,13 +20,13 @@ class TicTacToeBoard implements Board{
 	}
 	
 	@Override
-	void mark(String positionValue, String value){
-		Position position = positions.find{it.value == positionValue}
-		position.value = value
+	void mark(Integer positionValue, Mark mark){
+		Position position = positions.find{it.index == positionValue}
+		position.mark = mark
 	}
 
 	@Override
-	public Boolean isOpen(String position) {
-		return positions.find{it.value == position} != null;
+	public Boolean isOpen(Integer position) {
+		return positions.find{it.index == position} != null;
 	}
 }

@@ -8,7 +8,7 @@ class StrategicPositionLocator implements PositionLocator {
 	PositionCounterFactory positionCounterFactory
 	
 	@Override
-	public String locate(Board board) {
+	public Integer locate(Board board) {
 		PositionCounter positionCounter = positionCounterFactory.create()
 		positionStrategies.each{ strategy ->
 			strategy.addPositions(board, positionCounter)

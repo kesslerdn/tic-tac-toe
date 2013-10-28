@@ -19,14 +19,13 @@ class TwoPlayerTurnTest extends GroovyTestCase {
 	
 	@Test
 	public void test() {
-		when(firstPlayer.mark).thenReturn("A")
-		when(secondPlayer.mark).thenReturn("B")
 		
 		Turn players = new TwoPlayerTurn(firstPlayer, secondPlayer)
-		assert "A" == players.next().mark
-		assert "B" == players.next().mark
-		assert "A" == players.next().mark
-		assert "B" == players.next().mark
+		assertSame(firstPlayer, players.next())
+		assertSame(secondPlayer, players.next())
+		assertSame(firstPlayer, players.next())
+		assertSame(secondPlayer, players.next())
+		assertSame(firstPlayer, players.next())
 	}
 
 }

@@ -1,11 +1,12 @@
 package org.kesslerdn.tictactoe.game
 
-import org.junit.Before;
+import org.junit.Before
 import org.junit.Test
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.TicTacToeBoard
 import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.board.position.TestPosition;
+import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 
 class ThreeMarkTrackerTest extends GroovyTestCase {
 	private List<Position> positions
@@ -24,12 +25,12 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
-		first = createPosition("1")
-		second = createPosition("2")
-		third = createPosition("3")
-		fourth = createPosition("4")
-		fifth = createPosition("5")
-		sixth = createPosition("6")
+		first = createPosition(1)
+		second = createPosition(2)
+		third = createPosition(3)
+		fourth = createPosition(4)
+		fifth = createPosition(5)
+		sixth = createPosition(6)
 
 		positions = [first, second, third, fourth, fifth, sixth]
 		rows = [[first,second,third],[fourth,fifth, sixth]]
@@ -40,77 +41,77 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 	
 	@Test
 	void testIsActive_FirstRow_Same(){
-		first.value = "A"
-		second.value = "A"
-		third.value = "A"
+		first.mark = Mark.X
+		second.mark = Mark.X
+		third.mark = Mark.X
 		
 		assert tracker.isActive(board) == false
 	}
 
 	@Test
 	void testIsActive_SecondRow_Same(){
-		fourth.value = "A"
-		fifth.value = "A"
-		sixth.value = "A"
+		fourth.mark = Mark.X
+		fifth.mark = Mark.X
+		sixth.mark = Mark.X
 		
 		assert tracker.isActive(board) == false
 	}
 	
 	@Test
 	void testIsActive_FirstRow_Different(){
-		first.value = "A"
-		second.value = "B"
-		third.value = "A"
+		first.mark = Mark.X
+		second.mark = Mark.O
+		third.mark = Mark.X
 		
 		assert tracker.isActive(board) == true
 	}
 
 	@Test
 	void testIsActive_SecondRow_Different(){
-		fourth.value = "A"
-		fifth.value = "A"
-		sixth.value = "B"
+		fourth.mark = Mark.X
+		fifth.mark = Mark.X
+		sixth.mark = Mark.O
 		
 		assert tracker.isActive(board) == true
 	}
 	
 	@Test
 	void testIsActive_CalculateScore_All(){
-		first.value = "A"
-		second.value = "A"
-		third.value = "A"
+		first.mark = Mark.X
+		second.mark = Mark.X
+		third.mark = Mark.X
 		
-		assert 1 == tracker.calculateScore("A", board)
+		assert 1 == tracker.calculateScore(Mark.X, board)
 	}
 	
 	@Test
 	void testIsActive_CalculateScore_None(){
-		first.value = "A"
-		second.value = "A"
-		third.value = "A"
+		first.mark = Mark.X
+		second.mark = Mark.X
+		third.mark = Mark.X
 		
-		assert 0 == tracker.calculateScore("B", board)
+		assert 0 == tracker.calculateScore(Mark.O, board)
 	}
 	
 	@Test
 	void testIsActive_CalculateScore_IncompleteRow(){
-		first.value = "B"
-		second.value = "A"
-		third.value = "B"
+		first.mark = Mark.O
+		second.mark = Mark.X
+		third.mark = Mark.O
 		
-		assert 0 == tracker.calculateScore("B", board)
+		assert 0 == tracker.calculateScore(Mark.O, board)
 	}
 
 	@Test
 	void testIsActive_CalculateScore_TwoRows(){
-		first.value = "A"
-		second.value = "A"
-		third.value = "A"
-		fourth.value = "A"
-		fifth.value = "A"
-		sixth.value = "A"
+		first.mark = Mark.X
+		second.mark = Mark.X
+		third.mark = Mark.X
+		fourth.mark = Mark.X
+		fifth.mark = Mark.X
+		sixth.mark = Mark.X
 		
-		assert 2 == tracker.calculateScore("A", board)
+		assert 2 == tracker.calculateScore(Mark.X, board)
 	}
 
 	@Test
@@ -118,7 +119,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		assert tracker.isActive(board) == true
 	}
 
-	private Position createPosition(String value){
-		new TestPosition(value)
+	private Position createPosition(Integer index){
+		TestPosition.newInstance(index)
 	}
 }

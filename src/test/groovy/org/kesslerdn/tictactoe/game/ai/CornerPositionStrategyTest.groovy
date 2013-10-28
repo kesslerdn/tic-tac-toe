@@ -16,20 +16,17 @@ import org.mockito.runners.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.class)
 class CornerPositionStrategyTest extends GroovyTestCase {
 
-	static final String MARK = "X"
-	static final String OPPOSING_MARK = "Y"
-
 	private List<Position> positions
 
 	@Mock Board board
 	@Mock PositionCounter counter
-	@InjectMocks PositionStrategy strategy = new CornerPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new CornerPositionStrategy()
 	
 	@Before
 	public void setUp(){
-		positions = [new TestPosition("1"), new TestPosition("2"), new TestPosition("3"),
-					new TestPosition("4"), new TestPosition("5"), new TestPosition("6"),
-					new TestPosition("7"), new TestPosition("8"), new TestPosition("9"),]
+		positions = [TestPosition.newInstance(1), TestPosition.newInstance(2), TestPosition.newInstance(3),
+					TestPosition.newInstance(4), TestPosition.newInstance(5), TestPosition.newInstance(6),
+					TestPosition.newInstance(7), TestPosition.newInstance(8), TestPosition.newInstance(9)]
 		when(board.getPositions()).thenReturn(positions)
 	}
 	
@@ -42,36 +39,36 @@ class CornerPositionStrategyTest extends GroovyTestCase {
 	@Test
 	void testAddPosition(){
 		PositionCounter actualCounter = strategy.addPositions(board, counter)
-		verify(counter).add("1")
-		verify(counter).add("3")
-		verify(counter).add("7")
-		verify(counter).add("9")
+		verify(counter).add(1)
+		verify(counter).add(3)
+		verify(counter).add(7)
+		verify(counter).add(9)
 	}
 	
 	@Test
 	void testIsValid_leftCornerTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
+		positions[0] = TestPosition.newInstanceO()
 		strategy.addPositions(board, counter)
-		verify(counter).add("3")
-		verify(counter).add("7")
-		verify(counter).add("9")
+		verify(counter).add(3)
+		verify(counter).add(7)
+		verify(counter).add(9)
 	}
 	
 	@Test
 	void testFindPosition_topCornersTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
-		positions[2] = new TestPosition(OPPOSING_MARK)
+		positions[0] = TestPosition.newInstanceO()
+		positions[2] = TestPosition.newInstanceO()
 		strategy.addPositions(board, counter)
-		verify(counter).add("7")
-		verify(counter).add("9")
+		verify(counter).add(7)
+		verify(counter).add(9)
 	}
 	
 	@Test
 	void testFindPosition_allButBottomRightTaken(){
-		positions[0] = new TestPosition(OPPOSING_MARK)
-		positions[2] = new TestPosition(OPPOSING_MARK)
-		positions[6] = new TestPosition(OPPOSING_MARK)
+		positions[0] = TestPosition.newInstanceO()
+		positions[2] = TestPosition.newInstanceO()
+		positions[6] = TestPosition.newInstanceO()
 		strategy.addPositions(board, counter)
-		verify(counter).add("9")
+		verify(counter).add(9)
 	}
 }

@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.game.Tracker
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.mockito.InOrder
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -16,18 +17,16 @@ import org.mockito.runners.MockitoJUnitRunner
 class FinalScoreTest extends GroovyTestCase{
 
 	static final String DISPLAY_OUTPUT = "display"
-	static final String FIRST_MARK = "A"
-	static final String SECOND_MARK = "B"
 	@Mock GameControl gameControl
 	@Mock Tracker tracker
 	@Mock Board board
 	@InjectMocks
-	Score score = new FinalScore(firstMark:FIRST_MARK, secondMark:SECOND_MARK)
+	Score score = new FinalScore()
 
 	@Test
 	public void testDisplay_Tie() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)
@@ -40,8 +39,8 @@ class FinalScoreTest extends GroovyTestCase{
 
 	@Test
 	public void testDisplay_PlayerOneWins() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(0)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(0)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)
@@ -49,13 +48,13 @@ class FinalScoreTest extends GroovyTestCase{
 		score.display(board)
 
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player '$FIRST_MARK' won!")
+		inOrder.verify(gameControl).status("Player '$Mark.X' won!")
 	}
 
 	@Test
 	public void testDisplay_PlayerTwoWins() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(0)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(0)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)
@@ -63,13 +62,13 @@ class FinalScoreTest extends GroovyTestCase{
 		score.display(board)
 
 		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).status("Player '$SECOND_MARK' won!")
+		inOrder.verify(gameControl).status("Player '$Mark.O' won!")
 	}
 
 	@Test
 	public void testHasWinner_Tie() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)
@@ -79,8 +78,8 @@ class FinalScoreTest extends GroovyTestCase{
 
 	@Test
 	public void testHasWinner_PlayerOneWins() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(1)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(0)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(0)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)
@@ -90,8 +89,8 @@ class FinalScoreTest extends GroovyTestCase{
 
 	@Test
 	public void testHasWinner_PlayerTwoWins() {
-		when(tracker.calculateScore(FIRST_MARK, board)).thenReturn(0)
-		when(tracker.calculateScore(SECOND_MARK, board)).thenReturn(1)
+		when(tracker.calculateScore(Mark.X, board)).thenReturn(0)
+		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		
 		InOrder inOrder = inOrder(gameControl)

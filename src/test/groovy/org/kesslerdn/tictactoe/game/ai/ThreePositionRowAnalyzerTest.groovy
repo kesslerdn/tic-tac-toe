@@ -4,15 +4,10 @@ import org.junit.Before
 import org.junit.Test
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 
 class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 
-	static final String OPPOSING_MARK = "A"
-
-	static final String PLAYER_MARK = "B"
-
-	static final String NEITHER_MARK = "Z"
-	
 	private ThreePositionRowAnalyzer rowAnalyzer
 	@Before
 	public void setUp(){
@@ -21,158 +16,147 @@ class ThreePositionRowAnalyzerTest extends GroovyTestCase {
 	
 	@Test
 	public void testIsProactive_True_FirstOne(){
-		assert rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
+		assert rowAnalyzer.isProactive(Mark.X, Mark.O, createRow(Mark.X, null, null))
 	}
 	
 	@Test
 	public void testIsProactive_False_FirstTwo(){
-		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
+		assert false == rowAnalyzer.isProactive(Mark.X, Mark.O, createRow(Mark.X, Mark.X, null))
 	}
 	
 	@Test
 	public void testIsProactive_True_OneOfEach(){
-		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", PLAYER_MARK))
+		assert false == rowAnalyzer.isProactive(Mark.X, Mark.O, createRow(Mark.X, null, Mark.O))
 	}
 	
 	@Test
 	public void testIsProactive_True_TwoOpponent(){
-		assert false == rowAnalyzer.isProactive(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, PLAYER_MARK))
+		assert false == rowAnalyzer.isProactive(Mark.X, Mark.O, createRow(Mark.X, Mark.O, Mark.O))
 	}
 
 	@Test
 	public void testIsVulnerable_True_FirstTwo(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, Mark.X, null))
 	}
 
 	@Test
 	public void testFirstOpenPosition_FirstTwo(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, ""))
-		assert ["3"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(Mark.X, Mark.X, null))
+		assert [3] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_True_LastTwo(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(null, Mark.X, Mark.X))
 	}
 	
 	@Test
 	public void testFirstOpenPosition_LastTwo(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert ["1"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(null, Mark.X, Mark.X))
+		assert [1] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_True_FirstAndLast(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", OPPOSING_MARK))
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, null, Mark.X))
 	}
 	
 	@Test
 	public void testFirstOpenPosition_FirstAndLast(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", OPPOSING_MARK, OPPOSING_MARK))
-		assert ["1"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(null, Mark.X, Mark.X))
+		assert [1] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_All(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK)) == false
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, Mark.X, Mark.X)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_All(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, OPPOSING_MARK))
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(Mark.X, Mark.X, Mark.X))
 		assert [] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_Mixed(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, "")) == false
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, Mark.O, null)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_Mixed(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, PLAYER_MARK, ""))
-		assert ["3"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(Mark.X, Mark.O, null))
+		assert [3] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_TwoEmpty(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", "")) == false
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, null, null)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_TwoEmpty(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", ""))
-		assert ["2", "3"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(Mark.X, null, null))
+		assert [2, 3] == openPosition
 	}
 
 	@Test
 	public void testIsVulnerable_False_AllEmpty(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, "", "")) == false
+		assert rowAnalyzer.isVulnerable(Mark.X, Mark.O, createRow(Mark.X, null, null)) == false
 	}
 	
 	@Test
 	public void testFirstOpenPosition_AllEmpty(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow("", "", ""))
-		assert ["1", "2", "3"] == openPosition
-	}
-
-	@Test
-	public void testIsVulnerable_False_NoMatchingMark(){
-		assert rowAnalyzer.isVulnerable(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK)) == false
-	}
-	
-	@Test
-	public void testFirstOpenPosition_NoMatchingMark(){
-		List<String> openPosition = rowAnalyzer.openPositions(OPPOSING_MARK, PLAYER_MARK, createRow(NEITHER_MARK, NEITHER_MARK, NEITHER_MARK))
-		assert ["1", "2", "3"] == openPosition
+		List<String> openPosition = rowAnalyzer.openPositions(Mark.X, Mark.O, createRow(null, null, null))
+		assert [1, 2, 3] == openPosition
 	}
 	
 	@Test
 	public void testIsAdvantagious_True_FirstOne(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, "", ""))
+		assert rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(Mark.O, null, null))
 	}
 	
 	@Test
 	public void testIsWin_False_FirstOne(){
-		assert false == rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, "", ""))
+		assert false == rowAnalyzer.isWin(Mark.X, Mark.O, createRow(Mark.O, null, null))
 	}
 
 	@Test
 	public void testIsAdvantagious_False_FirstTwo(){
-		assert false == rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
+		assert false == rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(Mark.O, Mark.O, null))
 	}
 	
 	@Test
 	public void testIsWin_True_FirstTwo(){
-		assert rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, PLAYER_MARK, ""))
+		assert rowAnalyzer.isWin(Mark.X, Mark.O, createRow(Mark.O, Mark.O, null))
 	}
 
 	@Test
 	public void testIsAdvantagious_True_LastOne(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", "", PLAYER_MARK))
+		assert rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(null, null, Mark.O))
 	}
 	
 	@Test
 	public void testIsAdvantagious_False_LastTwo(){
-		assert false == rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
+		assert false == rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(null, Mark.O, Mark.O))
 	}
 	
 	@Test
 	public void testIsWin_True_LastTwo(){
-		assert rowAnalyzer.isWin(OPPOSING_MARK, PLAYER_MARK, createRow("", PLAYER_MARK, PLAYER_MARK))
+		assert rowAnalyzer.isWin(Mark.X, Mark.O, createRow(null, Mark.O, Mark.O))
 	}
 
 	@Test
 	public void testIsAdvantagious_True_OneOpponentMark(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(PLAYER_MARK, OPPOSING_MARK, "")) == false
+		assert rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(Mark.O, Mark.X, null)) == false
 	}
 	
 	@Test
 	public void testIsAdvantagious_True_OnlyOpponentMarks(){
-		assert rowAnalyzer.isAdvantagious(OPPOSING_MARK, PLAYER_MARK, createRow(OPPOSING_MARK, OPPOSING_MARK, "")) == false
+		assert rowAnalyzer.isAdvantagious(Mark.X, Mark.O, createRow(Mark.X, Mark.X, null)) == false
 	}
 
-	private List<Position> createRow(String firstMark, String secondMark, String thirdMark){
-		[new TestPosition(1, firstMark), new TestPosition(2, secondMark), new TestPosition(3, thirdMark)]
+	private List<Position> createRow(Mark firstMark, Mark secondMark, Mark thirdMark){
+		[TestPosition.newInstance(1, firstMark), TestPosition.newInstance(2, secondMark), TestPosition.newInstance(3, thirdMark)]
 	}
 }

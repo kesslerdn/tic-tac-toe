@@ -13,7 +13,7 @@ public class TestGameControl implements GameControl {
 	private int i
 	
 	@Override
-	public String request(String message) {
+	public Integer request(String message) {
 		throw new IllegalAccessException()
 	}
 

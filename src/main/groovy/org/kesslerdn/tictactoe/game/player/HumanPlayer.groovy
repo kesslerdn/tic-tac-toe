@@ -5,13 +5,13 @@ import org.kesslerdn.tictactoe.view.GameControl;
 
 class HumanPlayer implements Player {
 	
-	String mark
+	static final Mark mark = Mark.X
 	GameControl gameControl
 
 	@Override
 	public void play(Board board) {
 		gameControl.status(board.display())
-		String position = gameControl.request("Player $mark please select a position")
+		Integer position = gameControl.request("Player $mark please select a position")
 		while(!board.isOpen(position)){
 			gameControl.status("This is an invalid move.")
 			position = gameControl.request("Player $mark please select a position")

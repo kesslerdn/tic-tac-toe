@@ -1,7 +1,7 @@
 package org.kesslerdn.tictactoe.game.player
 
-import static org.mockito.Mockito.*
 import static org.junit.Assert.*
+import static org.mockito.Mockito.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,14 +14,14 @@ import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.class)
 class HumanPlayerTest extends GroovyTestCase {
-	static final String MARK = "X"
+	static final Mark MARK = Mark.X
 	static final String USER_PROMPT = 'please select a position'
 	static final String DISPLAY_OUTPUT = "display"
-	static final String POSITION = "1"
+	static final Integer POSITION = 1
 
 	@Mock private Board board
 	@Mock private GameControl gameControl
-	@InjectMocks private HumanPlayer player = new HumanPlayer(mark:MARK)
+	@InjectMocks private HumanPlayer player = new HumanPlayer()
 	
 	@Test
 	public void testPlay(){
@@ -43,7 +43,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	
 	@Test
 	public void testPlay_SamePositionTwice(){
-		String takenPosition = "2"
+		Integer takenPosition = 2
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(board.isOpen(takenPosition)).thenReturn(false)
 		when(board.isOpen(POSITION)).thenReturn(true)

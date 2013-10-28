@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
@@ -16,24 +17,21 @@ import org.mockito.runners.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.class)
 class OpenPositionStrategyTest extends GroovyTestCase {
 
-	static final String MARK = "X"
-	static final String OPPOSING_MARK = "Y"
-
 	private List<Position> firstRow
 	private List<Position> secondRow
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock PositionCounter counter
 	@Mock Board board
-	@InjectMocks PositionStrategy strategy = new OpenPositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new OpenPositionStrategy()
 	
 	
 	@Before
 	public void setUp(){
 		List<List<Position>> rows = []
-		firstRow = [new TestPosition("A")]
+		firstRow = [TestPosition.newInstanceX()]
 		rows << firstRow
-		secondRow = [new TestPosition("B")]
+		secondRow = [TestPosition.newInstanceO()]
 		rows << secondRow
 		
 		when(board.getRows()).thenReturn(rows)
@@ -47,25 +45,25 @@ class OpenPositionStrategyTest extends GroovyTestCase {
 	
 	@Test
 	void testFindPosition(){
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, firstRow)).thenReturn([1, 3])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, secondRow)).thenReturn([2])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
-		verify(counter).add("1")
-		verify(counter).add("2")
-		verify(counter).add("3")
+		verify(rowAnalyzer).openPositions(Mark.X, Mark.O, firstRow)
+		verify(counter).add(1)
+		verify(counter).add(2)
+		verify(counter).add(3)
 	}
 	
 	@Test
 	void testFindPosition_EmptyList(){
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn([])
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, firstRow)).thenReturn([])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, secondRow)).thenReturn([2])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
-		verify(counter).add("2")
+		verify(rowAnalyzer).openPositions(Mark.X, Mark.O, firstRow)
+		verify(counter).add(2)
 	}
 }

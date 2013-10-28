@@ -19,40 +19,40 @@ class StrategicPositionCounterTest extends GroovyTestCase {
 	
 	@Test
 	void testIsEmpty_False(){
-		counter.add("A")
+		counter.add(1)
 		assert counter.isEmpty() == false
 	}
 	
 	@Test
 	void testLargest(){
-		counter.add("A")
-		assert "A" == counter.largest()
+		counter.add(1)
+		assert 1 == counter.largest()
 	}
 	
 	@Test
 	void testLargest_MultipleEntries(){
-		counter.add("A")
-		counter.add("B")
-		counter.add("A")
-		counter.add("C")
-		counter.add("B")
-		counter.add("C")
-		counter.add("C")
-		counter.add("D")
-		assert "C" == counter.largest()
+		counter.add(1)
+		counter.add(2)
+		counter.add(1)
+		counter.add(3)
+		counter.add(2)
+		counter.add(3)
+		counter.add(3)
+		counter.add(4)
+		assert 3 == counter.largest()
 	}
 	
 	
 	@Test
 	void testLargest_Tie(){
-		counter.add("A")
-		counter.add("B")
-		counter.add("A")
-		counter.add("B")
-		counter.add("A")
-		counter.add("B")
-		counter.add("C")
-		assert "A" == counter.largest()
+		counter.add(1)
+		counter.add(2)
+		counter.add(1)
+		counter.add(2)
+		counter.add(1)
+		counter.add(2)
+		counter.add(3)
+		assert 1 == counter.largest()
 	}
 
 }

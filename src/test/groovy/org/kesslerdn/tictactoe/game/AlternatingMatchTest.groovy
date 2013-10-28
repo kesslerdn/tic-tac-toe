@@ -6,8 +6,9 @@ import static org.mockito.Mockito.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.game.player.Player
-import org.kesslerdn.tictactoe.game.player.Turn;
+import org.kesslerdn.tictactoe.game.player.Turn
 import org.kesslerdn.tictactoe.view.Score
 import org.mockito.InOrder
 import org.mockito.InjectMocks
@@ -19,7 +20,6 @@ class AlternatingMatchTest extends GroovyTestCase{
 
 	static final shouldFail = new GroovyTestCase().&shouldFail
 	
-	static final String MARK_ONE = "X"
 	static final String DISPLAY_OUTPUT = "display"
 
 	@Mock Tracker tracker;
@@ -33,7 +33,6 @@ class AlternatingMatchTest extends GroovyTestCase{
 	
 	@Test
 	public void testStart() {
-		when(firstPlayer.mark).thenReturn(MARK_ONE)
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)		
@@ -50,7 +49,6 @@ class AlternatingMatchTest extends GroovyTestCase{
 	
 	@Test
 	public void testStart_NineMoveMax() {
-		when(firstPlayer.mark).thenReturn(MARK_ONE)
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer, 
 			firstPlayer, secondPlayer, firstPlayer, secondPlayer,
 			firstPlayer, secondPlayer)

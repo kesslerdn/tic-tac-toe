@@ -1,9 +1,8 @@
 package org.kesslerdn.tictactoe.game
 
-import javax.annotation.Resource
-
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
@@ -23,10 +22,10 @@ class ThreeMarkTracker implements Tracker {
 	}
 	
 	@Override
-	public Integer calculateScore(String mark, Board board) {
+	public Integer calculateScore(Mark mark, Board board) {
 		Integer score = 0
 		board.rows.each { row ->
-			if(areSame(row) && mark == row[0].value){
+			if(areSame(row) && mark == row[0].mark){
 				 score++
 			}
 		}
@@ -34,7 +33,10 @@ class ThreeMarkTracker implements Tracker {
 	}
 	
 	private Boolean areSame(List<Position> row){
-		def uniqueList = row.unique(false){a, b -> a.value.compareTo(b.value)}
-		uniqueList.size() == 1
+		List<Mark> allMarks = row.collect{it.mark}
+		List<Mark> marks = allMarks.findAll{it != null}
+		List<Mark> nullMarks = allMarks.findAll{it == null}
+		List<Mark> uniqueList = marks.unique(false)
+		uniqueList.size() == 1 && nullMarks.empty
 	}
 }

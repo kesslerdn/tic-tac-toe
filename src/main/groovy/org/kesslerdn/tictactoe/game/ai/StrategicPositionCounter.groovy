@@ -4,15 +4,15 @@ import java.util.Map.Entry
 
 class StrategicPositionCounter implements PositionCounter{
 
-	private List<String> positions = []
+	private List<Integer> positions = []
 	
 	@Override
-	public void add(String position) {
+	public void add(Integer position) {
 		positions << position
 	}
 
 	@Override
-	public String largest() {
+	public Integer largest() {
 		Map<String, Integer> countMap = positions.countBy{it}
 		Entry maxEntry = countMap.max{ a, b -> a.value.compareTo(b.value)}
 		return maxEntry.key;

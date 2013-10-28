@@ -1,52 +1,53 @@
 package org.kesslerdn.tictactoe.board
 
 import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 
 class TicTacToeBoardTest extends GroovyTestCase {
 
+	private Integer bad = -100
 	void testStart_WithoutPositions() {
 		Board board = new TicTacToeBoard();
 		assert '' == board.display()
 	}
 	
 	void testStart_WithPositions(){
-		Board board = new TicTacToeBoard(positions:[new TestPosition("1"), 
-			new TestPosition("2"), 
-			new TestPosition("3")])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstanceX(1),
+			TestPosition.newInstanceO(2),
+			TestPosition.newInstanceX(3)])
 		
-		assert 'test 1,test 2,test 3,' == board.display()
+		assert 'test 1:X,test 2:O,test 3:X,' == board.display()
 	}
 	
 	void testIsOpen_WithPositions(){
-		Board board = new TicTacToeBoard(positions:[new TestPosition("1"),
-			new TestPosition("2"),
-			new TestPosition("3")])
-		
-		assert board.isOpen("2")
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1),
+			TestPosition.newInstance(2),
+			TestPosition.newInstance(3)])
+		assert board.isOpen(2)
 	}
 	
 	void testIsOpen_NoMatch(){
-		Board board = new TicTacToeBoard(positions:[new TestPosition("1"),
-			new TestPosition("2"),
-			new TestPosition("3")])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1),
+			TestPosition.newInstance(2),
+			TestPosition.newInstance(3)])
 		
-		assert board.isOpen("bad") == false
+		assert board.isOpen(bad) == false
 	}
 	
 	void testIsOpen_Empty(){
 		Board board = new TicTacToeBoard(positions:[])
 		
-		assert board.isOpen("1") == false
+		assert board.isOpen(1) == false
 	}
 
 	void testStart_MarkPosition(){
-		Board board = new TicTacToeBoard(positions:[new TestPosition("1"),
-			new TestPosition("2"),
-			new TestPosition("3")])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1),
+			TestPosition.newInstance(2),
+			TestPosition.newInstance(3)])
 		
-		assert 'test 1,test 2,test 3,' == board.display()
-		board.mark("2", "A")
-		assert 'test 1,test A,test 3,' == board.display()
+		assert 'test 1:null,test 2:null,test 3:null,' == board.display()
+		board.mark(2, Mark.X)
+		assert 'test 1:null,test 2:X,test 3:null,' == board.display()
 		
 	}
 }

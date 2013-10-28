@@ -1,27 +1,38 @@
 package org.kesslerdn.tictactoe.board.position;
 
-import org.kesslerdn.tictactoe.board.position.CenterPosition;
-import org.kesslerdn.tictactoe.board.position.EndPosition;
-import org.kesslerdn.tictactoe.board.position.Position;
-import org.kesslerdn.tictactoe.board.position.StartPosition;
-
-import groovy.util.GroovyTestCase
+import org.kesslerdn.tictactoe.game.player.Mark
 
 public class PositionTest extends GroovyTestCase{
 
-	void testStartPosition(){
-		Position position = new StartPosition(value:"1");
+	void testStartPosition_NoMark(){
+		Position position = new StartPosition(index:1, mark:null);
 		assert "|1|" == position.write();
 	}
-
-	void testCenterPosition(){
-		Position position = new CenterPosition(value:"1");
-		assert "1" == position.write();
+	
+	void testStartPosition_WithMark(){
+		Position position = new StartPosition(index:1, mark:Mark.X);
+		assert "|X|" == position.write();
 	}
 
-	void testEndPosition(){
-		Position position = new EndPosition(value:"1");
+	void testCenterPosition_NoMark(){
+		Position position = new CenterPosition(index:1, mark:null);
+		assert "1" == position.write();
+	}
+	
+	void testCenterPosition_WithMark(){
+		Position position = new CenterPosition(index:1, mark:Mark.X);
+		assert "X" == position.write();
+	}
+
+	void testEndPosition_WithoutMark(){
+		Position position = new EndPosition(index:1, mark:null);
 		assert '''|1|
+''' == position.write();
+	}
+
+	void testEndPosition_WithMark(){
+		Position position = new EndPosition(index:1, mark:Mark.X);
+		assert '''|X|
 ''' == position.write();
 	}
 }

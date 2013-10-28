@@ -1,11 +1,14 @@
 package org.kesslerdn.tictactoe.board.position
 
+import org.kesslerdn.tictactoe.game.player.Mark;
+
 class EndPosition implements Position{
 	Integer index
-	String value;
+	Mark mark;
 
 	@Override
 	public String write() {
-		"|$value|\n"
+		String output = mark ? mark : index
+		"|$output|\n"
 	}
 }

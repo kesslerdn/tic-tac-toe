@@ -1,13 +1,12 @@
 package org.kesslerdn.tictactoe.game.ai;
 
-import java.util.List;
-
 import org.kesslerdn.tictactoe.board.position.Position
+import org.kesslerdn.tictactoe.game.player.Mark
 
 interface RowAnalyzer {
-	Boolean isVulnerable(String opposingMark, String playerMark, List<Position> row)
-	Boolean isProactive(String opposingMark, String playerMark, List<Position> row)
-	Boolean isAdvantagious(String opposingMark, String playerMark, List<Position> row)
-	Boolean isWin(String opposingMark, String playerMark, List<Position> row)
-	List<String> openPositions(String opposingMark, String playerMark, List<Position> row)
+	Boolean isVulnerable(Mark opposingMark, Mark playerMark, List<Position> row)
+	Boolean isProactive(Mark opposingMark, Mark playerMark, List<Position> row)
+	Boolean isAdvantagious(Mark opposingMark, Mark playerMark, List<Position> row)
+	Boolean isWin(Mark opposingMark, Mark playerMark, List<Position> row)
+	List<Integer> openPositions(Mark opposingMark, Mark playerMark, List<Position> row)
 }

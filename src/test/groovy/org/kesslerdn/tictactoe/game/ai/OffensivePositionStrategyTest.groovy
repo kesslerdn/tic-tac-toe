@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
@@ -16,24 +17,21 @@ import org.mockito.runners.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.class)
 class OffensivePositionStrategyTest extends GroovyTestCase {
 
-	static final String MARK = "X"
-	static final String OPPOSING_MARK = "Y"
-
 	private List<Position> firstRow
 	private List<Position> secondRow
 
 	@Mock RowAnalyzer rowAnalyzer
 	@Mock Board board
 	@Mock PositionCounter counter
-	@InjectMocks PositionStrategy strategy = new OffensivePositionStrategy(mark:MARK, opposingMark:OPPOSING_MARK)
+	@InjectMocks PositionStrategy strategy = new OffensivePositionStrategy()
 	
 	
 	@Before
 	public void setUp(){
 		List<List<Position>> rows = []
-		firstRow = [new TestPosition("A")]
+		firstRow = [TestPosition.newInstanceX()]
 		rows << firstRow
-		secondRow = [new TestPosition("B")]
+		secondRow = [TestPosition.newInstanceO()]
 		rows << secondRow
 		
 		when(board.getRows()).thenReturn(rows)
@@ -47,44 +45,44 @@ class OffensivePositionStrategyTest extends GroovyTestCase {
 	
 	@Test
 	void testFindPosition_firstRow(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(true)
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
+		when(rowAnalyzer.isAdvantagious(Mark.X, Mark.O, firstRow)).thenReturn(true)
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, firstRow)).thenReturn([1, 3])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, secondRow)).thenReturn([2])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, firstRow)
-		verify(counter).add("1")
-		verify(counter).add("3")
+		verify(rowAnalyzer).isAdvantagious(Mark.X, Mark.O, firstRow)
+		verify(rowAnalyzer).openPositions(Mark.X, Mark.O, firstRow)
+		verify(counter).add(1)
+		verify(counter).add(3)
 	}
 
 	@Test
 	void testFindPosition_secondRow(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(true)
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1", "3"])
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
+		when(rowAnalyzer.isAdvantagious(Mark.X, Mark.O, firstRow)).thenReturn(false)
+		when(rowAnalyzer.isAdvantagious(Mark.X, Mark.O, secondRow)).thenReturn(true)
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, firstRow)).thenReturn([1, 3])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, secondRow)).thenReturn([2])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, secondRow)
-		verify(rowAnalyzer).openPositions(OPPOSING_MARK, MARK, secondRow)
-		verify(counter).add("2")
+		verify(rowAnalyzer).isAdvantagious(Mark.X, Mark.O, firstRow)
+		verify(rowAnalyzer).isAdvantagious(Mark.X, Mark.O, secondRow)
+		verify(rowAnalyzer).openPositions(Mark.X, Mark.O, secondRow)
+		verify(counter).add(2)
 	}
 
 	@Test
 	void testFindPosition_Neither(){
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, firstRow)).thenReturn(false)
-		when(rowAnalyzer.isAdvantagious(OPPOSING_MARK, MARK, secondRow)).thenReturn(false)
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, firstRow)).thenReturn(["1"])
-		when(rowAnalyzer.openPositions(OPPOSING_MARK, MARK, secondRow)).thenReturn(["2"])
+		when(rowAnalyzer.isAdvantagious(Mark.X, Mark.O, firstRow)).thenReturn(false)
+		when(rowAnalyzer.isAdvantagious(Mark.X, Mark.O, secondRow)).thenReturn(false)
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, firstRow)).thenReturn([1])
+		when(rowAnalyzer.openPositions(Mark.X, Mark.O, secondRow)).thenReturn([2])
 		
 		strategy.addPositions(board, counter)
 		
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, firstRow)
-		verify(rowAnalyzer).isAdvantagious(OPPOSING_MARK, MARK, secondRow)
+		verify(rowAnalyzer).isAdvantagious(Mark.X, Mark.O, firstRow)
+		verify(rowAnalyzer).isAdvantagious(Mark.X, Mark.O, secondRow)
 		verifyZeroInteractions(counter)
 	}
 }

@@ -4,6 +4,7 @@ import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.game.Tracker
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
@@ -11,8 +12,8 @@ class FinalScore implements Score {
 
 	@Resource private GameControl gameControl;
 	@Resource private Tracker tracker;
-	@Resource private String firstMark
-	@Resource private String secondMark
+	private static final Mark secondMark = Mark.O
+	private static final Mark firstMark = Mark.X
 
 	@Override
 	public void display(Board board) {
