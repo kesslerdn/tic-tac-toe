@@ -196,6 +196,23 @@ class SpringMatchTest extends GroovyTestCase {
 	
 		match.start();
 	}
+	//1 & 4
+	@Test
+	void testStart_ScenarioEleven() {
+		firstPlayer.testingPositions = ["3","7","9", "6"]
+		gameControl.expectedMessages  = [
+			"Player O played position 5.",
+			"Player O played position 1.",
+			"Player O played position 8.",
+						
+			expectedBoard(  "O","2","X",
+							"4","O","X",
+							"X","O","X"),
+						
+							"Player 'X' won!"]
+	
+		match.start();
+	}
 
 	private String expectedBoard(String one, String two, String three, 
 		String four, String five, String six, 
