@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.exhaustive
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import java.util.Map.Entry
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class ExhaustivePositionLocator implements PositionLocator {
+class ScorePositionLocator implements PositionLocator {
 
 	private static final Mark mark = Mark.O
 	private static final Mark opposingMark = Mark.X

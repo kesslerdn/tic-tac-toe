@@ -1,10 +1,12 @@
-package org.kesslerdn.tictactoe.ai.strategy.exhaustive
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.ai.strategy.score.OpenPositionsLocator;
+import org.kesslerdn.tictactoe.ai.strategy.score.PositionsLocator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.TicTacToeBoard
 import org.kesslerdn.tictactoe.board.position.TestPosition

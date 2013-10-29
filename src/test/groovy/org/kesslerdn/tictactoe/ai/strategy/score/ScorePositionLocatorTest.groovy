@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.exhaustive
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -7,6 +7,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
+import org.kesslerdn.tictactoe.ai.strategy.score.ScorePositionLocator;
+import org.kesslerdn.tictactoe.ai.strategy.score.PositionsLocator;
+import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
@@ -15,12 +18,12 @@ import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.class)
-class ExhaustivePositionLocatorTest extends GroovyTestCase {
+class ScorePositionLocatorTest extends GroovyTestCase {
 
 	@Mock PositionsLocator positionsLocator
 	@Mock ScoreCalculator scoreCalculator
 	@Mock Board board
-	@InjectMocks PositionLocator locator = new ExhaustivePositionLocator();
+	@InjectMocks PositionLocator locator = new ScorePositionLocator();
 	
 	@Before
 	void setUp(){

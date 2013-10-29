@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.exhaustive
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position

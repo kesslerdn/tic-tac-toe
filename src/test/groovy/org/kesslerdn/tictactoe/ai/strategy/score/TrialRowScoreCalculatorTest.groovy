@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.exhaustive
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -8,6 +8,9 @@ import java.util.List
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculator;
+import org.kesslerdn.tictactoe.ai.strategy.score.TrialPosition;
+import org.kesslerdn.tictactoe.ai.strategy.score.TrialRowScoreCalculator;
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
