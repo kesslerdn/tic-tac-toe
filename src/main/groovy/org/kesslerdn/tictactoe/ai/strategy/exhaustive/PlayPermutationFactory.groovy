@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.ai.strategy.exhaustive
 
 import java.util.List
 
-class TicTacToePlayPermutationFactory implements PermutationFactory {
+class PlayPermutationFactory implements PermutationFactory {
 
 	@Override
 	public List<IntegerSequence> create() {
