@@ -129,7 +129,7 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-    <bean id="positionLocator" class="org.kesslerdn.tictactoe.ai.strategy.cumulative.StrategicPositionLocator">
+    <bean id="strategicPositionLocator" class="org.kesslerdn.tictactoe.ai.strategy.cumulative.StrategicPositionLocator">
     	<property name="positionStrategies">
     		<list>
     			<ref bean="winningPositionStrategy"/>
@@ -147,7 +147,7 @@
     </bean>
 	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:gameControl-ref="consoleGameControl"/>
 	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" p:gameControl-ref="consoleGameControl" 
-		p:positionLocator-ref="positionLocator"/>
+		p:positionLocator-ref="strategicPositionLocator"/>
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	
 	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	

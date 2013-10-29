@@ -22,25 +22,25 @@ class OpenPositionsLocatorTest extends GroovyTestCase {
 	
 	@Test
 	void testLocate(){
-		Board board = new TicTacToeBoard(rows:[[TestPosition.newInstance(1, null),TestPosition.newInstance(2, null),TestPosition.newInstance(3, null)],
-			[TestPosition.newInstance(4, null),TestPosition.newInstance(5, null),TestPosition.newInstance(6, null)],
-			[TestPosition.newInstance(7, null),TestPosition.newInstance(8, null),TestPosition.newInstance(9, null)]])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1, null),TestPosition.newInstance(2, null),TestPosition.newInstance(3, null),
+			TestPosition.newInstance(4, null),TestPosition.newInstance(5, null),TestPosition.newInstance(6, null),
+			TestPosition.newInstance(7, null),TestPosition.newInstance(8, null),TestPosition.newInstance(9, null)])
 		assert [1,2,3,4,5,6,7,8,9] == locator.locate(board)
 	}
 	
 	@Test
 	void testLocate_SomeMarked(){
-		Board board = new TicTacToeBoard(rows:[[TestPosition.newInstance(1, null),TestPosition.newInstance(2, Mark.X),TestPosition.newInstance(3, null)],
-			[TestPosition.newInstance(4, null),TestPosition.newInstance(5, Mark.O),TestPosition.newInstance(6, null)],
-			[TestPosition.newInstance(7, null),TestPosition.newInstance(8, Mark.X),TestPosition.newInstance(9, null)]])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1, null),TestPosition.newInstance(2, Mark.X),TestPosition.newInstance(3, null),
+			TestPosition.newInstance(4, null),TestPosition.newInstance(5, Mark.O),TestPosition.newInstance(6, null),
+			TestPosition.newInstance(7, null),TestPosition.newInstance(8, Mark.X),TestPosition.newInstance(9, null)])
 		assert [1,3,4,6,7,9] == locator.locate(board)
 	}
 	
 	@Test
 	void testLocate_AllMarked(){
-		Board board = new TicTacToeBoard(rows:[[TestPosition.newInstance(1, Mark.O),TestPosition.newInstance(2, Mark.X),TestPosition.newInstance(3, Mark.O)],
-			[TestPosition.newInstance(4, Mark.X),TestPosition.newInstance(5, Mark.O),TestPosition.newInstance(6, Mark.X)],
-			[TestPosition.newInstance(7, Mark.O),TestPosition.newInstance(8, Mark.X),TestPosition.newInstance(9, Mark.O)]])
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1, Mark.O),TestPosition.newInstance(2, Mark.X),TestPosition.newInstance(3, Mark.O),
+			TestPosition.newInstance(4, Mark.X),TestPosition.newInstance(5, Mark.O),TestPosition.newInstance(6, Mark.X),
+			TestPosition.newInstance(7, Mark.O),TestPosition.newInstance(8, Mark.X),TestPosition.newInstance(9, Mark.O)])
 		assert [] == locator.locate(board)
 	}
 }

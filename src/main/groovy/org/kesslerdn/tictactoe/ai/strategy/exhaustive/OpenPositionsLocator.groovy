@@ -9,10 +9,7 @@ class OpenPositionsLocator implements PositionsLocator {
 
 	@Override
 	public List<Integer> locate(Board board) {
-		List<Position> openPositions = []
-		board.rows.each{row ->
-			openPositions.addAll(row.findAll{it.mark == null})
-		}
+		List<Position> openPositions = board.positions.findAll{it.mark == null}
 		openPositions.collectAll{it.index}
 	}
 }

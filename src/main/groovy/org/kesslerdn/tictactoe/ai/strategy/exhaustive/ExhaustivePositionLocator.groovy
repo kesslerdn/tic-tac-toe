@@ -26,9 +26,11 @@ class ExhaustivePositionLocator implements PositionLocator {
 		List<Integer> positions = positionsLoctor.locate(board)
 		positions.each{position ->
 			Position trialPosition = new TrialPosition(index:position, mark:mark)
+			int total = 0
 			board.rows.each{row ->
-				positionScores[position] = scoreCalculator.calculate(row, trialPosition)
+				 total += scoreCalculator.calculate(row, trialPosition)
 			}
+			positionScores[trialPosition.index] = total
 		}
 		Entry maxEntry = positionScores.max{it.value}
 		return maxEntry.key;

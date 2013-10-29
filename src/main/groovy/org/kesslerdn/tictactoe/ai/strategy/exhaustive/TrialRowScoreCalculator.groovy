@@ -11,16 +11,19 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
 		Integer score = 0
-		Position matchingPosition = positions.find{it.index == trialPosition.index && it.mark == null}
-		if(matchingPosition){
+		List<Position> trialPositions = positions.findAll{it.index == trialPosition.index && it.mark == null}
+		List<Position> opposingPositions = positions.findAll{it.mark && it.mark != trialPosition.mark}
+		List<Position> playersPositions = positions.findAll{it.mark && it.mark == trialPosition.mark}
+		if(!trialPositions.empty){
 			score++
-			positions.each{position ->
-				if(position.mark == trialPosition.mark){
-					score++
-				}
-				if(position.mark && position.mark != trialPosition.mark){
-					score--
-				}
+			score += (opposingPositions.size())
+			score += (playersPositions.size() * 2)
+
+			if(opposingPositions.size > 1){
+				score += 1
+			}
+			if(!playersPositions.empty && !opposingPositions.empty){
+				score = 0
 			}
 		}
 		score == TWO_OPPOSING_MATCHES ? HIGHEST_SCORE : score
