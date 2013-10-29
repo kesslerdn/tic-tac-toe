@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.ai.strategy.exhaustive
 
 import org.junit.Test
 
-class PlayPermutationFactoryTest extends GroovyTestCase {
+class TicTacToePlayPermutationFactoryTest extends GroovyTestCase {
 
 	@Test
 	void testPermutations(){
