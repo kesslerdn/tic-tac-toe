@@ -147,7 +147,7 @@
     </bean>
 	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:gameControl-ref="consoleGameControl"/>
 	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" p:gameControl-ref="consoleGameControl" 
-		p:positionLocator-ref="strategicPositionLocator"/>
+		p:positionLocator-ref="scorePositionLocator"/>
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	
 	<bean id="bufferedReader" class="org.kesslerdn.tictactoe.view.io.BufferedReaderFactory" factory-method="create"/>	

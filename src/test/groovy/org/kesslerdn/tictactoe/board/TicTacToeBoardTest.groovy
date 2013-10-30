@@ -5,7 +5,6 @@ import org.kesslerdn.tictactoe.game.player.Mark
 
 class TicTacToeBoardTest extends GroovyTestCase {
 
-	private Integer bad = -100
 	void testStart_WithoutPositions() {
 		Board board = new TicTacToeBoard();
 		assert '' == board.display()
@@ -24,20 +23,6 @@ class TicTacToeBoardTest extends GroovyTestCase {
 			TestPosition.newInstance(2),
 			TestPosition.newInstance(3)])
 		assert board.isOpen(2)
-	}
-	
-	void testIsOpen_NoMatch(){
-		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1),
-			TestPosition.newInstance(2),
-			TestPosition.newInstance(3)])
-		
-		assert board.isOpen(bad) == false
-	}
-	
-	void testIsOpen_Empty(){
-		Board board = new TicTacToeBoard(positions:[])
-		
-		assert board.isOpen(1) == false
 	}
 
 	void testStart_MarkPosition(){
