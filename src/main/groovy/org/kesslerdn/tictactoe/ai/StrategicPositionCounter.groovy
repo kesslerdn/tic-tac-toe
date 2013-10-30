@@ -14,7 +14,7 @@ class StrategicPositionCounter implements PositionCounter{
 	@Override
 	public Integer largest() {
 		Map<String, Integer> countMap = positions.countBy{it}
-		Entry maxEntry = countMap.max{ a, b -> a.value.compareTo(b.value)}
+		Entry maxEntry = largestPositionCount(countMap)
 		return maxEntry.key;
 	}
 
@@ -23,4 +23,7 @@ class StrategicPositionCounter implements PositionCounter{
 		return positions.isEmpty();
 	}
 
+	private Entry largestPositionCount(Map<String,Integer> countMap){
+		countMap.max{ a, b -> a.value.compareTo(b.value)}
+	}
 }

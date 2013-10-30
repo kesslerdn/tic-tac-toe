@@ -39,6 +39,11 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	}
 	
 	@Test
+	void testCalculate_WithoutTrialPositionX_OpenOpenOpen(){
+		assert 0 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(NOT_IN_ROW, Mark.X))
+	}
+
+	@Test
 	void testCalculate_WithoutTrialPosition_HumanOpenOpen(){
 		assert 0 == calculator.calculate(createRow(HUMAN_MARK, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
@@ -172,6 +177,12 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	}
 	
 	private TrialPosition createTrialPosition(Integer index){
-		new TrialPosition(index:index, mark: Mark.O)
+		createTrialPosition(index,Mark.O)
 	}
+	
+	
+	private TrialPosition createTrialPosition(Integer index, Mark mark){
+		new TrialPosition(index:index, mark: mark)
+	}
+
 }

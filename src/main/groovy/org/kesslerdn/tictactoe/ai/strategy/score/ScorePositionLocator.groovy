@@ -23,14 +23,17 @@ class ScorePositionLocator implements PositionLocator {
 		List<Integer> positions = positionsLoctor.locate(board)
 		positions.each{position ->
 			Position trialPosition = new TrialPosition(index:position, mark:mark)
-			int total = 0
-			board.rows.each{row ->
-				 total += scoreCalculator.calculate(row, trialPosition)
-			}
-			positionScores[trialPosition.index] = total
+			positionScores[trialPosition.index] = calculateBoardScenario(board, trialPosition)
 		}
 		Entry maxEntry = positionScores.max{it.value}
 		return maxEntry.key;
 	}
 
+	private Integer calculateBoardScenario(Board board, Position trialPosition){
+		int total = 0
+		board.rows.each{row ->
+			 total += scoreCalculator.calculate(row, trialPosition)
+		}
+		total
+	}
 }

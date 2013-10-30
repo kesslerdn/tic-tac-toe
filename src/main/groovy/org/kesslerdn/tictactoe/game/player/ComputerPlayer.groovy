@@ -12,7 +12,6 @@ class ComputerPlayer implements Player {
 	
 	@Override
 	public void play(Board board) {
-		boolean marked
 		Integer position = positionLocator.locate(board, mark)
 		gameControl.status("Player $mark played position ${position}.")
 		board.mark(position, mark)

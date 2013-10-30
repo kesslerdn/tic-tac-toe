@@ -3,13 +3,10 @@ package org.kesslerdn.tictactoe.board.position
 import org.kesslerdn.tictactoe.game.player.Mark
 
 
-class CenterPosition implements Position{
-	Integer index
-	Mark mark;
-	
+class CenterPosition extends AbstractPosition{
+
 	@Override
-	public String write() {
-		String output = mark ? mark : index
-		"$output"
+	public String format(String value) {
+		value
 	}
 }

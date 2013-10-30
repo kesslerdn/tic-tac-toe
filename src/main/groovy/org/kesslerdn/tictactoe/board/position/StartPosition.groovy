@@ -2,13 +2,10 @@ package org.kesslerdn.tictactoe.board.position
 
 import org.kesslerdn.tictactoe.game.player.Mark
 
-class StartPosition implements Position{
-	Integer index
-	Mark mark;
-	
+class StartPosition extends AbstractPosition{
+
 	@Override
-	public String write() {
-		String output = mark ? mark : index
-		"|$output|"
+	public String format(String value) {
+		"|$value|"
 	}
 }
