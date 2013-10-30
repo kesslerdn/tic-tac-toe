@@ -1,20 +1,17 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
 import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.game.player.Mark;
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
 class TrialRowScoreCalculator implements ScoreCalculator{
-
-	private Mark mark
-	private Mark opposingMark
 	
-	private static final int TWO_OPPOSING_MATCHES = -1
-	private static final int HIGHEST_SCORE = 4
 	private static final weightMap = [(-3):-100, (-2): -10, (-1): -1, 0:0, 1:1, 2:10, 3:100]
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
+		Mark mark
+		Mark opposingMark
 		if(Mark.X == trialPosition.mark){
 			mark = Mark.X
 			opposingMark = Mark.O

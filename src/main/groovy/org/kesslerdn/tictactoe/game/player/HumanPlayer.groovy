@@ -5,7 +5,7 @@ import org.kesslerdn.tictactoe.view.GameControl;
 
 class HumanPlayer implements Player {
 	
-	static final Mark mark = Mark.X
+	Mark mark
 	GameControl gameControl
 
 	@Override

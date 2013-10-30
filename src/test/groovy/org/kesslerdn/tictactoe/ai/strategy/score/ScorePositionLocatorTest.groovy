@@ -7,12 +7,10 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
-import org.kesslerdn.tictactoe.ai.strategy.score.ScorePositionLocator;
-import org.kesslerdn.tictactoe.ai.strategy.score.PositionsLocator;
-import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
+import org.kesslerdn.tictactoe.game.player.Mark
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
@@ -36,12 +34,12 @@ class ScorePositionLocatorTest extends GroovyTestCase {
 	@Test
 	void testLocate(){
 		when(scoreCalculator.calculate(anyList(), any(Position.class))).thenReturn(1,1,1, 3,3,3, 2,2,2)
-		assert 2 == locator.locate(board)
+		assert 2 == locator.locate(board, Mark.O)
 	}
 	
 	@Test
 	void testLocate_SameScore(){
 		when(scoreCalculator.calculate(anyList(), any(Position.class))).thenReturn(1,1,1, 1,1,1, 1,1,1)
-		assert 1 == locator.locate(board)
+		assert 1 == locator.locate(board, Mark.O)
 	}
 }

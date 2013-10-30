@@ -130,8 +130,8 @@
 	    </constructor-arg>
 	</bean>
 
-	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:gameControl-ref="consoleGameControl"/>
-	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" p:gameControl-ref="consoleGameControl" 
+	<bean id="firstPlayer" class="org.kesslerdn.tictactoe.game.player.HumanPlayer" p:mark="X" p:gameControl-ref="consoleGameControl"/>
+	<bean id="secondPlayer" class="org.kesslerdn.tictactoe.game.player.ComputerPlayer" p:mark="O" p:gameControl-ref="consoleGameControl" 
 		p:positionLocator-ref="scorePositionLocator"/>
 	<bean id="twoPlayerTurn" class="org.kesslerdn.tictactoe.game.player.TwoPlayerTurn" c:first-ref="firstPlayer" c:second-ref="secondPlayer"/>
 	

@@ -30,7 +30,7 @@ class ComputerPlayerTest extends GroovyTestCase {
 	@Mock private Board board
 	@Mock private GameControl gameControl
 	@Mock private PositionLocator positionLocator
-	@InjectMocks private ComputerPlayer player = new ComputerPlayer()
+	@InjectMocks private ComputerPlayer player = new ComputerPlayer(mark:Mark.O)
 	
 	@Before
 	public void setUp(){
@@ -46,13 +46,13 @@ class ComputerPlayerTest extends GroovyTestCase {
 	
 	@Test
 	public void testPlay(){
-		when(positionLocator.locate(board)).thenReturn(FIRST_POSITION)
+		when(positionLocator.locate(board, Mark.O)).thenReturn(FIRST_POSITION)
 		
 		InOrder inOrder = inOrder(gameControl, board, positionLocator)
 		
 		player.play(board)
 		
-		inOrder.verify(positionLocator).locate(board)
+		inOrder.verify(positionLocator).locate(board, Mark.O)
 		inOrder.verify(gameControl).status("Player $MARK played position ${FIRST_POSITION}.")
 		inOrder.verify(board).mark(FIRST_POSITION, MARK)
 	}

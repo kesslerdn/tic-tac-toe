@@ -21,7 +21,7 @@ class HumanPlayerTest extends GroovyTestCase {
 
 	@Mock private Board board
 	@Mock private GameControl gameControl
-	@InjectMocks private HumanPlayer player = new HumanPlayer()
+	@InjectMocks private HumanPlayer player = new HumanPlayer(mark: Mark.X)
 	
 	@Test
 	public void testPlay(){
