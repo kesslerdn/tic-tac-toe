@@ -8,6 +8,7 @@ import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.util.MarkUtil;
 import org.springframework.stereotype.Component
 
 
@@ -16,6 +17,7 @@ class ScorePositionLocator implements PositionLocator {
 	
 	@Resource private PositionsLocator positionsLoctor
 	@Resource private ScoreCalculator scoreCalculator
+	@Resource private MarkUtil markUtil
 	
 	@Override
 	public Integer locate(Board board, Mark mark) {
@@ -34,15 +36,8 @@ class ScorePositionLocator implements PositionLocator {
 		board.rows.each{row ->
 			 total += scoreCalculator.calculate(row, trialPosition)
 		}
-		Mark mark
-		Mark opposingMark
-		if(Mark.X == trialPosition.mark){
-			mark = Mark.X
-			opposingMark = Mark.O
-		}else{
-			mark = Mark.O
-			opposingMark = Mark.X
-		}
+		Mark mark = trialPosition.mark
+		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}
 		if(opposingPositions.size() == 2 && areOppositeCorners(opposingPositions) && isEven(trialPosition)){
 			total += 10

@@ -1,24 +1,23 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
+import javax.annotation.Resource
+
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.util.MarkUtil
 import org.springframework.stereotype.Component
 
 @Component
 class TrialRowScoreCalculator implements ScoreCalculator{
 	
+	
 	private static final weightMap = [(-3):-100, (-2): -10, (-1): -1, 0:0, 1:10, 2:100, 3:1000]
+	@Resource private MarkUtil markUtil
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
-		Mark mark
-		Mark opposingMark
-		if(Mark.X == trialPosition.mark){
-			mark = Mark.X
-			opposingMark = Mark.O
-		}else{
-			mark = Mark.O
-			opposingMark = Mark.X
-		}
+		Mark mark = trialPosition.mark
+		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
+		
 		Integer score = 0
 		List<Position> openPositions = positions.findAll{it.mark == null}
 		List<Position> opposingPositions = positions.findAll{it.mark && it.mark == opposingMark}
@@ -34,24 +33,21 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	}
 	
 	private Boolean isFirstOpposingPlay(List<Position> playerPositions, List<Position> opposingPositions){
-		opposingPositions.size() == 1 && playerPositions.size() == 0
+		opposingPositions.size() == 1 && playerPositions.empty
 	}
 
 	private Integer calculateScore(List<Position> openPositions, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
 		Integer score = 0
 		score = 1 * weightMap[playerPositions.size()]
-		if(opposingPositions.size() == 1 && playerPositions.empty){
+		if(isFirstOpposingPlay(playerPositions, opposingPositions)){
 			score += 5
 		}
-		if(evenCount(opposingPositions) > oddCount(opposingPositions)){
-			if(isOdd(trialPosition)){
-				score += 5
-			}
-		}else if(oddCount(opposingPositions) > evenCount(opposingPositions)){
-			if(isEven(trialPosition)){
-				score += 5
-			}
+		if(evenCount(opposingPositions) > oddCount(opposingPositions) && isOdd(trialPosition)){
+			score += 5
+		}else if(oddCount(opposingPositions) > evenCount(opposingPositions) && isEven(trialPosition)){
+			score += 5
 		}
+		
 		if(opposingPositions.size() == 2){
 			score = 100000
 		}

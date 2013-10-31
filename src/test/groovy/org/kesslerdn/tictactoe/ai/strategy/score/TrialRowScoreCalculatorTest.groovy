@@ -2,18 +2,13 @@ package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import groovy.util.GroovyTestCase
-
-import java.util.List
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculator;
-import org.kesslerdn.tictactoe.ai.strategy.score.TrialPosition;
-import org.kesslerdn.tictactoe.ai.strategy.score.TrialRowScoreCalculator;
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.util.MarkUtil
 
 
 class TrialRowScoreCalculatorTest extends GroovyTestCase {
@@ -30,7 +25,7 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
-		calculator = new TrialRowScoreCalculator();
+		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil());
 	}
 	
 	@Test

@@ -11,6 +11,7 @@ import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.util.MarkUtil
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
@@ -25,6 +26,7 @@ class ScorePositionLocatorTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
+		locator.markUtil = new MarkUtil()
 		when(board.rows).thenReturn([[TestPosition.newInstance(1),TestPosition.newInstance(2),TestPosition.newInstance(3)],
 			[TestPosition.newInstance(4),TestPosition.newInstance(5),TestPosition.newInstance(6)],
 			[TestPosition.newInstance(7),TestPosition.newInstance(8),TestPosition.newInstance(9)]])
