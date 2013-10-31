@@ -27,7 +27,11 @@ class TicTacToeBoard implements Board{
 
 	@Override
 	public Boolean isOpen(Integer index) {
-		Position position= positions.find{it.index == index}
-		return position.mark == null
+		Position position = positions.find{it.index == index}
+		if(position){
+			position.mark == null
+		}else{
+			false
+		}
 	}
 }

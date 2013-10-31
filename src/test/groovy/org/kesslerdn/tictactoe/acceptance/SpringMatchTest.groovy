@@ -12,9 +12,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 class SpringMatchTest extends GroovyTestCase {
 
 	static final String TIE = 'This game ended in a tie!'
-
 	static final String PLAYER_O_WON = "Player 'O' won!"
-
+	static final String PLAYER_X_WON = "Player 'X' won!"
+	
 	private Match match
 	private TestPlayer firstPlayer
 	private TestGameControl gameControl
@@ -29,15 +29,15 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioOne() {
-		firstPlayer.testingPositions = [1,3,4, 5, 8]
+		firstPlayer.testingPositions = [1,3,4, 6, 8]
 		gameControl.expectedMessages = [
-			"Player O played position 6.",
 			"Player O played position 2.",
+			"Player O played position 5.",
 			"Player O played position 7.",
 			"Player O played position 9.",
 						
 			expectedBoard(  "X","O","X",
-							"X","X","O",
+							"X","O","X",
 							"O","X","O"),
 						
 							TIE]
@@ -49,10 +49,10 @@ class SpringMatchTest extends GroovyTestCase {
 	void testStart_ScenarioTwo() {
 		firstPlayer.testingPositions = [3,7,6, 1, 8]
 		gameControl.expectedMessages  = [
-			"Player O played position 4.",
+			"Player O played position 2.",
 			"Player O played position 5.",
 			"Player O played position 9.",
-			"Player O played position 2.",
+			"Player O played position 4.",
 			
 			expectedBoard(  "X","O","X",
 							"O","O","X",
@@ -83,29 +83,30 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioFour() {
-		firstPlayer.testingPositions = [3,8,6, 9, 2]
+		firstPlayer.testingPositions = [3,8,6,5,1]
 		gameControl.expectedMessages  = [
-			"Player O played position 4.",
-			"Player O played position 1.",
+			"Player O played position 2.",
 			"Player O played position 7.",
+			"Player O played position 9.",
+			"Player O played position 4.",
+			
+			expectedBoard(  "X","O","X",
+							"O","X","X",
+							"O","X","O"),
  
-			expectedBoard(  "O","2","X",
-							"O","5","X",
-							"O","X","9"),
- 
-							PLAYER_O_WON]
+							TIE]
 	
 		match.start();
 	}
 	
 	@Test
 	void testStart_ScenarioFive() {
-		firstPlayer.testingPositions = [1,4,3, 8, 9]
+		firstPlayer.testingPositions = [1,4,3, 9,8]
 		gameControl.expectedMessages  = [
-			"Player O played position 6.",
-			"Player O played position 7.",
 			"Player O played position 2.",
+			"Player O played position 7.",
 			"Player O played position 5.",
+			"Player O played position 6.",
  
 			expectedBoard(  "X","O","X",
 							"X","O","O",
@@ -118,14 +119,15 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioSix() {
-		firstPlayer.testingPositions = [9,7,1]
+		firstPlayer.testingPositions = [9,7,1,2]
 		gameControl.expectedMessages  = [
-			"Player O played position 2.",
+			"Player O played position 6.",
 			"Player O played position 8.",
 			"Player O played position 5.",
- 
-			expectedBoard(  "X","O","3",
-							"4","O","6",
+			"Player O played position 4.",
+			
+			expectedBoard(  "X","X","3",
+							"O","O","O",
 							"X","O","X"),
 						
 							PLAYER_O_WON]
@@ -135,15 +137,15 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioSeven() {
-		firstPlayer.testingPositions = [2,6,8, 4, 8]
+		firstPlayer.testingPositions = [2,6,8]
 		gameControl.expectedMessages  = [
+			"Player O played position 1.",
 			"Player O played position 5.",
-			"Player O played position 7.",
-			"Player O played position 3.",
- 
-			expectedBoard(  "1","X","O",
+			"Player O played position 9.",
+			
+			expectedBoard(  "O","X","3",
 							"4","O","X",
-							"O","X","9"),
+							"7","X","O"),
 						
 							PLAYER_O_WON]
 	
@@ -187,34 +189,53 @@ class SpringMatchTest extends GroovyTestCase {
 	
 	@Test
 	void testStart_ScenarioTen() {
-		firstPlayer.testingPositions = [1,8,4, 5]
+		firstPlayer.testingPositions = [1,8,4,9]
 		gameControl.expectedMessages  = [
-			"Player O played position 6.",
+			"Player O played position 2.",
+			"Player O played position 7.",
+			"Player O played position 5.",
 			"Player O played position 3.",
-			"Player O played position 9.",
-						
-			expectedBoard(  "X","2","O",
-							"X","5","O",
-							"7","X","O"),
+			
+			expectedBoard(  "X","O","O",
+							"X","O","6",
+							"O","X","X"),
 						
 							PLAYER_O_WON]
 	
 		match.start();
 	}
-	//1 & 4
+	
 	@Test
 	void testStart_ScenarioEleven() {
-		firstPlayer.testingPositions = [3,7,9]
+		firstPlayer.testingPositions = [3,7,9,6]
 		gameControl.expectedMessages  = [
-			"Player O played position 4.",
+			"Player O played position 2.",
 			"Player O played position 5.",
-			"Player O played position 6.",
+			"Player O played position 8.",
 						
-			expectedBoard(  "1","2","X",
-							"O","O","O",
-							"X","8","X"),
+			expectedBoard(  "1","O","X",
+							"4","O","6",
+							"X","O","X"),
 						
 							PLAYER_O_WON]
+	
+		match.start();
+	}
+	
+	@Test
+	void testStart_ScenarioTwelve() {
+		firstPlayer.testingPositions = [3,9,5,8,4]
+		gameControl.expectedMessages  = [
+			"Player O played position 2.",
+			"Player O played position 6.",
+			"Player O played position 7.",
+			"Player O played position 1.",
+			
+			expectedBoard(  "O","O","X",
+							"X","X","O",
+							"O","X","X"),
+						
+							TIE]
 	
 		match.start();
 	}

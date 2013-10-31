@@ -50,12 +50,12 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_ComputerOpenOpen(){
-		assert 1 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_ComputerComputerOpen(){
-		assert 10 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
@@ -65,12 +65,12 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_OpenComputerOpen(){
-		assert 1 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_HumanHumanOpen(){
-		assert -10 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
@@ -80,22 +80,22 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_OpenHumanOpen(){
-		assert -1 == calculator.calculate(createRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_ComputerComputerComputer(){
-		assert 100 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_OpenComputerComputer(){
-		assert 10 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_ComputerOpenComputer(){
-		assert 10 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
@@ -114,22 +114,22 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	}
 	@Test
 	void testCalculate_WithoutTrialPosition_OpenOpenComputer(){
-		assert 1 == calculator.calculate(createRow(OPEN, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(OPEN, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_HumanHumanHuman(){
-		assert -99 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_HumanOpenHuman(){
-		assert -9 == calculator.calculate(createRow(HUMAN_MARK, OPEN, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(HUMAN_MARK, OPEN, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
 	void testCalculate_WithoutTrialPosition_OpenHumanHuman(){
-		assert -10 == calculator.calculate(createRow(OPEN, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
+		assert 0 == calculator.calculate(createRow(OPEN, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
 	}
 	
 	@Test
@@ -156,7 +156,7 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Test
 	void testCalculate_FirstTrialPosition_OpenOpenOpen(){
-		assert 1 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(FIRST_POSITION))
+		assert 0 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(FIRST_POSITION))
 	}
 	
 	@Test
