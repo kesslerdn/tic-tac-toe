@@ -25,37 +25,55 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		List<Position> openPositions = positionUtil.findMark(positions, null)
 		List<Position> opposingPositions = positionUtil.findMark(positions, opposingMark)
 		List<Position> playerPositions = positionUtil.findMark(positions, mark)
-		if(positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index != 5 && trialPosition.index == 5){
+		
+		if(positionUtil.isFirstTurnWithCenterPositionOpen(playerPositions, opposingPositions, trialPosition)){
 			score = 100000
-		}else if (positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index == 5 && trialPosition.index == 3){
+		}else if (positionUtil.isFirstTurnWithCenterPositionTaken(playerPositions, opposingPositions, trialPosition)){
 			score = 100000
 		}else{
-			score = calculateScore(openPositions, playerPositions, opposingPositions, trialPosition)
+			score = 1 * weightMap[playerPositions.size()]
+			score = favorOpponentSelectedRows(score, playerPositions, opposingPositions)
+			score = favorOppositeBoardStrategy(score, playerPositions, opposingPositions, trialPosition);
+			score = favorOpponentDominatedRows(score, playerPositions, opposingPositions)
+			score = ignoreBlockedRows(score, playerPositions, opposingPositions)
+			score = ignoreUnavailableTrialPeriods(score, openPositions, trialPosition)
+		}
+		score
+	}
+
+	private Integer ignoreUnavailableTrialPeriods(Integer score, List<Position> openPositions, Position trialPosition){
+		if(!positionUtil.containsIndex(openPositions, trialPosition)){
+			score = 0
 		}
 		score
 	}
 	
-	private Integer calculateScore(List<Position> openPositions, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
-		Integer score = 0
-		score = 1 * weightMap[playerPositions.size()]
+	private Integer ignoreBlockedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
+		if(positionUtil.containsBoth(playerPositions, opposingPositions)){
+			score = 0
+		}
+		score
+	}
+	
+	private Integer favorOpponentDominatedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
+		if(opposingPositions.size() == 2){
+			score = 100000
+		}
+		score
+	}
+		
+	private Integer favorOpponentSelectedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
 		if(positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions)){
 			score += 5
 		}
+		score
+	}
+		
+	private Integer favorOppositeBoardStrategy(Integer score, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
 		if(positionUtil.hasMoreEvens(opposingPositions) && positionUtil.isOdd(trialPosition)){
 			score += 5
 		}else if(positionUtil.hasMoreOdds(opposingPositions) && positionUtil.isEven(trialPosition)){
 			score += 5
-		}
-		
-		if(opposingPositions.size() == 2){
-			score = 100000
-		}
-		if(positionUtil.containsBoth(playerPositions, opposingPositions)){
-			score = 0
-		}
-		
-		if(!positionUtil.containsIndex(openPositions, trialPosition)){
-			score = 0
 		}
 		score
 	}

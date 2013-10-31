@@ -20,8 +20,18 @@ class ConsoleGameControlTest {
 	void testRequest(){
 		when(bufferedReader.readLine()).thenReturn("1")
 		
-		control.request("test");
+		assert 1 == control.request("test");
 		
 		verify(bufferedReader).readLine()
 	}
+	
+	@Test
+	void testRequest_InvalidAlpha(){
+		when(bufferedReader.readLine()).thenReturn("U")
+		
+		assert -1 == control.request("test");
+		
+		verify(bufferedReader).readLine()
+	}
+
 }

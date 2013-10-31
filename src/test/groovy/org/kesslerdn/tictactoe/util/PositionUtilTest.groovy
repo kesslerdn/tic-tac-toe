@@ -176,4 +176,40 @@ class PositionUtilTest extends GroovyTestCase{
 		assert false == util.containsIndex([TestPosition.newInstance(1), TestPosition.newInstance(2), TestPosition.newInstance(3)], 
 			TestPosition.newInstance(4))
 	}
+	
+	@Test
+	void testIsFirstTurnWithCenterPositionOpen(){
+		assert util.isFirstTurnWithCenterPositionOpen([], [TestPosition.newInstance(1, Mark.O)], 
+			TestPosition.newInstance(5))
+	}
+	
+	@Test
+	void testIsFirstTurnWithCenterPositionOpen_TrialPositionNot5(){
+		assert false == util.isFirstTurnWithCenterPositionOpen([], [TestPosition.newInstance(1, Mark.O)], 
+			TestPosition.newInstance(1))
+	}
+	
+	@Test
+	void testIsFirstTurnWithCenterPositionOpen_OpponentAlreadyMarked5(){
+		assert false == util.isFirstTurnWithCenterPositionOpen([], [TestPosition.newInstance(5, Mark.O)], 
+			TestPosition.newInstance(5))
+	}
+		
+	@Test
+	void testIsFirstTurnWithCenterPositionTaken(){
+		assert util.isFirstTurnWithCenterPositionTaken([], [TestPosition.newInstance(5, Mark.O)],
+			TestPosition.newInstance(3))
+	}
+	
+	@Test
+	void testIsFirstTurnWithCenterPositionTaken_TrialPositionNot3(){
+		assert false == util.isFirstTurnWithCenterPositionTaken([], [TestPosition.newInstance(5, Mark.O)],
+			TestPosition.newInstance(1))
+	}
+	
+	@Test
+	void testIsFirstTurnWithCenterPositionTaken_OpponentNotMarked5(){
+		assert false == util.isFirstTurnWithCenterPositionTaken([], [TestPosition.newInstance(1, Mark.O)],
+			TestPosition.newInstance(3))
+	}
 }

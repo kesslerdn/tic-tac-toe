@@ -54,4 +54,14 @@ class PositionUtil {
 	private Boolean containsIndex(List<Position> positions, Position position){
 		positions.collect{it.index}.contains(position.index)
 	}
+	
+	
+	private isFirstTurnWithCenterPositionOpen(List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
+		containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index != 5 && trialPosition.index == 5
+	}
+	
+	private isFirstTurnWithCenterPositionTaken(List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
+		containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index == 5 && trialPosition.index == 3
+	}
+
 }

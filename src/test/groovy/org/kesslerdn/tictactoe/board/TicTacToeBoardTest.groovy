@@ -35,4 +35,12 @@ class TicTacToeBoardTest extends GroovyTestCase {
 		assert 'test 1:null,test 2:X,test 3:null,' == board.display()
 		
 	}
+	
+	
+	void testIsOpen_WithOutPositions(){
+		Board board = new TicTacToeBoard(positions:[TestPosition.newInstance(1),
+			TestPosition.newInstance(2),
+			TestPosition.newInstance(3)])
+		assert false == board.isOpen(7)
+	}
 }
