@@ -6,11 +6,11 @@ import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
 
 class PositionAnalysisUtilTest extends GroovyTestCase{
-	PositionAnaylysisUtil util
+	PositionAnalysisUtil util
 	
 	@Before
 	void setUp(){
-		util = new PositionAnaylysisUtil()
+		util = new PositionAnalysisUtil()
 	}
 	
 	@Test
@@ -39,5 +39,25 @@ class PositionAnalysisUtilTest extends GroovyTestCase{
 		assert false == util.areOppositeCornersMarked(
 			[TestPosition.newInstance(1, Mark.O), TestPosition.newInstance(9, Mark.O)], 
 			Mark.X)
+	}
+	
+	@Test
+	void testIsEven(){
+		assert util.isEven(TestPosition.newInstance(2))
+	}
+	
+	@Test
+	void testIsEven_False(){
+		assert false == util.isEven(TestPosition.newInstance(1))
+	}
+	
+	@Test
+	void testIsOdd(){
+		assert util.isOdd(TestPosition.newInstance(1))
+	}
+	
+	@Test
+	void testIsOdd_False(){
+		assert false == util.isOdd(TestPosition.newInstance(2))
 	}
 }

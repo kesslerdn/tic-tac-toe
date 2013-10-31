@@ -9,6 +9,7 @@ import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.util.MarkUtil
+import org.kesslerdn.tictactoe.util.PositionAnalysisUtil
 
 
 class TrialRowScoreCalculatorTest extends GroovyTestCase {
@@ -25,7 +26,7 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
-		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil());
+		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil(), positionAnalysisUtil: new PositionAnalysisUtil());
 	}
 	
 	@Test

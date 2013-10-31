@@ -5,7 +5,7 @@ import javax.annotation.Resource
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.util.MarkUtil
-import org.kesslerdn.tictactoe.util.PositionAnaylysisUtil;
+import org.kesslerdn.tictactoe.util.PositionAnalysisUtil
 import org.springframework.stereotype.Component
 
 @Component
@@ -14,6 +14,7 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	
 	private static final weightMap = [(-3):-100, (-2): -10, (-1): -1, 0:0, 1:10, 2:100, 3:1000]
 	@Resource private MarkUtil markUtil
+	@Resource private PositionAnalysisUtil positionAnalysisUtil
 
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
@@ -44,9 +45,9 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		if(isFirstOpposingPlay(playerPositions, opposingPositions)){
 			score += 5
 		}
-		if(evenCount(opposingPositions) > oddCount(opposingPositions) && isOdd(trialPosition)){
+		if(evenCount(opposingPositions) > oddCount(opposingPositions) && positionAnalysisUtil.isOdd(trialPosition)){
 			score += 5
-		}else if(oddCount(opposingPositions) > evenCount(opposingPositions) && isEven(trialPosition)){
+		}else if(oddCount(opposingPositions) > evenCount(opposingPositions) && positionAnalysisUtil.isEven(trialPosition)){
 			score += 5
 		}
 		
@@ -64,20 +65,10 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	}
 	
 	private Integer evenCount(List<Position> positions){
-		positions.count{isEven(it)}
+		positions.count{positionAnalysisUtil.isEven(it)}
 	}
 	
 	private Integer oddCount(List<Position> positions){
-		positions.count{isOdd(it)}
+		positions.count{positionAnalysisUtil.isOdd(it)}
 	}
-
-	private Boolean isEven(Position position){
-		position.index % 2 == 0
-	}
-	
-	
-	private Boolean isOdd(Position position){
-		position.index % 2 != 0
-	}
-
 }
