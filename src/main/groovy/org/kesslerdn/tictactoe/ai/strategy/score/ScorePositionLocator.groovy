@@ -34,6 +34,29 @@ class ScorePositionLocator implements PositionLocator {
 		board.rows.each{row ->
 			 total += scoreCalculator.calculate(row, trialPosition)
 		}
+		Mark mark
+		Mark opposingMark
+		if(Mark.X == trialPosition.mark){
+			mark = Mark.X
+			opposingMark = Mark.O
+		}else{
+			mark = Mark.O
+			opposingMark = Mark.X
+		}
+		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}
+		if(opposingPositions.size() == 2 && areOppositeCorners(opposingPositions) && isEven(trialPosition)){
+			total += 10
+		}
 		total
 	}
+	
+	private Boolean areOppositeCorners(List<Position> positions){
+		List<Integer> locations = positions.collect{it.index}
+		(locations.contains(1) && locations.contains(9)) || (locations.contains(3) && locations.contains(7))
+	}
+		
+	private Boolean isEven(Position position){
+		position.index % 2 == 0
+	}
+
 }

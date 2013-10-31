@@ -19,23 +19,37 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 			mark = Mark.O
 			opposingMark = Mark.X
 		}
-		List<Position> withTrial = positions
 		Integer score = 0
-		List<Position> openPositions = withTrial.findAll{it.mark == null}
-		List<Position> opposingPositions = withTrial.findAll{it.mark && it.mark == opposingMark}
-		List<Position> playerPositions = withTrial.findAll{it.mark && it.mark == mark}
-		Integer playerNet = playerPositions.size()// - opposingPositions.size()
-		score = 1 * weightMap[playerNet]
+		List<Position> openPositions = positions.findAll{it.mark == null}
+		List<Position> opposingPositions = positions.findAll{it.mark && it.mark == opposingMark}
+		List<Position> playerPositions = positions.findAll{it.mark && it.mark == mark}
+		if(isFirstOpposingPlay(playerPositions, opposingPositions) && opposingPositions[0].index != 5 && trialPosition.index == 5){
+			score = 100000
+		}else if (isFirstOpposingPlay(playerPositions, opposingPositions) && opposingPositions[0].index == 5 && trialPosition.index == 3){
+			score = 100000
+		}else{
+			score = calculateScore(openPositions, playerPositions, opposingPositions, trialPosition)
+		}
+		score
+	}
+	
+	private Boolean isFirstOpposingPlay(List<Position> playerPositions, List<Position> opposingPositions){
+		opposingPositions.size() == 1 && playerPositions.size() == 0
+	}
+
+	private Integer calculateScore(List<Position> openPositions, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
+		Integer score = 0
+		score = 1 * weightMap[playerPositions.size()]
 		if(opposingPositions.size() == 1 && playerPositions.empty){
 			score += 5
 		}
 		if(evenCount(opposingPositions) > oddCount(opposingPositions)){
 			if(isOdd(trialPosition)){
-				score += 1
+				score += 5
 			}
 		}else if(oddCount(opposingPositions) > evenCount(opposingPositions)){
 			if(isEven(trialPosition)){
-				score += 1
+				score += 5
 			}
 		}
 		if(opposingPositions.size() == 2){
@@ -48,7 +62,6 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		if(!openPositions.collect{it.index}.contains(trialPosition.index)){
 			score = 0
 		}
-
 		score
 	}
 	
