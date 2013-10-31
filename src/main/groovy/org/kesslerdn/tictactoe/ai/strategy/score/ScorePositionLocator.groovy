@@ -8,7 +8,8 @@ import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
-import org.kesslerdn.tictactoe.util.MarkUtil;
+import org.kesslerdn.tictactoe.util.MarkUtil
+import org.kesslerdn.tictactoe.util.PositionAnaylysisUtil
 import org.springframework.stereotype.Component
 
 
@@ -18,6 +19,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private PositionsLocator positionsLoctor
 	@Resource private ScoreCalculator scoreCalculator
 	@Resource private MarkUtil markUtil
+	@Resource private PositionAnaylysisUtil positionAnalysisUtil
 	
 	@Override
 	public Integer locate(Board board, Mark mark) {
@@ -39,15 +41,12 @@ class ScorePositionLocator implements PositionLocator {
 		Mark mark = trialPosition.mark
 		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}
-		if(opposingPositions.size() == 2 && areOppositeCorners(opposingPositions) && isEven(trialPosition)){
+		if(opposingPositions.size() == 2 && 
+			positionAnalysisUtil.areOppositeCornersMarked(opposingPositions, opposingMark) && 
+			isEven(trialPosition)){
 			total += 10
 		}
 		total
-	}
-	
-	private Boolean areOppositeCorners(List<Position> positions){
-		List<Integer> locations = positions.collect{it.index}
-		(locations.contains(1) && locations.contains(9)) || (locations.contains(3) && locations.contains(7))
 	}
 		
 	private Boolean isEven(Position position){

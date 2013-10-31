@@ -5,6 +5,7 @@ import javax.annotation.Resource
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.util.MarkUtil
+import org.kesslerdn.tictactoe.util.PositionAnaylysisUtil;
 import org.springframework.stereotype.Component
 
 @Component
@@ -13,6 +14,7 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	
 	private static final weightMap = [(-3):-100, (-2): -10, (-1): -1, 0:0, 1:10, 2:100, 3:1000]
 	@Resource private MarkUtil markUtil
+
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
 		Mark mark = trialPosition.mark
