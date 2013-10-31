@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class PositionUtil {
 	
 	Boolean areOppositeCornersMarked(List<Position> positions, Mark mark){
-		List<Position> matching = positions.findAll{it.mark == mark}
+		List<Position> matching = findMark(positions, mark)
 		List<Integer> locations = matching.collect{it.index}
 		(locations.contains(1) && locations.contains(9)) || (locations.contains(3) && locations.contains(7))
 	}
@@ -29,5 +29,29 @@ class PositionUtil {
 	
 	Integer oddCount(List<Position> positions){
 		positions.count{isOdd(it)}
+	}
+	
+	List<Position> findMark(List<Position> positions, Mark mark){
+		positions.findAll{it.mark == mark}
+	}
+	
+	Boolean containsOnlyOpponenet(List<Position> playerPositions, List<Position> opposingPositions){
+		opposingPositions.size() == 1 && playerPositions.empty
+	}
+	
+	Boolean containsBoth(List<Position> playerPositions, List<Position> opposingPositions){
+		playerPositions.size() > 0 && opposingPositions.size() > 0
+	}
+	
+	Boolean hasMoreEvens(List<Position> positions){
+		evenCount(positions) > oddCount(positions)
+	}
+	
+	Boolean hasMoreOdds(List<Position> positions){
+		oddCount(positions) > evenCount(positions)
+	}
+
+	private Boolean containsIndex(List<Position> positions, Position position){
+		positions.collect{it.index}.contains(position.index)
 	}
 }

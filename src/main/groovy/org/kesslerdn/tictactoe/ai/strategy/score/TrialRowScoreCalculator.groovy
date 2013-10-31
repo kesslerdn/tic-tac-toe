@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 class TrialRowScoreCalculator implements ScoreCalculator{
 	
 	
-	private static final weightMap = [(-3):-100, (-2): -10, (-1): -1, 0:0, 1:10, 2:100, 3:1000]
+	private static final weightMap = [0:0, 1:10, 2:100, 3:1000]
 	@Resource private MarkUtil markUtil
 	@Resource private PositionUtil positionUtil
 
@@ -22,12 +22,12 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		
 		Integer score = 0
-		List<Position> openPositions = positions.findAll{it.mark == null}
-		List<Position> opposingPositions = positions.findAll{it.mark && it.mark == opposingMark}
-		List<Position> playerPositions = positions.findAll{it.mark && it.mark == mark}
-		if(isFirstOpposingPlay(playerPositions, opposingPositions) && opposingPositions[0].index != 5 && trialPosition.index == 5){
+		List<Position> openPositions = positionUtil.findMark(positions, null)
+		List<Position> opposingPositions = positionUtil.findMark(positions, opposingMark)
+		List<Position> playerPositions = positionUtil.findMark(positions, mark)
+		if(positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index != 5 && trialPosition.index == 5){
 			score = 100000
-		}else if (isFirstOpposingPlay(playerPositions, opposingPositions) && opposingPositions[0].index == 5 && trialPosition.index == 3){
+		}else if (positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions) && opposingPositions[0].index == 5 && trialPosition.index == 3){
 			score = 100000
 		}else{
 			score = calculateScore(openPositions, playerPositions, opposingPositions, trialPosition)
@@ -35,30 +35,26 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		score
 	}
 	
-	private Boolean isFirstOpposingPlay(List<Position> playerPositions, List<Position> opposingPositions){
-		opposingPositions.size() == 1 && playerPositions.empty
-	}
-
 	private Integer calculateScore(List<Position> openPositions, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
 		Integer score = 0
 		score = 1 * weightMap[playerPositions.size()]
-		if(isFirstOpposingPlay(playerPositions, opposingPositions)){
+		if(positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions)){
 			score += 5
 		}
-		if(positionUtil.evenCount(opposingPositions) > positionUtil.oddCount(opposingPositions) && positionUtil.isOdd(trialPosition)){
+		if(positionUtil.hasMoreEvens(opposingPositions) && positionUtil.isOdd(trialPosition)){
 			score += 5
-		}else if(positionUtil.oddCount(opposingPositions) > positionUtil.evenCount(opposingPositions) && positionUtil.isEven(trialPosition)){
+		}else if(positionUtil.hasMoreOdds(opposingPositions) && positionUtil.isEven(trialPosition)){
 			score += 5
 		}
 		
 		if(opposingPositions.size() == 2){
 			score = 100000
 		}
-		if(playerPositions.size() > 0 && opposingPositions.size() > 0){
+		if(positionUtil.containsBoth(playerPositions, opposingPositions)){
 			score = 0
 		}
 		
-		if(!openPositions.collect{it.index}.contains(trialPosition.index)){
+		if(!positionUtil.containsIndex(openPositions, trialPosition)){
 			score = 0
 		}
 		score
