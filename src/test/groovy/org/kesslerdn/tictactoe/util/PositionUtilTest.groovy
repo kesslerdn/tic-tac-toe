@@ -5,12 +5,12 @@ import org.junit.Test
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
 
-class PositionAnalysisUtilTest extends GroovyTestCase{
-	PositionAnalysisUtil util
+class PositionUtilTest extends GroovyTestCase{
+	PositionUtil util
 	
 	@Before
 	void setUp(){
-		util = new PositionAnalysisUtil()
+		util = new PositionUtil()
 	}
 	
 	@Test
@@ -59,5 +59,25 @@ class PositionAnalysisUtilTest extends GroovyTestCase{
 	@Test
 	void testIsOdd_False(){
 		assert false == util.isOdd(TestPosition.newInstance(2))
+	}
+	
+	@Test
+	void testEvenCount(){
+		assert 2 == util.evenCount([TestPosition.newInstance(2), TestPosition.newInstance(1), TestPosition.newInstance(4)])
+	}
+	
+	@Test
+	void testEvenCount_Zero(){
+		assert 0 == util.evenCount([TestPosition.newInstance(1)])
+	}
+	
+	@Test
+	void testOddCount(){
+		assert 2 == util.oddCount([TestPosition.newInstance(1), TestPosition.newInstance(2), TestPosition.newInstance(3)])
+	}
+	
+	@Test
+	void testOddCount_Zero(){
+		assert 0 == util.oddCount([TestPosition.newInstance(2)])
 	}
 }

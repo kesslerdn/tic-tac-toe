@@ -9,7 +9,7 @@ import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.util.MarkUtil
-import org.kesslerdn.tictactoe.util.PositionAnalysisUtil
+import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component
 
 
@@ -19,7 +19,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private PositionsLocator positionsLoctor
 	@Resource private ScoreCalculator scoreCalculator
 	@Resource private MarkUtil markUtil
-	@Resource private PositionAnalysisUtil positionAnalysisUtil
+	@Resource private PositionUtil positionAnalysisUtil
 	
 	@Override
 	public Integer locate(Board board, Mark mark) {

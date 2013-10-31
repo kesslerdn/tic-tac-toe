@@ -1,11 +1,13 @@
 package org.kesslerdn.tictactoe.util
 
+import java.util.List;
+
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component
-class PositionAnalysisUtil {
+class PositionUtil {
 	
 	Boolean areOppositeCornersMarked(List<Position> positions, Mark mark){
 		List<Position> matching = positions.findAll{it.mark == mark}
@@ -19,5 +21,13 @@ class PositionAnalysisUtil {
 	
 	Boolean isOdd(Position position){
 		!isEven(position)
+	}
+	
+	Integer evenCount(List<Position> positions){
+		positions.count{isEven(it)}
+	}
+	
+	Integer oddCount(List<Position> positions){
+		positions.count{isOdd(it)}
 	}
 }
