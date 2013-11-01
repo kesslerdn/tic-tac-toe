@@ -2,7 +2,8 @@ package org.kesslerdn.tictactoe.game
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.position.TestPosition;
+import org.kesslerdn.tictactoe.game.position.TestPosition
+import org.kesslerdn.tictactoe.util.RowUtil
 
 class ThreeMarkTrackerTest extends GroovyTestCase {
 	private List<Position> positions
@@ -31,7 +32,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		positions = [first, second, third, fourth, fifth, sixth]
 		rows = [[first,second,third],[fourth,fifth, sixth]]
 		
-		tracker = new ThreeMarkTracker()
+		tracker = new ThreeMarkTracker(rowUtil: new RowUtil())
 		board = new TicTacToeBoard(positions:positions, rows:rows)
 	}
 	
