@@ -12,7 +12,8 @@ prerequisites are [Git](https://github.com/) and JDK 1.7+.
 `./gradle build distZip`
 
 ### run TicTacToe
-`./build/distributions/tic-tac-toe-1.0/bin/tic-tac-toe`
+1. explode zip in `/build/distributions/`
+2. run script `./bin/tic-tac-toe`
 
 ## License
 This library is free software; you can redistribute it and/or
