@@ -2,11 +2,11 @@
 This is an unbeatable AI built incrementally through TDD.
 
 ## Building from source
-TicTacToe uses a [Gradle][http://www.gradle.org/]-based build system.
+TicTacToe uses a [Gradle](http://www.gradle.org/) -based build system.
 
 ## Building from source
-TicTacToe uses a [Gradle][http://www.gradle.org/]-based build system. The only
-prerequisites are [Git][https://github.com/] and JDK 1.7+.
+TicTacToe uses a [Gradle](http://www.gradle.org/) -based build system. The only
+prerequisites are [Git](https://github.com/) and JDK 1.7+.
 
 ### check out sources
 `https://github.com/kesslerdn/tic-tac-toe.git`
