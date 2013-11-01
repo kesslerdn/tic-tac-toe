@@ -8,7 +8,7 @@ import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
 
 class PositionUtilTest extends GroovyTestCase{
-	PositionUtil util
+	private PositionUtil util
 	
 	@Before
 	void setUp(){

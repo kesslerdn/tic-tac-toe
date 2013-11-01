@@ -15,64 +15,62 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	private static final weightMap = [0:0, 1:10, 2:100, 3:1000]
 	@Resource private MarkUtil markUtil
 	@Resource private PositionUtil positionUtil
-
+	@Resource private TrialRowFactory trialRowFactory
+	
 	@Override
 	public Integer calculate(List<Position> positions, Position trialPosition) {
-		Mark mark = trialPosition.mark
-		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
+		
+		TrialRow trialRow = trialRowFactory.create(positions, trialPosition)
 		
 		Integer score = 0
-		List<Position> openPositions = positionUtil.findMark(positions, null)
-		List<Position> opposingPositions = positionUtil.findMark(positions, opposingMark)
-		List<Position> playerPositions = positionUtil.findMark(positions, mark)
 		
-		if(positionUtil.isFirstTurnWithCenterPositionOpen(playerPositions, opposingPositions, trialPosition)){
+		if(positionUtil.isFirstTurnWithCenterPositionOpen(trialRow.extractPlayerPositions(), trialRow.extractOpposingPositions(), trialRow.trialPosition)){
 			score = 100000
-		}else if (positionUtil.isFirstTurnWithCenterPositionTaken(playerPositions, opposingPositions, trialPosition)){
+		}else if (positionUtil.isFirstTurnWithCenterPositionTaken(trialRow.extractPlayerPositions(), trialRow.extractOpposingPositions(), trialRow.trialPosition)){
 			score = 100000
 		}else{
-			score = 1 * weightMap[playerPositions.size()]
-			score = favorOpponentSelectedRows(score, playerPositions, opposingPositions)
-			score = favorOppositeBoardStrategy(score, playerPositions, opposingPositions, trialPosition);
-			score = favorOpponentDominatedRows(score, playerPositions, opposingPositions)
-			score = ignoreBlockedRows(score, playerPositions, opposingPositions)
-			score = ignoreUnavailableTrialPeriods(score, openPositions, trialPosition)
+			score = 1 * weightMap[trialRow.extractPlayerPositions().size()]
+			score = favorOpponentSelectedRows(score, trialRow)
+			score = favorOppositeBoardStrategy(score, trialRow);
+			score = favorOpponentDominatedRows(score, trialRow)
+			score = ignoreBlockedRows(score, trialRow)
+			score = ignoreUnavailableTrialPeriods(score, trialRow)
 		}
 		score
 	}
 
-	private Integer ignoreUnavailableTrialPeriods(Integer score, List<Position> openPositions, Position trialPosition){
-		if(!positionUtil.containsIndex(openPositions, trialPosition)){
+	private Integer ignoreUnavailableTrialPeriods(Integer score, TrialRow trialRow){
+		if(!positionUtil.containsIndex(trialRow.extractOpenPositions(), trialRow.trialPosition)){
 			score = 0
 		}
 		score
 	}
 	
-	private Integer ignoreBlockedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
-		if(positionUtil.containsBoth(playerPositions, opposingPositions)){
+	private Integer ignoreBlockedRows(Integer score, TrialRow trialRow){
+		if(positionUtil.containsBoth(trialRow.extractPlayerPositions(), trialRow.extractOpposingPositions())){
 			score = 0
 		}
 		score
 	}
 	
-	private Integer favorOpponentDominatedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
-		if(opposingPositions.size() == 2){
+	private Integer favorOpponentDominatedRows(Integer score, TrialRow trialRow){
+		if(trialRow.extractOpposingPositions().size() == 2){
 			score = 100000
 		}
 		score
 	}
 		
-	private Integer favorOpponentSelectedRows(Integer score, List<Position> playerPositions, List<Position> opposingPositions){
-		if(positionUtil.containsOnlyOpponenet(playerPositions, opposingPositions)){
+	private Integer favorOpponentSelectedRows(Integer score, TrialRow trialRow){
+		if(positionUtil.containsOnlyOpponenet(trialRow.extractPlayerPositions(), trialRow.extractOpposingPositions())){
 			score += 5
 		}
 		score
 	}
 		
-	private Integer favorOppositeBoardStrategy(Integer score, List<Position> playerPositions, List<Position> opposingPositions, Position trialPosition){
-		if(positionUtil.hasMoreEvens(opposingPositions) && positionUtil.isOdd(trialPosition)){
+	private Integer favorOppositeBoardStrategy(Integer score, TrialRow trialRow){
+		if(positionUtil.hasMoreEvens(trialRow.extractOpposingPositions()) && positionUtil.isOdd(trialRow.trialPosition)){
 			score += 5
-		}else if(positionUtil.hasMoreOdds(opposingPositions) && positionUtil.isEven(trialPosition)){
+		}else if(positionUtil.hasMoreOdds(trialRow.extractOpposingPositions()) && positionUtil.isEven(trialRow.trialPosition)){
 			score += 5
 		}
 		score
