@@ -5,12 +5,11 @@ import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.ai.strategy.score.OpenPositionsLocator;
-import org.kesslerdn.tictactoe.ai.strategy.score.PositionsLocator;
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.TicTacToeBoard
 import org.kesslerdn.tictactoe.board.position.TestPosition
 import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.util.PositionUtil
 
 
 class OpenPositionsLocatorTest extends GroovyTestCase {
@@ -19,7 +18,7 @@ class OpenPositionsLocatorTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
-		locator = new OpenPositionsLocator();
+		locator = new OpenPositionsLocator(positionUtil: new PositionUtil());
 	}
 	
 	@Test
