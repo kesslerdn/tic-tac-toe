@@ -1,6 +1,9 @@
 apply plugin: 'groovy'
+apply plugin:'application'
 
 version = '1.0'
+
+mainClassName = "org.kesslerdn.tictactoe.App"
 
 repositories {
     mavenCentral()
@@ -13,9 +16,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 	testCompile group: 'org.springframework', name: 'spring-test', version:'3.+'
 	testCompile group: 'org.mockito', name: 'mockito-core', version:'1.+'
-}
-
-jar {
-	manifest.attributes("Main-Class": "org.kesslerdn.tictactoe.App")
 }
 
