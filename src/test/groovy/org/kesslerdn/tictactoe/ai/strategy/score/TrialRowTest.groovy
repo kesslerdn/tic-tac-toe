@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.ai.strategy.score;
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import org.junit.Before
 import org.junit.Test
@@ -7,7 +7,7 @@ import org.kesslerdn.tictactoe.game.player.Mark
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 
-public class TrialRowTest extends GroovyTestCase {
+class TrialRowTest extends GroovyTestCase {
 	
 	private TrialRow trialRow
 	

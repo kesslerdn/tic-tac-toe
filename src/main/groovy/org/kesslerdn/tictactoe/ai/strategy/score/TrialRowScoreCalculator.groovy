@@ -18,7 +18,7 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 	@Resource private TrialRowFactory trialRowFactory
 	
 	@Override
-	public int calculate(List<Position> positions, Position trialPosition) {
+	int calculate(List<Position> positions, Position trialPosition) {
 		
 		TrialRow trialRow = trialRowFactory.create(positions, trialPosition)
 		
@@ -31,7 +31,7 @@ class TrialRowScoreCalculator implements ScoreCalculator{
 		}else{
 			score = 1 * weightMap[trialRow.extractPlayerPositions().size()]
 			score = favorOpponentSelectedRows(score, trialRow)
-			score = favorOppositeBoardStrategy(score, trialRow);
+			score = favorOppositeBoardStrategy(score, trialRow)
 			score = favorOpponentDominatedRows(score, trialRow)
 			score = ignoreBlockedRows(score, trialRow)
 			score = ignoreUnavailableTrialPeriods(score, trialRow)

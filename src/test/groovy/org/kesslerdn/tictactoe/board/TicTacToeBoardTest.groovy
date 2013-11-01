@@ -6,7 +6,7 @@ import org.kesslerdn.tictactoe.game.player.Mark
 class TicTacToeBoardTest extends GroovyTestCase {
 
 	void testStart_WithoutPositions() {
-		Board board = new TicTacToeBoard();
+		Board board = new TicTacToeBoard()
 		assert '' == board.display()
 	}
 	

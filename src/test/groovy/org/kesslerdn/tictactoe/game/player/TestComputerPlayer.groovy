@@ -1,8 +1,8 @@
 package org.kesslerdn.tictactoe.game.player
 
-import java.util.List;
+import java.util.List
 
-import org.kesslerdn.tictactoe.board.Board;
+import org.kesslerdn.tictactoe.board.Board
 
 class TestComputerPlayer extends ComputerPlayer {
 
@@ -10,7 +10,7 @@ class TestComputerPlayer extends ComputerPlayer {
 	boolean used = false
 	
 	@Override
-	public void play(Board board) {
+	void play(Board board) {
 		int position
 		if(!used){
 			position = firstPosition

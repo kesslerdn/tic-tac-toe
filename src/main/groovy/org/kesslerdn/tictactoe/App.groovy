@@ -8,7 +8,7 @@ class App {
 	static main(args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml")
 		Match match = context.getBean(Match.class)
-		match.start();
+		match.start()
 	}
 
 }

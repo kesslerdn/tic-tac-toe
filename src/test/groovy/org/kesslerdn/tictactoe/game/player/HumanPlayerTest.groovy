@@ -24,7 +24,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	@InjectMocks private HumanPlayer player = new HumanPlayer(mark: Mark.X)
 	
 	@Test
-	public void testPlay(){
+	void testPlay(){
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(board.isOpen(POSITION)).thenReturn(true)
 		when(gameControl.request(anyString())).thenReturn(POSITION)
@@ -42,7 +42,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	
 	
 	@Test
-	public void testPlay_SamePositionTwice(){
+	void testPlay_SamePositionTwice(){
 		int takenPosition = 2
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(board.isOpen(takenPosition)).thenReturn(false)

@@ -1,6 +1,6 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
-import java.util.List;
+import java.util.List
 import java.util.Map.Entry
 
 import javax.annotation.Resource
@@ -22,7 +22,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private PositionUtil positionUtil
 	
 	@Override
-	public int locate(Board board, Mark mark) {
+	int locate(Board board, Mark mark) {
 		Map<Integer, Integer> positionScores = [:]
 		List<Integer> positions = positionUtil.openPositions(board)
 		positions.each{position ->
@@ -30,7 +30,7 @@ class ScorePositionLocator implements PositionLocator {
 			positionScores[trialPosition.index] = calculateBoardScenario(board, trialPosition)
 		}
 		Entry maxEntry = positionScores.max{it.value}
-		return maxEntry.key;
+		return maxEntry.key
 	}
 
 	private int calculateBoardScenario(Board board, Position trialPosition){

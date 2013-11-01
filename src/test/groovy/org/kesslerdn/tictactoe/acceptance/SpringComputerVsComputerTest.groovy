@@ -24,7 +24,7 @@ class SpringComputerVsComputerTest extends GroovyTestCase {
 			firstPlayer = context.getBean("firstPlayer")
 			gameControl = context.getBean(TestGameControl.class)
 			firstPlayer.firstPosition = it
-			match.start();
+			match.start()
 		}
 	}
 }

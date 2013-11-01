@@ -11,7 +11,7 @@ class ThreeMarkTracker implements Tracker {
 	private int turnCount
 	
 	@Override
-	public boolean isActive(Board board) {
+	boolean isActive(Board board) {
 		boolean isActive = true
 		board.rows.each { row ->
 			if(areSame(row)){
@@ -22,7 +22,7 @@ class ThreeMarkTracker implements Tracker {
 	}
 	
 	@Override
-	public int calculateScore(Mark mark, Board board) {
+	int calculateScore(Mark mark, Board board) {
 		int score = 0
 		board.rows.each { row ->
 			if(areSame(row) && mark == row[0].mark){

@@ -15,20 +15,20 @@ import org.kesslerdn.tictactoe.util.PositionUtil
 class TrialRowScoreCalculatorTest extends GroovyTestCase {
 
 	ScoreCalculator calculator
-	private static final Mark COMPUTER_MARK = Mark.O;
-	private static final Mark HUMAN_MARK = Mark.X;
-	private static final Mark OPEN = null;
+	private static final Mark COMPUTER_MARK = Mark.O
+	private static final Mark HUMAN_MARK = Mark.X
+	private static final Mark OPEN = null
 	private static final int NOT_IN_ROW = 4
 
 	static final int FIRST_POSITION = 1
 	static final int SECOND_POSITION = 2
-	static final int THIRD_POSITION = 3;
+	static final int THIRD_POSITION = 3
 	
 	@Before
 	void setUp(){
 		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil(), 
 			positionUtil: new PositionUtil(), trialRowFactory: new TrialRowFactory(markUtil: new MarkUtil(), 
-			positionUtil: new PositionUtil()));
+			positionUtil: new PositionUtil()))
 	}
 	
 	@Test

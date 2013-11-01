@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component
 @Component
 class FinalScore implements Score {
 
-	@Resource private GameControl gameControl;
-	@Resource private Tracker tracker;
+	@Resource private GameControl gameControl
+	@Resource private Tracker tracker
 	private static final Mark secondMark = Mark.O
 	private static final Mark firstMark = Mark.X
 
 	@Override
-	public void display(Board board) {
+	void display(Board board) {
 		int firstScore = tracker.calculateScore(firstMark, board)
 		int secondScore = tracker.calculateScore(secondMark, board)
 		gameControl.status(board.display())
@@ -30,7 +30,7 @@ class FinalScore implements Score {
 	}
 	
 	@Override
-	public boolean hasWinner(Board board) {
+	boolean hasWinner(Board board) {
 		int firstScore = tracker.calculateScore(firstMark, board)
 		int secondScore = tracker.calculateScore(secondMark, board)
 		firstScore != secondScore

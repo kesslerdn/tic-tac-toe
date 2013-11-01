@@ -6,7 +6,7 @@ import org.kesslerdn.tictactoe.game.player.Mark
 class CenterPosition extends AbstractPosition{
 
 	@Override
-	public String format(String value) {
+	String format(String value) {
 		value
 	}
 }

@@ -1,8 +1,8 @@
-package org.kesslerdn.tictactoe.ai.strategy.score;
+package org.kesslerdn.tictactoe.ai.strategy.score
 
 import org.junit.Test
 
-public class TrailRowFactoryTest extends GroovyTestCase {
+class TrailRowFactoryTest extends GroovyTestCase {
 
 	@Test
 	void testCreate(){

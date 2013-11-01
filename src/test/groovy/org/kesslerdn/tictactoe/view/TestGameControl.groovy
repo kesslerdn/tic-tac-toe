@@ -1,14 +1,14 @@
-package org.kesslerdn.tictactoe.view;
+package org.kesslerdn.tictactoe.view
 
 import static org.junit.Assert.*
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.game.player.TestRandomHumanPlayer;
+import org.kesslerdn.tictactoe.game.player.TestRandomHumanPlayer
 import org.springframework.stereotype.Component
 
 
-public class TestGameControl implements GameControl {
+class TestGameControl implements GameControl {
 
 	static final String TIE = 'This game ended in a tie!'
 	static final String PLAYER_O_WON = "Player 'O' won!"
@@ -19,12 +19,12 @@ public class TestGameControl implements GameControl {
 	private int i
 	
 	@Override
-	public int request(String message) {
+	int request(String message) {
 		throw new IllegalAccessException()
 	}
 
 	@Override
-	public void status(String message) {
+	void status(String message) {
 		String expected = expectedMessages[i]
 		if(onlyFinalScore){
 			if(message.contains("tie!") || message.contains("won!")){

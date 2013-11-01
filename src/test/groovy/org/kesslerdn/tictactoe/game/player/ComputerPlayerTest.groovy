@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.ai.strategy.PositionLocator;
+import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.board.position.TestPosition
@@ -33,7 +33,7 @@ class ComputerPlayerTest extends GroovyTestCase {
 	@InjectMocks private ComputerPlayer player = new ComputerPlayer(mark:Mark.O)
 	
 	@Before
-	public void setUp(){
+	void setUp(){
 		List<List<Position>> rows = []
 		firstRow = [TestPosition.newInstanceX()]
 		rows << firstRow
@@ -45,7 +45,7 @@ class ComputerPlayerTest extends GroovyTestCase {
 	}
 	
 	@Test
-	public void testPlay(){
+	void testPlay(){
 		when(positionLocator.locate(board, Mark.O)).thenReturn(FIRST_POSITION)
 		
 		InOrder inOrder = inOrder(gameControl, board, positionLocator)

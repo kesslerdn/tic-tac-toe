@@ -23,7 +23,7 @@ class ScorePositionLocatorTest extends GroovyTestCase {
 
 	Board board
 	@Mock ScoreCalculator scoreCalculator
-	@InjectMocks PositionLocator locator = new ScorePositionLocator();
+	@InjectMocks PositionLocator locator = new ScorePositionLocator()
 	
 	@Before
 	void setUp(){

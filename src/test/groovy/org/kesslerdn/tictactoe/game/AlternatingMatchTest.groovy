@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.game;
+package org.kesslerdn.tictactoe.game
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -22,24 +22,24 @@ class AlternatingMatchTest extends GroovyTestCase{
 	
 	static final String DISPLAY_OUTPUT = "display"
 
-	@Mock Tracker tracker;
-	@Mock Board board;
+	@Mock Tracker tracker
+	@Mock Board board
 	@Mock Player firstPlayer
 	@Mock Player secondPlayer
-	@Mock Turn players;
-	@Mock Score score;
+	@Mock Turn players
+	@Mock Score score
 	@InjectMocks
 	Match match = new AlternatingMatch()
 	
 	@Test
-	public void testStart() {
+	void testStart() {
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(tracker.isActive(board)).thenReturn(true, true, false)		
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
-		match.start();
+		match.start()
 				
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)
@@ -48,7 +48,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 	
 	
 	@Test
-	public void testStart_NineMoveMax() {
+	void testStart_NineMoveMax() {
 		when(players.next()).thenReturn(firstPlayer, secondPlayer, firstPlayer, secondPlayer, 
 			firstPlayer, secondPlayer, firstPlayer, secondPlayer,
 			firstPlayer, secondPlayer)
@@ -57,7 +57,7 @@ class AlternatingMatchTest extends GroovyTestCase{
 		
 		InOrder inOrder = inOrder(firstPlayer, secondPlayer, score)
 		
-		match.start();
+		match.start()
 				
 		inOrder.verify(firstPlayer).play(board)
 		inOrder.verify(secondPlayer).play(board)

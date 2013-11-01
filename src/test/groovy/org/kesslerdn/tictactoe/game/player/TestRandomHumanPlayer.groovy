@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
 
-import java.util.List;
+import java.util.List
 
 import org.kesslerdn.tictactoe.board.Board
 import org.kesslerdn.tictactoe.board.position.Position
@@ -15,7 +15,7 @@ class TestRandomHumanPlayer implements Player {
 	private int i
 	
 	@Override
-	public void play(Board board) {
+	void play(Board board) {
 		List<Position> openPositions = board.positions.findAll{it.mark == null}
 		Collections.shuffle(openPositions)
 		int position = openPositions[0].index

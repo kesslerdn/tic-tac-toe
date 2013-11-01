@@ -8,11 +8,11 @@ class TwoPlayerTurn implements Turn {
 	
 	TwoPlayerTurn(Player first, Player second){
 		players = [first, second]
-		currentIndex = 1;
+		currentIndex = 1
 	}
 
 	@Override
-	public Player next() {
+	Player next() {
 		currentIndex++
 		players[currentIndex % 2]
 	}

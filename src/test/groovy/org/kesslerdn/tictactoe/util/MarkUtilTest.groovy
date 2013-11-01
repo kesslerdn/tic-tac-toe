@@ -1,11 +1,11 @@
-package org.kesslerdn.tictactoe.util;
+package org.kesslerdn.tictactoe.util
 
-import groovy.util.GroovyTestCase;
+import groovy.util.GroovyTestCase
 
-import org.junit.Test;
-import org.kesslerdn.tictactoe.game.player.Mark;
+import org.junit.Test
+import org.kesslerdn.tictactoe.game.player.Mark
 
-public class MarkUtilTest extends GroovyTestCase {
+class MarkUtilTest extends GroovyTestCase {
 
 	@Test
 	void testRetrieveOpponentMark_X(){

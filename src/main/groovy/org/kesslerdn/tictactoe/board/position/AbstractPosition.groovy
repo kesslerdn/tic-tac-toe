@@ -5,10 +5,10 @@ import org.kesslerdn.tictactoe.game.player.Mark
 
 abstract class AbstractPosition implements Position{
 	int index
-	Mark mark;
+	Mark mark
 	
 	@Override
-	public String write() {
+	String write() {
 		String output = mark ? mark : index
 		format(output)
 	}

@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.util;
+package org.kesslerdn.tictactoe.util
 
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component

@@ -16,7 +16,7 @@ class SpringRandomVsComputerTest extends GroovyTestCase {
 	private TestGameControl gameControl
 	
 	@Before
-	public void setUp(){
+	void setUp(){
 		
 	}
 	
@@ -26,7 +26,7 @@ class SpringRandomVsComputerTest extends GroovyTestCase {
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test-random-vs-computer-context.xml")
 			match = context.getBean(Match.class)
 			gameControl = context.getBean(TestGameControl.class)
-			match.start();
+			match.start()
 		}
 	}
 }

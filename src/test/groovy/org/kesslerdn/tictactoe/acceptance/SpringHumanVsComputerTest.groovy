@@ -19,7 +19,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 	private TestGameControl gameControl
 	
 	@Before
-	public void setUp(){
+	void setUp(){
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test-human-vs-computer-context.xml")
 		match = context.getBean(Match.class)
 		firstPlayer = context.getBean(TestHumanPlayer.class)
@@ -41,7 +41,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 		
-		match.start();
+		match.start()
 	}
 
 	@Test
@@ -59,7 +59,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 
 	@Test
@@ -77,7 +77,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -94,7 +94,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
  
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -112,7 +112,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
  
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -130,7 +130,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -147,7 +147,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 
 	@Test
@@ -165,7 +165,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -183,7 +183,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -200,7 +200,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -217,7 +217,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -235,7 +235,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -253,7 +253,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -270,7 +270,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -287,7 +287,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 	
 	@Test
@@ -305,7 +305,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							TIE]
 	
-		match.start();
+		match.start()
 	}
 	
 	
@@ -323,7 +323,7 @@ class SpringHumanVsComputerTest extends GroovyTestCase {
 						
 							O_WON]
 	
-		match.start();
+		match.start()
 	}
 
 	private String expectedBoard(String one, String two, String three, 

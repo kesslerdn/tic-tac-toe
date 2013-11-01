@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.view;
+package org.kesslerdn.tictactoe.view
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -24,7 +24,7 @@ class FinalScoreTest extends GroovyTestCase{
 	Score score = new FinalScore()
 
 	@Test
-	public void testDisplay_Tie() {
+	void testDisplay_Tie() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -38,7 +38,7 @@ class FinalScoreTest extends GroovyTestCase{
 	}
 
 	@Test
-	public void testDisplay_PlayerOneWins() {
+	void testDisplay_PlayerOneWins() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(0)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -52,7 +52,7 @@ class FinalScoreTest extends GroovyTestCase{
 	}
 
 	@Test
-	public void testDisplay_PlayerTwoWins() {
+	void testDisplay_PlayerTwoWins() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(0)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -66,7 +66,7 @@ class FinalScoreTest extends GroovyTestCase{
 	}
 
 	@Test
-	public void testHasWinner_Tie() {
+	void testHasWinner_Tie() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -77,7 +77,7 @@ class FinalScoreTest extends GroovyTestCase{
 	}
 
 	@Test
-	public void testHasWinner_PlayerOneWins() {
+	void testHasWinner_PlayerOneWins() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(1)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(0)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
@@ -88,7 +88,7 @@ class FinalScoreTest extends GroovyTestCase{
 	}
 
 	@Test
-	public void testHasWinner_PlayerTwoWins() {
+	void testHasWinner_PlayerTwoWins() {
 		when(tracker.calculateScore(Mark.X, board)).thenReturn(0)
 		when(tracker.calculateScore(Mark.O, board)).thenReturn(1)
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)

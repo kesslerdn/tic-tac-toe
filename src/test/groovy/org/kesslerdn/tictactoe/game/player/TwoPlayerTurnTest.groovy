@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.game.player;
+package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
 
@@ -18,7 +18,7 @@ class TwoPlayerTurnTest extends GroovyTestCase {
 	@Mock private Player secondPlayer
 	
 	@Test
-	public void test() {
+	void test() {
 		
 		Turn players = new TwoPlayerTurn(firstPlayer, secondPlayer)
 		assertSame(firstPlayer, players.next())
