@@ -19,7 +19,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private PositionsLocator positionsLoctor
 	@Resource private ScoreCalculator scoreCalculator
 	@Resource private MarkUtil markUtil
-	@Resource private PositionUtil positionAnalysisUtil
+	@Resource private PositionUtil positionUtil
 	
 	@Override
 	public Integer locate(Board board, Mark mark) {
@@ -42,8 +42,8 @@ class ScorePositionLocator implements PositionLocator {
 		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}
 		if(opposingPositions.size() == 2 && 
-			positionAnalysisUtil.areOppositeCornersMarked(opposingPositions, opposingMark) && 
-			positionAnalysisUtil.isEven(trialPosition)){
+			positionUtil.areOppositeCornersMarked(opposingPositions, opposingMark) && 
+			positionUtil.isEven(trialPosition)){
 			total += 10
 		}
 		total
