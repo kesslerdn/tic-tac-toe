@@ -18,7 +18,7 @@ class TestRandomHumanPlayer implements Player {
 	public void play(Board board) {
 		List<Position> openPositions = board.positions.findAll{it.mark == null}
 		Collections.shuffle(openPositions)
-		Integer position = openPositions[0].index
+		int position = openPositions[0].index
 		if(!board.isOpen(position)){
 			 throw new IllegalStateException("Position $position does not work on: \n" + board.display())
 		}

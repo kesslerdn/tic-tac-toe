@@ -5,7 +5,7 @@ import org.kesslerdn.tictactoe.game.player.Mark;
 
 public class TrialPosition implements Position {
 
-	Integer index
+	int index
 	Mark mark;
 	
 	@Override

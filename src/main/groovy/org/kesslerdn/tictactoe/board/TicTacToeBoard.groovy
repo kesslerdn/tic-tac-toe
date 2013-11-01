@@ -20,13 +20,13 @@ class TicTacToeBoard implements Board{
 	}
 	
 	@Override
-	void mark(Integer positionValue, Mark mark){
+	void mark(int positionValue, Mark mark){
 		Position position = positions.find{it.index == positionValue}
 		position.mark = mark
 	}
 
 	@Override
-	public Boolean isOpen(Integer index) {
+	public boolean isOpen(int index) {
 		Position position = positions.find{it.index == index}
 		if(position){
 			position.mark == null

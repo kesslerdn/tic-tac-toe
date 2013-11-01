@@ -21,8 +21,8 @@ class ComputerPlayerTest extends GroovyTestCase {
 	static final Mark MARK = Mark.O
 	static final String USER_PROMPT = 'please select a position'
 	static final String DISPLAY_OUTPUT = "display"
-	static final Integer FIRST_POSITION = 1
-	static final Integer SECOND_POSITION = 2
+	static final int FIRST_POSITION = 1
+	static final int SECOND_POSITION = 2
 	
 	private List<Position> firstRow
 	private List<Position> secondRow

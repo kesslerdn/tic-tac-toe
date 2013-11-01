@@ -22,7 +22,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private PositionUtil positionUtil
 	
 	@Override
-	public Integer locate(Board board, Mark mark) {
+	public int locate(Board board, Mark mark) {
 		Map<Integer, Integer> positionScores = [:]
 		List<Integer> positions = positionUtil.openPositions(board)
 		positions.each{position ->
@@ -33,7 +33,7 @@ class ScorePositionLocator implements PositionLocator {
 		return maxEntry.key;
 	}
 
-	private Integer calculateBoardScenario(Board board, Position trialPosition){
+	private int calculateBoardScenario(Board board, Position trialPosition){
 		int total = 0
 		board.rows.each{row ->
 			 total += scoreCalculator.calculate(row, trialPosition)
@@ -43,7 +43,7 @@ class ScorePositionLocator implements PositionLocator {
 	}
 
 	
-	private Integer favorEvenWhenOppositeCornersMarked(Integer total, Board board, Position trialPosition){
+	private int favorEvenWhenOppositeCornersMarked(int total, Board board, Position trialPosition){
 		Mark mark = trialPosition.mark
 		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}

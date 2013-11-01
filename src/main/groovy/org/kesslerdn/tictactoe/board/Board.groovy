@@ -8,8 +8,8 @@ interface Board {
 	List<List<Position>> rows
 	
 	String display()
-	void mark(Integer positionValue, Mark mark)
+	void mark(int positionValue, Mark mark)
 	List<List<Position>> getRows()
 	List<Position> getPositions()
-	Boolean isOpen(Integer position)
+	boolean isOpen(int position)
 }

@@ -4,5 +4,5 @@ import org.kesslerdn.tictactoe.board.Board
 
 interface Score {
 	void display(Board board)
-	Boolean hasWinner(Board board)
+	boolean hasWinner(Board board)
 }

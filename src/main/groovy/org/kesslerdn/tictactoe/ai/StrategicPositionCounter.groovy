@@ -7,19 +7,19 @@ class StrategicPositionCounter implements PositionCounter{
 	private List<Integer> positions = []
 	
 	@Override
-	public void add(Integer position) {
+	public void add(int position) {
 		positions << position
 	}
 
 	@Override
-	public Integer largest() {
+	public int largest() {
 		Map<String, Integer> countMap = positions.countBy{it}
 		Entry maxEntry = largestPositionCount(countMap)
 		return maxEntry.key;
 	}
 
 	@Override
-	public Boolean isEmpty() {
+	public boolean isEmpty() {
 		return positions.isEmpty();
 	}
 

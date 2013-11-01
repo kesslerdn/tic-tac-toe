@@ -11,7 +11,7 @@ class HumanPlayer implements Player {
 	@Override
 	public void play(Board board) {
 		gameControl.status(board.display())
-		Integer position = gameControl.request("Player $mark please select a position")
+		int position = gameControl.request("Player $mark please select a position")
 		while(!board.isOpen(position)){
 			gameControl.status("This is an invalid move.")
 			position = gameControl.request("Player $mark please select a position")

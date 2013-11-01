@@ -5,7 +5,7 @@ import org.kesslerdn.tictactoe.game.player.Mark
 class TestPosition implements Position {
 
 	Mark mark;
-	Integer index
+	int index
 	
 	private TestPosition(){
 	}
@@ -23,19 +23,19 @@ class TestPosition implements Position {
 		new TestPosition(mark:Mark.O)
 	}
 
-	public static newInstanceX(Integer index){
+	public static newInstanceX(int index){
 		new TestPosition(index:index, mark:Mark.X)
 	}
 	
-	public static newInstanceO(Integer index){
+	public static newInstanceO(int index){
 		new TestPosition(index:index, mark:Mark.O)
 	}
 	
-	public static newInstance(Integer index){
+	public static newInstance(int index){
 		new TestPosition(index:index)
 	}
 	
-	public static newInstance(Integer index, Mark mark){
+	public static newInstance(int index, Mark mark){
 		new TestPosition(index:index, mark:mark)
 	}
 

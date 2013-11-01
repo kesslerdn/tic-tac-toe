@@ -119,7 +119,7 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 		assert tracker.isActive(board) == true
 	}
 
-	private Position createPosition(Integer index){
+	private Position createPosition(int index){
 		TestPosition.newInstance(index)
 	}
 }

@@ -17,7 +17,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	static final Mark MARK = Mark.X
 	static final String USER_PROMPT = 'please select a position'
 	static final String DISPLAY_OUTPUT = "display"
-	static final Integer POSITION = 1
+	static final int POSITION = 1
 
 	@Mock private Board board
 	@Mock private GameControl gameControl
@@ -43,7 +43,7 @@ class HumanPlayerTest extends GroovyTestCase {
 	
 	@Test
 	public void testPlay_SamePositionTwice(){
-		Integer takenPosition = 2
+		int takenPosition = 2
 		when(board.display()).thenReturn(DISPLAY_OUTPUT)
 		when(board.isOpen(takenPosition)).thenReturn(false)
 		when(board.isOpen(POSITION)).thenReturn(true)

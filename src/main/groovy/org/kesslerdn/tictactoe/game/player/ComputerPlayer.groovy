@@ -12,7 +12,7 @@ class ComputerPlayer implements Player {
 	
 	@Override
 	public void play(Board board) {
-		Integer position = positionLocator.locate(board, mark)
+		int position = positionLocator.locate(board, mark)
 		gameControl.status("Player $mark played position ${position}.")
 		board.mark(position, mark)
 	}

@@ -10,25 +10,25 @@ import org.springframework.stereotype.Component
 @Component
 class PositionUtil {
 	
-	Boolean areOppositeCornersMarked(List<Position> positions, Mark mark){
+	boolean areOppositeCornersMarked(List<Position> positions, Mark mark){
 		List<Position> matching = findMark(positions, mark)
 		List<Integer> locations = matching.collect{it.index}
 		(locations.contains(1) && locations.contains(9)) || (locations.contains(3) && locations.contains(7))
 	}
 	
-	Boolean isEven(Position position){
+	boolean isEven(Position position){
 		position.index % 2 == 0
 	}
 	
-	Boolean isOdd(Position position){
+	boolean isOdd(Position position){
 		!isEven(position)
 	}
 	
-	Integer evenCount(List<Position> positions){
+	int evenCount(List<Position> positions){
 		positions.count{isEven(it)}
 	}
 	
-	Integer oddCount(List<Position> positions){
+	int oddCount(List<Position> positions){
 		positions.count{isOdd(it)}
 	}
 	
@@ -36,19 +36,19 @@ class PositionUtil {
 		positions.findAll{it.mark == mark}
 	}
 	
-	Boolean containsOnlyOpponenet(List<Position> playerPositions, List<Position> opposingPositions){
+	boolean containsOnlyOpponenet(List<Position> playerPositions, List<Position> opposingPositions){
 		opposingPositions.size() == 1 && playerPositions.empty
 	}
 	
-	Boolean containsBoth(List<Position> playerPositions, List<Position> opposingPositions){
+	boolean containsBoth(List<Position> playerPositions, List<Position> opposingPositions){
 		playerPositions.size() > 0 && opposingPositions.size() > 0
 	}
 	
-	Boolean hasMoreEvens(List<Position> positions){
+	boolean hasMoreEvens(List<Position> positions){
 		evenCount(positions) > oddCount(positions)
 	}
 	
-	Boolean hasMoreOdds(List<Position> positions){
+	boolean hasMoreOdds(List<Position> positions){
 		oddCount(positions) > evenCount(positions)
 	}
 	
@@ -57,7 +57,7 @@ class PositionUtil {
 		openPositions.collectAll{it.index}
 	}
 
-	private Boolean containsIndex(List<Position> positions, Position position){
+	private boolean containsIndex(List<Position> positions, Position position){
 		positions.collect{it.index}.contains(position.index)
 	}
 	

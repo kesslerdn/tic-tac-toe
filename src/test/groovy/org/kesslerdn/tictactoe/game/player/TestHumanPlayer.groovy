@@ -12,7 +12,7 @@ class TestHumanPlayer implements Player {
 	
 	@Override
 	public void play(Board board) {
-		Integer position = testingPositions[i]
+		int position = testingPositions[i]
 		if(!board.isOpen(position)){
 			 throw new IllegalStateException("Position $position does not work on: \n" + board.display())
 		}

@@ -6,12 +6,12 @@ import org.kesslerdn.tictactoe.board.Board;
 
 class TestComputerPlayer extends ComputerPlayer {
 
-	Integer firstPosition
-	Boolean used = false
+	int firstPosition
+	boolean used = false
 	
 	@Override
 	public void play(Board board) {
-		Integer position
+		int position
 		if(!used){
 			position = firstPosition
 			used = true

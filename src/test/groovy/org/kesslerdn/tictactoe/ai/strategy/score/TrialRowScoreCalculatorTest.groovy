@@ -174,12 +174,12 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 			TestPosition.newInstance(THIRD_POSITION, third)]
 	}
 	
-	private TrialPosition createTrialPosition(Integer index){
+	private TrialPosition createTrialPosition(int index){
 		createTrialPosition(index,Mark.O)
 	}
 	
 	
-	private TrialPosition createTrialPosition(Integer index, Mark mark){
+	private TrialPosition createTrialPosition(int index, Mark mark){
 		new TrialPosition(index:index, mark: mark)
 	}
 

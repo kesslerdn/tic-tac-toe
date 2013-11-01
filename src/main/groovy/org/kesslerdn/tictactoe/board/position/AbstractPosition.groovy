@@ -4,7 +4,7 @@ import org.kesslerdn.tictactoe.game.player.Mark
 
 
 abstract class AbstractPosition implements Position{
-	Integer index
+	int index
 	Mark mark;
 	
 	@Override

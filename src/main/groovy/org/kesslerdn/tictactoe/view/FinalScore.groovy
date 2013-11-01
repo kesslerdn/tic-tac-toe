@@ -17,8 +17,8 @@ class FinalScore implements Score {
 
 	@Override
 	public void display(Board board) {
-		Integer firstScore = tracker.calculateScore(firstMark, board)
-		Integer secondScore = tracker.calculateScore(secondMark, board)
+		int firstScore = tracker.calculateScore(firstMark, board)
+		int secondScore = tracker.calculateScore(secondMark, board)
 		gameControl.status(board.display())
 		if(firstScore == secondScore){
 			gameControl.status("This game ended in a tie!")
@@ -30,9 +30,9 @@ class FinalScore implements Score {
 	}
 	
 	@Override
-	public Boolean hasWinner(Board board) {
-		Integer firstScore = tracker.calculateScore(firstMark, board)
-		Integer secondScore = tracker.calculateScore(secondMark, board)
+	public boolean hasWinner(Board board) {
+		int firstScore = tracker.calculateScore(firstMark, board)
+		int secondScore = tracker.calculateScore(secondMark, board)
 		firstScore != secondScore
 	}
 }
