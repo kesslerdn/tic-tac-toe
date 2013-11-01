@@ -2,9 +2,6 @@
 This is an unbeatable AI built incrementally through TDD.
 
 ## Building from source
-TicTacToe uses a [Gradle](http://www.gradle.org/)-based build system.
-
-## Building from source
 TicTacToe uses a [Gradle](http://www.gradle.org/)-based build system. The only
 prerequisites are [Git](https://github.com/) and JDK 1.7+.
 
@@ -15,7 +12,8 @@ prerequisites are [Git](https://github.com/) and JDK 1.7+.
 `./gradle build distZip`
 
 ### run TicTacToe
-`./build/distributions/tic-tac-toe-1.0/bin/tic-tac-toe`
+1. explode zip in `/build/distributions/`
+2. run script at the root of the exploded directory `./bin/tic-tac-toe`
 
 ## License
 This library is free software; you can redistribute it and/or
