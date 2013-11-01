@@ -1,10 +1,8 @@
-package org.kesslerdn.tictactoe.view
+package org.kesslerdn.tictactoe.game
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.game.Tracker
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.view.GameControl;
 import org.springframework.stereotype.Component
 
 @Component

@@ -4,6 +4,9 @@ import static org.junit.Assert.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.kesslerdn.tictactoe.game.player.Player;
+import org.kesslerdn.tictactoe.game.player.Turn;
+import org.kesslerdn.tictactoe.game.player.TwoPlayerTurn;
 import org.mockito.Mock
 
 import static org.mockito.Mockito.*

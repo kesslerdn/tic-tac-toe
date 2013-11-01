@@ -2,9 +2,9 @@ package org.kesslerdn.tictactoe.util
 
 import java.util.List
 
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Board;
+import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.Position;
 import org.springframework.stereotype.Component
 
 @Component

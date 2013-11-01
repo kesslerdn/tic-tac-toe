@@ -5,10 +5,10 @@ import java.util.Map.Entry
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.ai.strategy.PositionLocator
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Board;
+import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.Position;
+import org.kesslerdn.tictactoe.game.PositionLocator;
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component

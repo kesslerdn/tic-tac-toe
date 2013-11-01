@@ -1,6 +1,5 @@
 package org.kesslerdn.tictactoe.game.player
 
-
 class TwoPlayerTurn implements Turn {
 
 	private List<Player> players

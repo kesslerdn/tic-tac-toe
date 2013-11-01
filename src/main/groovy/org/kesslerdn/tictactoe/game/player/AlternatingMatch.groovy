@@ -1,10 +1,10 @@
-package org.kesslerdn.tictactoe.game
+package org.kesslerdn.tictactoe.game.player
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.game.player.Turn
-import org.kesslerdn.tictactoe.view.Score
+import org.kesslerdn.tictactoe.game.Board;
+import org.kesslerdn.tictactoe.game.Score;
+import org.kesslerdn.tictactoe.game.Tracker;
 import org.springframework.stereotype.Component
 
 

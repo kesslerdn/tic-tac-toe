@@ -1,6 +1,5 @@
-package org.kesslerdn.tictactoe.view
+package org.kesslerdn.tictactoe.game
 
-import org.kesslerdn.tictactoe.board.Board
 
 interface Score {
 	void display(Board board)

@@ -3,7 +3,7 @@ package org.kesslerdn.tictactoe.util
 import groovy.util.GroovyTestCase
 
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Mark;
 
 class MarkUtilTest extends GroovyTestCase {
 

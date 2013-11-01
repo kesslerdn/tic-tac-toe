@@ -2,10 +2,10 @@ package org.kesslerdn.tictactoe.util
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.board.TicTacToeBoard
-import org.kesslerdn.tictactoe.board.position.TestPosition
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Board;
+import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.TicTacToeBoard;
+import org.kesslerdn.tictactoe.game.position.TestPosition;
 
 class PositionUtilTest extends GroovyTestCase{
 	private PositionUtil util

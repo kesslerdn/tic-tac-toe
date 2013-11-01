@@ -1,8 +1,5 @@
 package org.kesslerdn.tictactoe.game
 
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
 
 @Component

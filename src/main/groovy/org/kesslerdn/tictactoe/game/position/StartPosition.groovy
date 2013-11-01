@@ -1,6 +1,4 @@
-package org.kesslerdn.tictactoe.board.position
-
-import org.kesslerdn.tictactoe.game.player.Mark
+package org.kesslerdn.tictactoe.game.position
 
 class StartPosition extends AbstractPosition{
 

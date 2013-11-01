@@ -9,15 +9,15 @@
 
 	<context:component-scan base-package="org.kesslerdn.tictactoe"/>
 	
-	<bean id="topLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:index="1"/>
-	<bean id="topCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:index="2"/>
-	<bean id="topRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:index="3"/>
-	<bean id="middleLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:index="4"/>
-	<bean id="middleCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:index="5"/>
-	<bean id="middleRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:index="6"/>
-	<bean id="bottomLeftPosition" class="org.kesslerdn.tictactoe.board.position.StartPosition" p:index="7"/>
-	<bean id="bottomCenterPosition" class="org.kesslerdn.tictactoe.board.position.CenterPosition" p:index="8"/>
-	<bean id="bottomRightPosition" class="org.kesslerdn.tictactoe.board.position.EndPosition" p:index="9"/>
+	<bean id="topLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="1"/>
+	<bean id="topCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="2"/>
+	<bean id="topRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="3"/>
+	<bean id="middleLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="4"/>
+	<bean id="middleCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="5"/>
+	<bean id="middleRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="6"/>
+	<bean id="bottomLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="7"/>
+	<bean id="bottomCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="8"/>
+	<bean id="bottomRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="9"/>
 	
 	<bean id="positions" class="java.util.Collections.UnmodifiableList">
 	    <constructor-arg>

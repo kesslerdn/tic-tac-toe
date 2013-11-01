@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.game.player
 
 import java.util.List
 
-import org.kesslerdn.tictactoe.board.Board
+import org.kesslerdn.tictactoe.game.Board;
 
 class TestComputerPlayer extends ComputerPlayer {
 

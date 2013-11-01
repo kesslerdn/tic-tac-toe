@@ -5,9 +5,9 @@ import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.board.position.TestPosition
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.Position;
+import org.kesslerdn.tictactoe.game.position.TestPosition;
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 

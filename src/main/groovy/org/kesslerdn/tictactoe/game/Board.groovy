@@ -1,7 +1,4 @@
-package org.kesslerdn.tictactoe.board
-
-import org.kesslerdn.tictactoe.board.position.Position
-import org.kesslerdn.tictactoe.game.player.Mark
+package org.kesslerdn.tictactoe.game
 
 interface Board {
 	List<Position> positions

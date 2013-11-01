@@ -1,15 +1,17 @@
-package org.kesslerdn.tictactoe.game
+package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
 
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.board.Board
-import org.kesslerdn.tictactoe.game.player.Mark
+import org.kesslerdn.tictactoe.game.Board;
+import org.kesslerdn.tictactoe.game.Score;
+import org.kesslerdn.tictactoe.game.Tracker;
+import org.kesslerdn.tictactoe.game.player.AlternatingMatch;
+import org.kesslerdn.tictactoe.game.player.Match;
 import org.kesslerdn.tictactoe.game.player.Player
-import org.kesslerdn.tictactoe.game.player.Turn
-import org.kesslerdn.tictactoe.view.Score
+import org.kesslerdn.tictactoe.game.player.Turn;
 import org.mockito.InOrder
 import org.mockito.InjectMocks
 import org.mockito.Mock
