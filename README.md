@@ -13,7 +13,7 @@ prerequisites are [Git](https://github.com/) and JDK 1.7+.
 
 ### run TicTacToe
 1. explode zip in `/build/distributions/`
-2. run script `./bin/tic-tac-toe`
+2. run script at the root of the exploded directory `./bin/tic-tac-toe`
 
 ## License
 This library is free software; you can redistribute it and/or
