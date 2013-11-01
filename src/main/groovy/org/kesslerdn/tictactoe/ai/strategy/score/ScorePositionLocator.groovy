@@ -1,5 +1,6 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
+import java.util.List;
 import java.util.Map.Entry
 
 import javax.annotation.Resource
@@ -37,14 +38,21 @@ class ScorePositionLocator implements PositionLocator {
 		board.rows.each{row ->
 			 total += scoreCalculator.calculate(row, trialPosition)
 		}
+		total = favorEvenWhenOppositeCornersMarked(total, board, trialPosition)
+		total
+	}
+
+	
+	private Integer favorEvenWhenOppositeCornersMarked(Integer total, Board board, Position trialPosition){
 		Mark mark = trialPosition.mark
 		Mark opposingMark= markUtil.retrieveOpponentMark(trialPosition.mark)
 		List<Position> opposingPositions = board.positions.findAll{it.mark && it.mark == opposingMark}
-		if(opposingPositions.size() == 2 && 
-			positionUtil.areOppositeCornersMarked(opposingPositions, opposingMark) && 
+		if(opposingPositions.size() == 2 &&
+			positionUtil.areOppositeCornersMarked(opposingPositions, opposingMark) &&
 			positionUtil.isEven(trialPosition)){
 			total += 10
 		}
 		total
 	}
+
 }
