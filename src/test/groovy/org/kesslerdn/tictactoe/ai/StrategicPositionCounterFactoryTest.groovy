@@ -6,8 +6,9 @@ class StrategicPositionCounterFactoryTest extends GroovyTestCase {
 
 	@Test
 	void testCreate(){
-		StrategicPositionCounter first = new StrategicPositionCounterFactory().create()
-		StrategicPositionCounter second = new StrategicPositionCounterFactory().create()
+		StrategicPositionCounterFactory factory = new StrategicPositionCounterFactory()
+		StrategicPositionCounter first = factory.create()
+		StrategicPositionCounter second = factory.create()
 		
 		assertNotNull(first)
 		assertNotNull(second)

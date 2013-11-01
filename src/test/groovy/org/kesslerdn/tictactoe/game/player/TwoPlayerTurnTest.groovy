@@ -3,22 +3,12 @@ package org.kesslerdn.tictactoe.game.player
 import static org.junit.Assert.*
 
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.game.player.Player;
-import org.kesslerdn.tictactoe.game.player.Turn;
-import org.kesslerdn.tictactoe.game.player.TwoPlayerTurn;
-import org.mockito.Mock
-
-import static org.mockito.Mockito.*
-
-import org.mockito.runners.MockitoJUnitRunner
 
 
-@RunWith(MockitoJUnitRunner.class)
 class TwoPlayerTurnTest extends GroovyTestCase {
 
-	@Mock private Player firstPlayer
-	@Mock private Player secondPlayer
+	private Player firstPlayer
+	private Player secondPlayer
 	
 	@Test
 	void test() {

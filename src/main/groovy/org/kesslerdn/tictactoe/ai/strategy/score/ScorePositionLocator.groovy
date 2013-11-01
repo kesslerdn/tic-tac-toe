@@ -1,14 +1,13 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
-import java.util.List
 import java.util.Map.Entry
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
-import org.kesslerdn.tictactoe.game.PositionLocator;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.PositionLocator
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component
@@ -20,13 +19,14 @@ class ScorePositionLocator implements PositionLocator {
 	@Resource private ScoreCalculator scoreCalculator
 	@Resource private MarkUtil markUtil
 	@Resource private PositionUtil positionUtil
+	@Resource private TrialPositionFactory trialPositionFactory
 	
 	@Override
 	int locate(Board board, Mark mark) {
 		Map<Integer, Integer> positionScores = [:]
 		List<Integer> positions = positionUtil.openPositions(board)
 		positions.each{position ->
-			Position trialPosition = new TrialPosition(index:position, mark:mark)
+			Position trialPosition = trialPositionFactory.create(position, mark)
 			positionScores[trialPosition.index] = calculateBoardScenario(board, trialPosition)
 		}
 		Entry maxEntry = positionScores.max{it.value}

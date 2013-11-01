@@ -57,7 +57,7 @@ class PositionUtil {
 		openPositions.collectAll{it.index}
 	}
 
-	private boolean containsIndex(List<Position> positions, Position position){
+	boolean containsIndex(List<Position> positions, Position position){
 		positions.collect{it.index}.contains(position.index)
 	}
 	

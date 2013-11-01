@@ -1,7 +1,6 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
@@ -18,162 +17,67 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	private static final Mark COMPUTER_MARK = Mark.O
 	private static final Mark HUMAN_MARK = Mark.X
 	private static final Mark OPEN = null
-	private static final int NOT_IN_ROW = 4
-
-	static final int FIRST_POSITION = 1
-	static final int SECOND_POSITION = 2
-	static final int THIRD_POSITION = 3
+	private static final int NOT_IN_ROW = 100
 	
 	@Before
 	void setUp(){
 		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil(), 
 			positionUtil: new PositionUtil(), trialRowFactory: new TrialRowFactory(markUtil: new MarkUtil(), 
-			positionUtil: new PositionUtil()))
+			positionUtil: new PositionUtil()), scoreCalculations: [] as SortedSet)
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_OpenOpenOpen(){
-		assert 0 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_FirstTurnWithCenterPositionOpen_TrialPosition5(){
+		assert 100000 == calculator.calculate(createMiddleRow(OPEN, OPEN, HUMAN_MARK), createTrialPosition(5))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPositionX_OpenOpenOpen(){
-		assert 0 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(NOT_IN_ROW, Mark.X))
+	void testCalculate_FirstTurnWithCenterPositionOpen_NotTrialPosition5(){
+		assert 0 == calculator.calculate(createMiddleRow(OPEN, OPEN, HUMAN_MARK), createTrialPosition(0))
 	}
 
 	@Test
-	void testCalculate_WithoutTrialPosition_HumanOpenOpen(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_FirstTurnWithCenterPositionTaken_TrialPosition3(){
+		assert 100000 == calculator.calculate(createMiddleRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(3))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_ComputerOpenOpen(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_FirstTurnWithCenterPositionTaken_NotTrialPosition3(){
+		assert 0 == calculator.calculate(createMiddleRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(0))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_ComputerComputerOpen(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_ZeroPlays(){
+		assert 0 == calculator.calculate(createMiddleRow(OPEN, OPEN, OPEN), createTrialPosition(0))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_HumanComputerOpen(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_OnePlay(){
+		assert 10 == calculator.calculate(createMiddleRow(OPEN, COMPUTER_MARK, OPEN), createTrialPosition(0))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_OpenComputerOpen(){
-		assert 0 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_TwoPlays(){
+		assert 100 == calculator.calculate(createMiddleRow(COMPUTER_MARK, COMPUTER_MARK, OPEN), createTrialPosition(0))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_HumanHumanOpen(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_ThreePlays(){
+		assert 1000 == calculator.calculate(createMiddleRow(COMPUTER_MARK, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(0))
 	}
 	
 	@Test
-	void testCalculate_WithoutTrialPosition_ComputerHumanOpen(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
+	void testCalculate_WithTestScoreCalculation(){
+		calculator.scoreCalculations = [new TestScoreCalculation()] as SortedSet
+		assert TestScoreCalculation.TEST_AMOUNT == calculator.calculate(createMiddleRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(0))
 	}
 	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenHumanOpen(){
-		assert 0 == calculator.calculate(createRow(OPEN, HUMAN_MARK, OPEN), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_ComputerComputerComputer(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenComputerComputer(){
-		assert 0 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_ComputerOpenComputer(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_HumanHumanComputer(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenHumanComputer(){
-		assert 0 == calculator.calculate(createRow(OPEN, HUMAN_MARK, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_HumanOpenComputer(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenOpenComputer(){
-		assert 0 == calculator.calculate(createRow(OPEN, OPEN, COMPUTER_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_HumanHumanHuman(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_HumanOpenHuman(){
-		assert 0 == calculator.calculate(createRow(HUMAN_MARK, OPEN, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenHumanHuman(){
-		assert 0 == calculator.calculate(createRow(OPEN, HUMAN_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_ComputerComputerHuman(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenComputerHuman(){
-		assert 0 == calculator.calculate(createRow(OPEN, COMPUTER_MARK, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_ComputerOpenHuman(){
-		assert 0 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	
-	@Test
-	void testCalculate_WithoutTrialPosition_OpenOpenHuman(){
-		assert 0 == calculator.calculate(createRow(OPEN, OPEN, HUMAN_MARK), createTrialPosition(NOT_IN_ROW))
-	}
-	
-	
-	@Test
-	void testCalculate_FirstTrialPosition_OpenOpenOpen(){
-		assert 0 == calculator.calculate(createRow(OPEN, OPEN, OPEN), createTrialPosition(FIRST_POSITION))
-	}
-	
-	@Test
-	void testCalculate_SecondTrialPosition_ComputerOpenOpen(){
-		assert 10 == calculator.calculate(createRow(COMPUTER_MARK, OPEN, OPEN), createTrialPosition(SECOND_POSITION))
-	}
-	
-	@Test
-	void testCalculate_SecondTrialPosition_ComputerComputerOpen(){
-		assert 100 == calculator.calculate(createRow(COMPUTER_MARK, COMPUTER_MARK, OPEN), createTrialPosition(THIRD_POSITION))
+	private List<Position> createMiddleRow(Mark first, Mark second, Mark third){
+		[TestPosition.newInstance(4, first),
+			TestPosition.newInstance(5, second),
+			TestPosition.newInstance(6, third)]
 	}
 
-
-	private List<Position> createRow(Mark first, Mark second, Mark third){
-		[TestPosition.newInstance(FIRST_POSITION, first),
-			TestPosition.newInstance(SECOND_POSITION, second),
-			TestPosition.newInstance(THIRD_POSITION, third)]
-	}
-	
 	private TrialPosition createTrialPosition(int index){
 		createTrialPosition(index,Mark.O)
 	}
@@ -183,4 +87,17 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 		new TrialPosition(index:index, mark: mark)
 	}
 
+}
+
+class TestScoreCalculation implements ScoreCalculation{
+	static final int TEST_AMOUNT = 111
+	@Override
+	int compareTo(Object o) {
+		return 0;
+	}
+
+	@Override
+	int calculate(int score, TrialRow trialRow) {
+		TEST_AMOUNT
+	}
 }

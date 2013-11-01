@@ -26,11 +26,4 @@ class FinalScore implements Score {
 			gameControl.status("Player '$secondMark' won!")
 		}
 	}
-	
-	@Override
-	boolean hasWinner(Board board) {
-		int firstScore = tracker.calculateScore(firstMark, board)
-		int secondScore = tracker.calculateScore(secondMark, board)
-		firstScore != secondScore
-	}
 }

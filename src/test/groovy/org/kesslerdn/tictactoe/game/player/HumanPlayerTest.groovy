@@ -1,67 +1,57 @@
 package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
 import org.kesslerdn.tictactoe.view.GameControl
-import org.mockito.InOrder
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.runners.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner.class)
 class HumanPlayerTest extends GroovyTestCase {
 	static final Mark MARK = Mark.X
 	static final String USER_PROMPT = 'please select a position'
 	static final String DISPLAY_OUTPUT = "display"
 	static final int POSITION = 1
 
-	@Mock private Board board
-	@Mock private GameControl gameControl
-	@InjectMocks private HumanPlayer player = new HumanPlayer(mark: Mark.X)
+	private Board board
+	private GameControl gameControl
+	private HumanPlayer player
+	private int statusIndex
+	private int isOpenIndex
+	private def isOpenAnswers
 	
-	@Test
-	void testPlay(){
-		when(board.display()).thenReturn(DISPLAY_OUTPUT)
-		when(board.isOpen(POSITION)).thenReturn(true)
-		when(gameControl.request(anyString())).thenReturn(POSITION)
+	@Before
+	void setUp(){
 		
-		InOrder inOrder = inOrder(gameControl, board)
-		
-		player.play(board)
-		
-		inOrder.verify(board).display()
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
-		inOrder.verify(board).isOpen(POSITION)
-		inOrder.verify(board).mark(POSITION, MARK)
+		isOpenIndex = 0
+		statusIndex = 0
+		board = [display:{DISPLAY_OUTPUT}, 
+			isOpen:{a -> isOpenAnswers[isOpenIndex++]}, 
+			mark:{a, b -> assert a == 1; assert b == MARK;}] as Board
 	}
 	
-	
 	@Test
-	void testPlay_SamePositionTwice(){
-		int takenPosition = 2
-		when(board.display()).thenReturn(DISPLAY_OUTPUT)
-		when(board.isOpen(takenPosition)).thenReturn(false)
-		when(board.isOpen(POSITION)).thenReturn(true)
-		when(gameControl.request(anyString())).thenReturn(takenPosition, POSITION)
-		
-		InOrder inOrder = inOrder(gameControl, board)
+	void testPlay_Invalid(){
+		isOpenAnswers  = [false, true]
+		def messages = [DISPLAY_OUTPUT, "This is an invalid move."]
+		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]},
+									request:{a -> assert "Player X please select a position" == a; 1}] as GameControl
+		player = new HumanPlayer(mark: MARK, gameControl:gameControl)
 		
 		player.play(board)
-		
-		inOrder.verify(board).display()
-		inOrder.verify(gameControl).status(DISPLAY_OUTPUT)
-		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
-		inOrder.verify(board).isOpen(takenPosition)
-		inOrder.verify(gameControl).status("This is an invalid move.")
-		inOrder.verify(gameControl).request("Player $MARK $USER_PROMPT")
-		inOrder.verify(board).isOpen(POSITION)
-		inOrder.verify(board).mark(POSITION, MARK)
 	}
-
+	
+	@Test
+	void testPlay_Valid(){
+		isOpenAnswers  = [true]
+		def messages = [DISPLAY_OUTPUT]
+		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]},
+									request:{a -> assert "Player X please select a position" == a; 1}] as GameControl
+		player = new HumanPlayer(mark: MARK, gameControl:gameControl)
+		
+		player.play(board)
+	}
 }
+

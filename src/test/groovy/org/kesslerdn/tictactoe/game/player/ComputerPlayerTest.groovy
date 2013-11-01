@@ -1,60 +1,30 @@
 package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
-import org.kesslerdn.tictactoe.game.PositionLocator;
-import org.kesslerdn.tictactoe.game.position.TestPosition;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.PositionLocator
 import org.kesslerdn.tictactoe.view.GameControl
-import org.mockito.InOrder
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.runners.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner.class)
 class ComputerPlayerTest extends GroovyTestCase {
 	static final Mark MARK = Mark.O
-	static final String USER_PROMPT = 'please select a position'
-	static final String DISPLAY_OUTPUT = "display"
 	static final int FIRST_POSITION = 1
-	static final int SECOND_POSITION = 2
-	
-	private List<Position> firstRow
-	private List<Position> secondRow
-	
-	@Mock private Board board
-	@Mock private GameControl gameControl
-	@Mock private PositionLocator positionLocator
-	@InjectMocks private ComputerPlayer player = new ComputerPlayer(mark:Mark.O)
-	
-	@Before
-	void setUp(){
-		List<List<Position>> rows = []
-		firstRow = [TestPosition.newInstanceX()]
-		rows << firstRow
-		secondRow = [TestPosition.newInstanceO()]
-		rows << secondRow
-		
-		when(board.display()).thenReturn(DISPLAY_OUTPUT)
-		when(board.getRows()).thenReturn(rows)
-	}
 	
 	@Test
 	void testPlay(){
-		when(positionLocator.locate(board, Mark.O)).thenReturn(FIRST_POSITION)
-		
-		InOrder inOrder = inOrder(gameControl, board, positionLocator)
+		Board board = [mark:{position,mark ->
+			assert FIRST_POSITION == position
+			assert MARK == mark
+		}] as Board
+	
+		PositionLocator positionLocator = [locate:{a,b -> FIRST_POSITION}] as PositionLocator
+		GameControl gameControl = [status:{message -> assert "Player $MARK played position ${FIRST_POSITION}." == message}] as GameControl
+		ComputerPlayer player = new ComputerPlayer(mark:MARK, gameControl:gameControl, positionLocator:positionLocator)
 		
 		player.play(board)
-		
-		inOrder.verify(positionLocator).locate(board, Mark.O)
-		inOrder.verify(gameControl).status("Player $MARK played position ${FIRST_POSITION}.")
-		inOrder.verify(board).mark(FIRST_POSITION, MARK)
 	}
 }

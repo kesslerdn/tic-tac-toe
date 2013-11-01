@@ -1,47 +1,68 @@
 package org.kesslerdn.tictactoe.ai.strategy.score
 
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
-import org.kesslerdn.tictactoe.game.PositionLocator;
-import org.kesslerdn.tictactoe.game.TicTacToeBoard;
-import org.kesslerdn.tictactoe.game.position.TestPosition;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.PositionLocator
+import org.kesslerdn.tictactoe.game.position.TestPosition
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.runners.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner.class)
-class ScorePositionLocatorTest extends GroovyTestCase {
+class ScorePositionLocatorTest {
 
-	Board board
-	@Mock ScoreCalculator scoreCalculator
-	@InjectMocks PositionLocator locator = new ScorePositionLocator()
+	private Board board
+	private ScoreCalculator scoreCalculator
+	private PositionLocator locator
+	private MarkUtil markUtil
+	private PositionUtil positionUtil
+	private TrialPositionFactory trialPositionFactory
+	private Mark mark 
+	private Mark opposingMark 
+	private int position 
+	private List<Integer> openPositions 
+	private List<Integer> row 
+	private List<List<Integer>> rows 
+	private List<Position> positions 
+	private Position trialPosition 
+	private int trialPositionIndex
+
 	
 	@Before
 	void setUp(){
-		locator.markUtil = new MarkUtil()
-		locator.positionUtil = new PositionUtil()
+		Mark mark = Mark.O
+		Mark opposingMark = Mark.X
+		int position = 1
+		List<Integer> openPositions = [position]
+		List<Integer> rowOne = [1]
+		List<Integer> rowTwo = [2]
+		List<List<Integer>> rows = [rowOne, rowTwo]
+		List<Position> positions = [TestPosition.newInstance(1, null)]
+		trialPositionIndex = 10
+		trialPosition = new TrialPosition(index:trialPositionIndex)
+		
+		scoreCalculator = [calculate:{a,b -> position}] as ScoreCalculator
+		positionUtil = [openPositions:{a -> openPositions}] as PositionUtil
+		trialPositionFactory = [create: {a, b -> trialPosition}] as TrialPositionFactory
+		board = [getRows:{rows}, getPositions:{positions}] as Board
+		markUtil = [retrieveOpponentMark: {a -> opposingMark}] as MarkUtil
+
+		locator = new ScorePositionLocator(scoreCalculator:scoreCalculator, markUtil:markUtil, 
+			positionUtil:positionUtil, trialPositionFactory:trialPositionFactory)
 	}
 	
 	@Test
-	void testLocate(){
-		board = new TicTacToeBoard(positions:[TestPosition.newInstance(1, Mark.O),TestPosition.newInstance(2, null),TestPosition.newInstance(3, null)])
-		when(scoreCalculator.calculate(anyList(), any(Position.class))).thenReturn(1,1,1, 3,3,3, 2,2,2)
-		assert 2 == locator.locate(board, Mark.O)
+	void testLocate_OnePosition(){		
+		assert trialPositionIndex == locator.locate(board, mark)
 	}
 	
 	@Test
-	void testLocate_SameScore(){
-		board = new TicTacToeBoard(positions:[TestPosition.newInstance(1, null),TestPosition.newInstance(2, null),TestPosition.newInstance(3, null)])
-		when(scoreCalculator.calculate(anyList(), any(Position.class))).thenReturn(1,1,1, 1,1,1, 1,1,1)
-		assert 1 == locator.locate(board, Mark.O)
+	void testLocate_TwoOpenAndOppositePositions_WithEvenTrailPosition(){		
+		trialPosition = new TrialPosition(index:2)
+		List<Position> positions = [TestPosition.newInstanceX(3), TestPosition.newInstanceX(7)]
+		assert 2 == locator.locate(board, mark)
 	}
 }
