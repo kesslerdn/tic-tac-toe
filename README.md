@@ -1,10 +1,8 @@
-TicTacToe
-=========
+## TicTacToe
+This is an unbeatable AI built incrementally through TDD.
 
 ## Building from source
-TicTacToe uses a [Gradle][]-based build system. In the instructions
-below, [`./gradlew`][] is invoked from the root of the source tree and serves as
-a cross-platform, self-contained bootstrap mechanism for the build.
+TicTacToe uses a [Gradle][]-based build system.
 
 ## Building from source
 TicTacToe uses a [Gradle][]-based build system. The only
