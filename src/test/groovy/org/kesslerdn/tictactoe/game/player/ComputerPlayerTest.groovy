@@ -11,8 +11,8 @@ import org.kesslerdn.tictactoe.game.PositionLocator
 import org.kesslerdn.tictactoe.view.GameControl
 
 class ComputerPlayerTest extends GroovyTestCase {
-	static final Mark MARK = Mark.O
-	static final int FIRST_POSITION = 1
+	private static final Mark MARK = Mark.O
+	private static final int FIRST_POSITION = 1
 	
 	@Test
 	void testPlay(){

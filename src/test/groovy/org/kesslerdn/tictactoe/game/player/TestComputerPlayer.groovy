@@ -6,8 +6,8 @@ import org.kesslerdn.tictactoe.game.Board
 
 class TestComputerPlayer extends ComputerPlayer {
 
-	int firstPosition
-	boolean used = false
+	private int firstPosition
+	boolean used
 	
 	@Override
 	void play(Board board) {

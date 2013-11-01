@@ -10,14 +10,14 @@ import org.kesslerdn.tictactoe.game.Tracker
 
 class AlternatingMatchTest extends GroovyTestCase{
 
-	Tracker tracker
-	Board board
-	Player player
-	Turn players
-	Score score
-	Match match
-	int playCount = 0
-	int displayCount = 0
+	private Tracker tracker
+	private Board board
+	private Player player
+	private Turn players
+	private Score score
+	private Match match
+	private int playCount = 0
+	private int displayCount = 0
 	
 	@Before
 	void setUp(){

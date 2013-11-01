@@ -4,27 +4,30 @@ import static org.junit.Assert.*
 
 import org.junit.Before
 import org.junit.Test
+import org.kesslerdn.tictactoe.test.ReturnValues
 import org.kesslerdn.tictactoe.view.GameControl
 
 class FinalScoreTest extends GroovyTestCase{
 
-	static final String DISPLAY_OUTPUT = "display"
-	Board board
-	Score score
-	int statusIndex
+	private static final String DISPLAY_OUTPUT = "display"
+	private Board board
+	private Score score
+	private ReturnValues<Integer> scores
+	private ReturnValues<String> messages
+	private Tracker tracker
+	private GameControl gameControl
 	
 	@Before
 	void setUp(){
-		statusIndex = 0
 		board = [display:{DISPLAY_OUTPUT}] as Board
+		tracker = [calculateScore:{a, b -> scores.next()}] as Tracker
+		gameControl = [status:{a -> assert a == messages.next()}] as GameControl
 	}
 	
 	@Test
 	void testDisplay_Tie() {
-		def scores = [(Mark.X):2, (Mark.O):2]
-		def messages = [DISPLAY_OUTPUT, "This game ended in a tie!"]
-		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
+		scores = new ReturnValues<Integer>([2,2])
+		messages = new ReturnValues<String>([DISPLAY_OUTPUT, "This game ended in a tie!"])
 		
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		
@@ -33,11 +36,9 @@ class FinalScoreTest extends GroovyTestCase{
 	
 	@Test
 	void testDisplay_PlayerO() {
-		def scores = [(Mark.X):1, (Mark.O):2]
-		def messages = [DISPLAY_OUTPUT, "Player 'O' won!"]
-		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
-		
+		scores = new ReturnValues<Integer>([1,2])
+		messages = new ReturnValues<String>([DISPLAY_OUTPUT, "Player 'O' won!"])
+
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		
 		score.display(board)
@@ -45,10 +46,8 @@ class FinalScoreTest extends GroovyTestCase{
 	
 	@Test
 	void testDisplay_PlayerX() {
-		def scores = [(Mark.X):2, (Mark.O):1]
-		def messages = [DISPLAY_OUTPUT, "Player 'X' won!"]
-		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
+		scores = new ReturnValues<Integer>([2,1])
+		messages = new ReturnValues<String>([DISPLAY_OUTPUT, "Player 'X' won!"])
 		
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		

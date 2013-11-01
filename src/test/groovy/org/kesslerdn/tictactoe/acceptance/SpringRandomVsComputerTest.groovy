@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 
 class SpringRandomVsComputerTest extends GroovyTestCase {
 
-	static final String TIE = 'This game ended in a tie!'
+	private static final String TIE = 'This game ended in a tie!'
 
 	private Match match
 	private TestGameControl gameControl

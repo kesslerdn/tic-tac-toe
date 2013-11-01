@@ -5,8 +5,8 @@ import org.kesslerdn.tictactoe.game.Position
 
 class TestPosition implements Position {
 
-	Mark mark
-	int index
+	private Mark mark
+	private int index
 	
 	private TestPosition(){
 	}

@@ -7,7 +7,7 @@ import org.kesslerdn.tictactoe.ai.StrategicPositionCounter
 
 class StrategicPositionCounterTest extends GroovyTestCase {
 
-	PositionCounter counter
+	private PositionCounter counter
 	
 	@Before
 	void setUp(){

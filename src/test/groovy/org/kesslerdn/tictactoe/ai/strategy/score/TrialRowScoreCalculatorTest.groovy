@@ -13,11 +13,10 @@ import org.kesslerdn.tictactoe.util.PositionUtil
 
 class TrialRowScoreCalculatorTest extends GroovyTestCase {
 
-	ScoreCalculator calculator
+	private ScoreCalculator calculator
 	private static final Mark COMPUTER_MARK = Mark.O
 	private static final Mark HUMAN_MARK = Mark.X
 	private static final Mark OPEN = null
-	private static final int NOT_IN_ROW = 100
 	
 	@Before
 	void setUp(){
@@ -79,14 +78,8 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	}
 
 	private TrialPosition createTrialPosition(int index){
-		createTrialPosition(index,Mark.O)
+		new TrialPosition(index:index, mark: Mark.O)
 	}
-	
-	
-	private TrialPosition createTrialPosition(int index, Mark mark){
-		new TrialPosition(index:index, mark: mark)
-	}
-
 }
 
 class TestScoreCalculation implements ScoreCalculation{

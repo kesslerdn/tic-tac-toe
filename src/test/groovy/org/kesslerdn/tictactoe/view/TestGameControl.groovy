@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component
 
 class TestGameControl implements GameControl {
 
-	static final String TIE = 'This game ended in a tie!'
-	static final String PLAYER_O_WON = "Player 'O' won!"
-	static final String PLAYER_X_WON = "Player 'X' won!"
+	private static final String TIE = 'This game ended in a tie!'
+	private static final String PLAYER_O_WON = "Player 'O' won!"
+	private static final String PLAYER_X_WON = "Player 'X' won!"
 	
-	List<String> expectedMessages = []
+	private List<String> expectedMessages = []
 	boolean onlyFinalScore
 	private int i
 	

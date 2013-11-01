@@ -7,8 +7,8 @@ import org.kesslerdn.tictactoe.game.Mark
 
 class TestHumanPlayer implements Player {
 	
-	static final Mark mark = Mark.X
-	List<String> testingPositions = []
+	private static final Mark mark = Mark.X
+	private List<String> testingPositions = []
 	private int i
 	
 	@Override

@@ -10,9 +10,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 
 class SpringHumanVsComputerTest extends GroovyTestCase {
 
-	static final String TIE = 'This game ended in a tie!'
-	static final String O_WON = "Player 'O' won!"
-	static final String X_WON = "Player 'X' won!"
+	private static final String TIE = 'This game ended in a tie!'
+	private static final String O_WON = "Player 'O' won!"
+	private static final String X_WON = "Player 'X' won!"
 	
 	private Match match
 	private TestHumanPlayer firstPlayer

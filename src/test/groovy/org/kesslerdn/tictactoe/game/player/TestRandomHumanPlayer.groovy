@@ -10,9 +10,9 @@ import org.kesslerdn.tictactoe.game.Position
 
 class TestRandomHumanPlayer implements Player {
 	
-	static List<Integer> plays = []
-	static final Mark mark = Mark.X
-	List<String> testingPositions = []
+	private static List<Integer> plays = []
+	private static final Mark mark = Mark.X
+	private List<String> testingPositions = []
 	private int i
 	
 	@Override

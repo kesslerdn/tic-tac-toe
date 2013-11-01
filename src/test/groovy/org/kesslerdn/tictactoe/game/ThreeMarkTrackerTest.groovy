@@ -16,9 +16,6 @@ class ThreeMarkTrackerTest extends GroovyTestCase {
 	private Position fourth
 	private Position fifth
 	private Position sixth
-	private Position seventh
-	private Position eighth
-	private Position nineth
 	
 	@Before
 	void setUp(){

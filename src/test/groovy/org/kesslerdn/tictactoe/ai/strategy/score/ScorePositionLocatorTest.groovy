@@ -21,34 +21,21 @@ class ScorePositionLocatorTest {
 	private PositionUtil positionUtil
 	private TrialPositionFactory trialPositionFactory
 	private Mark mark 
-	private Mark opposingMark 
 	private int position 
-	private List<Integer> openPositions 
-	private List<Integer> row 
-	private List<List<Integer>> rows 
-	private List<Position> positions 
 	private Position trialPosition 
 	private int trialPositionIndex
-
 	
 	@Before
 	void setUp(){
 		Mark mark = Mark.O
-		Mark opposingMark = Mark.X
-		int position = 1
-		List<Integer> openPositions = [position]
-		List<Integer> rowOne = [1]
-		List<Integer> rowTwo = [2]
-		List<List<Integer>> rows = [rowOne, rowTwo]
-		List<Position> positions = [TestPosition.newInstance(1, null)]
 		trialPositionIndex = 10
 		trialPosition = new TrialPosition(index:trialPositionIndex)
 		
 		scoreCalculator = [calculate:{a,b -> position}] as ScoreCalculator
-		positionUtil = [openPositions:{a -> openPositions}] as PositionUtil
+		positionUtil = [openPositions:{a -> [1]}] as PositionUtil
 		trialPositionFactory = [create: {a, b -> trialPosition}] as TrialPositionFactory
-		board = [getRows:{rows}, getPositions:{positions}] as Board
-		markUtil = [retrieveOpponentMark: {a -> opposingMark}] as MarkUtil
+		board = [getRows:{[[1], [2]]}, getPositions:{[TestPosition.newInstance(1, null)]}] as Board
+		markUtil = [retrieveOpponentMark: {a -> Mark.X}] as MarkUtil
 
 		locator = new ScorePositionLocator(scoreCalculator:scoreCalculator, markUtil:markUtil, 
 			positionUtil:positionUtil, trialPositionFactory:trialPositionFactory)
