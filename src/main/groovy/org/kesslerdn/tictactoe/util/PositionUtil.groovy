@@ -2,6 +2,7 @@ package org.kesslerdn.tictactoe.util
 
 import java.util.List;
 
+import org.kesslerdn.tictactoe.board.Board;
 import org.kesslerdn.tictactoe.board.position.Position
 import org.kesslerdn.tictactoe.game.player.Mark
 import org.springframework.stereotype.Component
@@ -49,6 +50,11 @@ class PositionUtil {
 	
 	Boolean hasMoreOdds(List<Position> positions){
 		oddCount(positions) > evenCount(positions)
+	}
+	
+	List<Integer> openPositions(Board board) {
+		List<Position> openPositions = findMark(board.positions, null)
+		openPositions.collectAll{it.index}
 	}
 
 	private Boolean containsIndex(List<Position> positions, Position position){

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component
 @Component
 class ScorePositionLocator implements PositionLocator {
 	
-	@Resource private PositionsLocator positionsLoctor
 	@Resource private ScoreCalculator scoreCalculator
 	@Resource private MarkUtil markUtil
 	@Resource private PositionUtil positionUtil
@@ -24,7 +23,7 @@ class ScorePositionLocator implements PositionLocator {
 	@Override
 	public Integer locate(Board board, Mark mark) {
 		Map<Integer, Integer> positionScores = [:]
-		List<Integer> positions = positionsLoctor.locate(board)
+		List<Integer> positions = positionUtil.openPositions(board)
 		positions.each{position ->
 			Position trialPosition = new TrialPosition(index:position, mark:mark)
 			positionScores[trialPosition.index] = calculateBoardScenario(board, trialPosition)
