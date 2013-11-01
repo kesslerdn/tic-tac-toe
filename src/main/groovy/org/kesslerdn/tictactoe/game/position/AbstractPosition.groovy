@@ -1,7 +1,7 @@
 package org.kesslerdn.tictactoe.game.position
 
 import org.kesslerdn.tictactoe.game.Mark
-import org.kesslerdn.tictactoe.game.Position;
+import org.kesslerdn.tictactoe.game.Position
 
 
 abstract class AbstractPosition implements Position{

@@ -6,7 +6,6 @@ import org.junit.Before
 import org.junit.Test
 import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Mark
-import org.kesslerdn.tictactoe.game.Position
 import org.kesslerdn.tictactoe.view.GameControl
 
 class HumanPlayerTest extends GroovyTestCase {
@@ -29,7 +28,7 @@ class HumanPlayerTest extends GroovyTestCase {
 		statusIndex = 0
 		board = [display:{DISPLAY_OUTPUT}, 
 			isOpen:{a -> isOpenAnswers[isOpenIndex++]}, 
-			mark:{a, b -> assert a == 1; assert b == MARK;}] as Board
+			mark:{a, b -> assert a == 1 ;assert b == MARK}] as Board
 	}
 	
 	@Test
@@ -37,7 +36,7 @@ class HumanPlayerTest extends GroovyTestCase {
 		isOpenAnswers  = [false, true]
 		def messages = [DISPLAY_OUTPUT, "This is an invalid move."]
 		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]},
-									request:{a -> assert "Player X please select a position" == a; 1}] as GameControl
+									request:{a -> assert "Player X please select a position" == a ;1}] as GameControl
 		player = new HumanPlayer(mark: MARK, gameControl:gameControl)
 		
 		player.play(board)
@@ -48,7 +47,7 @@ class HumanPlayerTest extends GroovyTestCase {
 		isOpenAnswers  = [true]
 		def messages = [DISPLAY_OUTPUT]
 		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]},
-									request:{a -> assert "Player X please select a position" == a; 1}] as GameControl
+									request:{a -> assert "Player X please select a position" == a ;1}] as GameControl
 		player = new HumanPlayer(mark: MARK, gameControl:gameControl)
 		
 		player.play(board)

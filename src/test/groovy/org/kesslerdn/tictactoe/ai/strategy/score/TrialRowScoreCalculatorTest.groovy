@@ -4,9 +4,9 @@ import static org.junit.Assert.*
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
-import org.kesslerdn.tictactoe.game.position.TestPosition;
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.position.TestPosition
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 
@@ -93,7 +93,7 @@ class TestScoreCalculation implements ScoreCalculation{
 	static final int TEST_AMOUNT = 111
 	@Override
 	int compareTo(Object o) {
-		return 0;
+		return 0
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package org.kesslerdn.tictactoe
 
-import org.kesslerdn.tictactoe.game.player.Match;
+import org.kesslerdn.tictactoe.game.player.Match
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
 class App {

@@ -4,9 +4,9 @@ import static org.junit.Assert.*
 
 import java.util.List
 
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
 
 class TestRandomHumanPlayer implements Player {
 	

@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.game
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.view.GameControl;
+import org.kesslerdn.tictactoe.view.GameControl
 import org.springframework.stereotype.Component
 
 @Component

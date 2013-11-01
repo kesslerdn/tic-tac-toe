@@ -14,7 +14,7 @@ class BlockedRowCalculation implements ScoreCalculation{
 	
 	@Override
 	int compareTo(Object o) {
-		return BOTTOM;
+		return BOTTOM
 	}
 
 	@Override

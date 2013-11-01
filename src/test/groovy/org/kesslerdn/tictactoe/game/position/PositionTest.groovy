@@ -1,10 +1,10 @@
 package org.kesslerdn.tictactoe.game.position
 
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.Position;
-import org.kesslerdn.tictactoe.game.position.CenterPosition;
-import org.kesslerdn.tictactoe.game.position.EndPosition;
-import org.kesslerdn.tictactoe.game.position.StartPosition;
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.position.CenterPosition
+import org.kesslerdn.tictactoe.game.position.EndPosition
+import org.kesslerdn.tictactoe.game.position.StartPosition
 
 class PositionTest extends GroovyTestCase{
 

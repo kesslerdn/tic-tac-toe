@@ -24,7 +24,7 @@ class FinalScoreTest extends GroovyTestCase{
 		def scores = [(Mark.X):2, (Mark.O):2]
 		def messages = [DISPLAY_OUTPUT, "This game ended in a tie!"]
 		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex]; statusIndex++;}] as GameControl
+		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
 		
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		
@@ -36,7 +36,7 @@ class FinalScoreTest extends GroovyTestCase{
 		def scores = [(Mark.X):1, (Mark.O):2]
 		def messages = [DISPLAY_OUTPUT, "Player 'O' won!"]
 		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex]; statusIndex++;}] as GameControl
+		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
 		
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		
@@ -48,7 +48,7 @@ class FinalScoreTest extends GroovyTestCase{
 		def scores = [(Mark.X):2, (Mark.O):1]
 		def messages = [DISPLAY_OUTPUT, "Player 'X' won!"]
 		Tracker tracker = [calculateScore:{a, b -> scores[a]}] as Tracker
-		GameControl gameControl = [status:{a -> assert a == messages[statusIndex]; statusIndex++;}] as GameControl
+		GameControl gameControl = [status:{a -> assert a == messages[statusIndex++]}] as GameControl
 		
 		score = new FinalScore(tracker:tracker, gameControl:gameControl)
 		

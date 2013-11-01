@@ -2,8 +2,8 @@ package org.kesslerdn.tictactoe.ai.strategy.score
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.Mark;
-import org.kesslerdn.tictactoe.game.position.TestPosition;
+import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.position.TestPosition
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 

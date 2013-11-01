@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.acceptance
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.player.Match;
+import org.kesslerdn.tictactoe.game.player.Match
 import org.kesslerdn.tictactoe.game.player.TestHumanPlayer
 import org.kesslerdn.tictactoe.view.TestGameControl
 import org.springframework.context.support.ClassPathXmlApplicationContext

@@ -2,8 +2,8 @@ package org.kesslerdn.tictactoe.game.player
 
 import static org.junit.Assert.*
 
-import org.kesslerdn.tictactoe.game.Board;
-import org.kesslerdn.tictactoe.game.Mark;
+import org.kesslerdn.tictactoe.game.Board
+import org.kesslerdn.tictactoe.game.Mark
 
 class TestHumanPlayer implements Player {
 	
