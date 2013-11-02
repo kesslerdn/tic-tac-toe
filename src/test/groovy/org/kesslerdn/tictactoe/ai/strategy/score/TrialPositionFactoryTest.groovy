@@ -8,9 +8,12 @@ class TrialPositionFactoryTest extends GroovyTestCase {
 
 	@Test
 	void testCreate(){
-		Position trialPosition = new TrialPositionFactory().create(1, Mark.O)
-		assertNotNull(trialPosition)
-		assert 1 == trialPosition.index
-		assert Mark.O == trialPosition.mark
+		List<Position> trialPositions = new TrialPositionFactory().create([1,2], Mark.O)
+		assertNotNull(trialPositions)
+		assert 2 == trialPositions.size()
+		assert 1 == trialPositions[0].index
+		assert Mark.O == trialPositions[0].mark
+		assert 2 == trialPositions[1].index
+		assert Mark.O == trialPositions[1].mark
 	}
 }

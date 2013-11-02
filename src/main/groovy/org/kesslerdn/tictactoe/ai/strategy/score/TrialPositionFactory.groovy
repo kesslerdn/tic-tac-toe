@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component
 @Component
 class TrialPositionFactory {
 	
-	TrialPosition create(int index, Mark mark){
-		new TrialPosition(index:index, mark:mark)
+	List<TrialPosition> create(List<Integer> indexes, Mark mark){
+		indexes.collect{index ->
+			new TrialPosition(index:index, mark:mark)
+		}
 	}
 }

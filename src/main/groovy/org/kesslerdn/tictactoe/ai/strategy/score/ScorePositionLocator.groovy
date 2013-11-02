@@ -25,21 +25,16 @@ class ScorePositionLocator implements PositionLocator {
 	int locate(Board board, Mark mark) {
 		Map<Integer, Integer> positionScores = [:]
 		List<Integer> positions = positionUtil.openPositions(board)
-		positions.each{position ->
-			Position trialPosition = trialPositionFactory.create(position, mark)
-			positionScores[trialPosition.index] = calculateBoardScenario(board, trialPosition)
+		List<Position> trialPositions = trialPositionFactory.create(positions, mark)
+		trialPositions.each{trialPosition ->
+			int total = 0
+			board.rows.each{row ->
+				 total += scoreCalculator.calculate(row, trialPosition)
+			}
+			positionScores[trialPosition.index] = favorEvenWhenOppositeCornersMarked(total, board, trialPosition)
 		}
 		Entry maxEntry = positionScores.max{it.value}
 		return maxEntry.key
-	}
-
-	private int calculateBoardScenario(Board board, Position trialPosition){
-		int total = 0
-		board.rows.each{row ->
-			 total += scoreCalculator.calculate(row, trialPosition)
-		}
-		total = favorEvenWhenOppositeCornersMarked(total, board, trialPosition)
-		total
 	}
 
 	
