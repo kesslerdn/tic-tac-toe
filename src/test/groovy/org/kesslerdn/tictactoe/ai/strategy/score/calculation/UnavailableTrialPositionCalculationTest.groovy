@@ -9,9 +9,9 @@ import org.kesslerdn.tictactoe.ai.strategy.score.TrialRow
 import org.kesslerdn.tictactoe.util.PositionUtil
 
 
-class UnavailableTrailPositionCalculationTest extends GroovyTestCase {
+class UnavailableTrialPositionCalculationTest extends GroovyTestCase {
 	
-	private UnavailableTrailPositionCalculation calculation
+	private UnavailableTrialPositionCalculation calculation
 	private PositionUtil positionUtil
 	private TrialRow trialRow
 	
@@ -23,19 +23,19 @@ class UnavailableTrailPositionCalculationTest extends GroovyTestCase {
 	@Test
 	void testCalculate_ContainsBoth(){
 		positionUtil = [containsBoth:{a,b -> true}] as PositionUtil
-		calculation = new UnavailableTrailPositionCalculation(positionUtil: positionUtil)
+		calculation = new UnavailableTrialPositionCalculation(positionUtil: positionUtil)
 		assert 0 == calculation.calculate(100, trialRow)
 	}
 
 	@Test
 	void testCalculate_ContainsOne(){
 		positionUtil = [containsBoth:{a,b -> false}] as PositionUtil
-		calculation = new UnavailableTrailPositionCalculation(positionUtil: positionUtil)
+		calculation = new UnavailableTrialPositionCalculation(positionUtil: positionUtil)
 		assert 100 == calculation.calculate(100, trialRow)
 	}
 
 	@Test
 	void testCompareTo(){
-		assert ScoreCalculation.BOTTOM == new UnavailableTrailPositionCalculation().compareTo(null)
+		assert ScoreCalculation.BOTTOM == new UnavailableTrialPositionCalculation().compareTo(null)
 	}
 }

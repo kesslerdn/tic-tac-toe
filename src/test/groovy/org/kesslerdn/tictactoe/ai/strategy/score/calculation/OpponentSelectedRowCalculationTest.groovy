@@ -9,9 +9,9 @@ import org.kesslerdn.tictactoe.ai.strategy.score.TrialRow
 import org.kesslerdn.tictactoe.util.PositionUtil
 
 
-class OpponentSelecteRowCalculationTest extends GroovyTestCase {
+class OpponentSelectedRowCalculationTest extends GroovyTestCase {
 	
-	private OpponentSelecteRowCalculation calculation
+	private OpponentSelectedRowCalculation calculation
 	private PositionUtil positionUtil
 	private TrialRow trialRow
 	
@@ -23,19 +23,19 @@ class OpponentSelecteRowCalculationTest extends GroovyTestCase {
 	@Test
 	void testCalculate(){
 		positionUtil = [containsOnlyOpponenet:{a,b -> true}] as PositionUtil
-		calculation = new OpponentSelecteRowCalculation(positionUtil: positionUtil)
+		calculation = new OpponentSelectedRowCalculation(positionUtil: positionUtil)
 		assert 105 == calculation.calculate(100, trialRow)
 	}
 
 	@Test
 	void testCalculate_CanNotBlock(){
 		positionUtil = [containsOnlyOpponenet:{a,b -> false}] as PositionUtil
-		calculation = new OpponentSelecteRowCalculation(positionUtil: positionUtil)
+		calculation = new OpponentSelectedRowCalculation(positionUtil: positionUtil)
 		assert 100 == calculation.calculate(100, trialRow)
 	}
 	
 	@Test
 	void testCompareTo(){
-		assert ScoreCalculation.TOP == new OpponentSelecteRowCalculation().compareTo(null)
+		assert ScoreCalculation.TOP == new OpponentSelectedRowCalculation().compareTo(null)
 	}
 }

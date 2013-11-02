@@ -47,7 +47,7 @@ class ScorePositionLocatorTest {
 	}
 	
 	@Test
-	void testLocate_TwoOpenAndOppositePositions_WithEvenTrailPosition(){		
+	void testLocate_TwoOpenAndOppositePositions_WithEvenTrialPosition(){		
 		trialPosition = new TrialPosition(index:2)
 		List<Position> positions = [TestPosition.newInstanceX(3), TestPosition.newInstanceX(7)]
 		assert 2 == locator.locate(board, mark)

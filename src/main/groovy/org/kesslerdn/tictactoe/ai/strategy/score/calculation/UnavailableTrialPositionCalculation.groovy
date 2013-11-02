@@ -8,7 +8,7 @@ import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component
 
 @Component
-class UnavailableTrailPositionCalculation implements ScoreCalculation{
+class UnavailableTrialPositionCalculation implements ScoreCalculation{
 	
 	@Resource private PositionUtil positionUtil
 	

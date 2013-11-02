@@ -4,7 +4,7 @@ import org.junit.Test
 import org.kesslerdn.tictactoe.game.Mark
 import org.kesslerdn.tictactoe.game.Position
 
-class TrailPositionFactoryTest extends GroovyTestCase {
+class TrialPositionFactoryTest extends GroovyTestCase {
 
 	@Test
 	void testCreate(){
