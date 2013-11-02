@@ -1,4 +1,4 @@
-package org.kesslerdn.tictactoe.game.player
+package org.kesslerdn.tictactoe
 
 import org.kesslerdn.tictactoe.view.GameControl
 
