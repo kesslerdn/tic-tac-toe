@@ -9,7 +9,6 @@ import org.kesslerdn.tictactoe.game.Mark
 import org.kesslerdn.tictactoe.game.Position
 import org.kesslerdn.tictactoe.game.PositionLocator
 import org.kesslerdn.tictactoe.game.position.TestPosition
-import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 
 class ScorePositionLocatorTest {
@@ -30,13 +29,15 @@ class ScorePositionLocatorTest {
 		trialPositionIndex = 10
 		trialPosition = new TrialPosition(index:trialPositionIndex)
 		
+		BoardCalculation scoreCalculation = [calculate:{a,b,c -> 1}, compareTo:{0}] as BoardCalculation
 		scoreCalculator = [calculate:{a,b -> position}] as BoardCalculator
 		positionUtil = [openPositions:{a -> [1]}] as PositionUtil
 		trialPositionFactory = [create: {a, b -> [trialPosition]}] as TrialPositionFactory
 		board = [getRows:{[[1], [2]]}, getPositions:{[TestPosition.newInstance(1, null)]}] as Board
-
+		SortedSet<BoardCalculation> scoreCalculations = [scoreCalculation] as SortedSet
+		
 		locator = new ScorePositionLocator(boardCalculator:scoreCalculator, 
-			positionUtil:positionUtil, trialPositionFactory:trialPositionFactory)
+			positionUtil:positionUtil, trialPositionFactory:trialPositionFactory, scoreCalculations:scoreCalculations)
 	}
 	
 	@Test
