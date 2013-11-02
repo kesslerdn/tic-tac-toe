@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="topLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="1"/>
+	<bean id="topCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="2"/>
+	<bean id="topRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="3"/>
+	<bean id="middleLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="4"/>
+	<bean id="middleCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="5"/>
+	<bean id="middleRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="6"/>
+	<bean id="bottomLeftPosition" class="org.kesslerdn.tictactoe.game.position.StartPosition" p:index="7"/>
+	<bean id="bottomCenterPosition" class="org.kesslerdn.tictactoe.game.position.CenterPosition" p:index="8"/>
+	<bean id="bottomRightPosition" class="org.kesslerdn.tictactoe.game.position.EndPosition" p:index="9"/>
+	
+	<bean id="positions" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topLeftPosition"/>      
+	            <ref bean="topCenterPosition"/>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleLeftPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="middleRightPosition"/>
+				<ref bean="bottomLeftPosition"/>
+				<ref bean="bottomCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+</beans>

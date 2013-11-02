@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="horizontalTopRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+        		<ref bean="topLeftPosition"/>      
+	            <ref bean="topCenterPosition"/>
+				<ref bean="topRightPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="horizontalMiddleRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="middleLeftPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="middleRightPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="horizontalBottomRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="bottomLeftPosition"/>
+				<ref bean="bottomCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="diagonalLeftToRightRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topLeftPosition"/>      
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="diagonalRightToLeftRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomLeftPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleLeftRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topLeftPosition"/>      
+				<ref bean="middleLeftPosition"/>
+				<ref bean="bottomLeftPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleCenterRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+	            <ref bean="topCenterPosition"/>
+				<ref bean="middleCenterPosition"/>
+				<ref bean="bottomCenterPosition"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="verticleRightRow" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+				<ref bean="topRightPosition"/>
+				<ref bean="middleRightPosition"/>
+				<ref bean="bottomRightPosition"/>    
+	        </list>
+	    </constructor-arg>
+	</bean>
+	
+	<bean id="rows" class="java.util.Collections.UnmodifiableList">
+	    <constructor-arg>
+	        <list>
+	        	<ref bean="horizontalTopRow"/>
+	        	<ref bean="horizontalMiddleRow"/>
+	        	<ref bean="horizontalBottomRow"/>
+	        	<ref bean="diagonalRightToLeftRow"/>
+	        	<ref bean="diagonalLeftToRightRow"/>
+	        	<ref bean="verticleLeftRow"/>
+	        	<ref bean="verticleCenterRow"/>
+	        	<ref bean="verticleRightRow"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+</beans>
