@@ -15,7 +15,7 @@ prerequisites are [Git](https://github.com/) and JDK 1.7+.
 1. explode zip in `/build/distributions/`
 2. run script at the root of the exploded directory `./bin/tic-tac-toe`
 
-## run acceptance test
+### run acceptance test
 `/tic-tac-toe/src/test/groovy/org/kesslerdn/tictactoe/acceptance/SpringRandomVsComputerTest.groovy`
 <pre lang="groovy">
 	@Test
