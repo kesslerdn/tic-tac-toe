@@ -15,6 +15,19 @@ prerequisites are [Git](https://github.com/) and JDK 1.7+.
 1. explode zip in `/build/distributions/`
 2. run script at the root of the exploded directory `./bin/tic-tac-toe`
 
+### run acceptance test
+`/tic-tac-toe/src/test/groovy/org/kesslerdn/tictactoe/acceptance/SpringRandomVsComputerTest.groovy`
+<pre lang="groovy">
+	@Test
+	void testStart() {
+		(1..10).each{
+      ...
+</pre>
+
+To run more random plays against the ai simply increase `10` to a 
+larger number. A value of `1000` takes about 1 minute and 20 seconds to execute.  This is due, in part, 
+to the Spring Framework load time required to create each new game.
+
 ## License
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
