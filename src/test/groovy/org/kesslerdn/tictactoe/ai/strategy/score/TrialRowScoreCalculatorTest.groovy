@@ -13,7 +13,7 @@ import org.kesslerdn.tictactoe.util.PositionUtil
 
 class TrialRowScoreCalculatorTest extends GroovyTestCase {
 
-	private ScoreCalculator calculator
+	private RowCalculator calculator
 	private static final Mark COMPUTER_MARK = Mark.O
 	private static final Mark HUMAN_MARK = Mark.X
 	private static final Mark OPEN = null
@@ -82,7 +82,7 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	}
 }
 
-class TestScoreCalculation implements ScoreCalculation{
+class TestScoreCalculation implements TrialRowCalculation{
 	static final int TEST_AMOUNT = 111
 	@Override
 	int compareTo(Object o) {

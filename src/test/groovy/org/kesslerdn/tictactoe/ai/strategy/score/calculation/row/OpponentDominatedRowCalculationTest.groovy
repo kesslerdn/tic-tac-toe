@@ -1,10 +1,11 @@
-package org.kesslerdn.tictactoe.ai.strategy.score.calculation
+package org.kesslerdn.tictactoe.ai.strategy.score.calculation.row
 
 import static org.junit.Assert.*
 
 import org.junit.Test
-import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculation
+import org.kesslerdn.tictactoe.ai.strategy.score.TrialRowCalculation
 import org.kesslerdn.tictactoe.ai.strategy.score.TrialRow
+import org.kesslerdn.tictactoe.ai.strategy.score.calculation.row.OpponentDominatedRowCalculation;
 
 
 class OpponentDominatedRowCalculationTest extends GroovyTestCase {
@@ -28,6 +29,6 @@ class OpponentDominatedRowCalculationTest extends GroovyTestCase {
 	
 	@Test
 	void testCompareTo(){
-		assert ScoreCalculation.TOP == new OpponentDominatedRowCalculation().compareTo(null)
+		assert TrialRowCalculation.TOP == new OpponentDominatedRowCalculation().compareTo(null)
 	}
 }

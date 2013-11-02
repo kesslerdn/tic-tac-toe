@@ -8,14 +8,14 @@ import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component
 
 @Component
-class TrialRowScoreCalculator implements ScoreCalculator{
+class TrialRowScoreCalculator implements RowCalculator{
 	
 	
 	private static final WEIGHT_MAP = [0:0, 1:10, 2:100, 3:1000]
 	@Resource private MarkUtil markUtil
 	@Resource private PositionUtil positionUtil
 	@Resource private TrialRowFactory trialRowFactory
-	@Resource private SortedSet<ScoreCalculation> scoreCalculations
+	@Resource private SortedSet<TrialRowCalculation> scoreCalculations
 	
 	@Override
 	int calculate(List<Position> positions, Position trialPosition) {
