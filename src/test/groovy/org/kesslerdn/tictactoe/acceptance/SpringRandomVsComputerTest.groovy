@@ -10,19 +10,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 
 class SpringRandomVsComputerTest extends GroovyTestCase {
 
-	private static final String TIE = 'This game ended in a tie!'
-
 	private Match match
 	private TestGameControl gameControl
 	
-	@Before
-	void setUp(){
-		
-	}
-	
 	@Test
-	void testStart_ScenarioOne() {
-		(1..100).each{
+	void testStart() {
+		(1..10).each{
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test-random-vs-computer-context.xml")
 			match = context.getBean(Match.class)
 			gameControl = context.getBean(TestGameControl.class)
