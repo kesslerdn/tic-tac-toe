@@ -23,8 +23,8 @@ class TrialRowScoreCalculatorTest extends GroovyTestCase {
 	
 	@Before
 	void setUp(){
-		calculator = new TrialRowScoreCalculator(markUtil: new MarkUtil(), 
-			positionUtil: new PositionUtil(), trialRowFactory: new TrialRowFactory(markUtil: new MarkUtil(), 
+		calculator = new TrialRowScoreCalculator(positionUtil: new PositionUtil(), 
+			trialRowFactory: new TrialRowFactory(markUtil: new MarkUtil(), 
 			positionUtil: new PositionUtil()), scoreCalculations: [] as SortedSet)
 	}
 	
