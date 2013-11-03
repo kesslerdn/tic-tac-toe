@@ -17,4 +17,3 @@ dependencies {
 	testCompile group: 'org.springframework', name: 'spring-test', version:'3.+'
 	testCompile group: 'org.mockito', name: 'mockito-core', version:'1.+'
 }
-

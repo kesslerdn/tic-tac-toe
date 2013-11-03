@@ -2,7 +2,7 @@ package org.kesslerdn.tictactoe.game.player
 
 import javax.annotation.Resource
 
-import org.kesslerdn.tictactoe.Match;
+import org.kesslerdn.tictactoe.Match
 import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Score
 import org.kesslerdn.tictactoe.game.Tracker

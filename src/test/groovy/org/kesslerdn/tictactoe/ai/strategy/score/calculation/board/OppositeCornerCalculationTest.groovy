@@ -3,9 +3,9 @@ package org.kesslerdn.tictactoe.ai.strategy.score.calculation.board
 import org.junit.Before
 import org.junit.Test
 import org.kesslerdn.tictactoe.ai.strategy.score.ScoreCalculation
-import org.kesslerdn.tictactoe.ai.strategy.score.TrialPosition
 import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Mark
+import org.kesslerdn.tictactoe.game.TrialPosition;
 import org.kesslerdn.tictactoe.game.position.TestPosition
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil

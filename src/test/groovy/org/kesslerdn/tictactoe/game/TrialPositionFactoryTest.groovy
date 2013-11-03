@@ -1,8 +1,9 @@
-package org.kesslerdn.tictactoe.ai.strategy.score
+package org.kesslerdn.tictactoe.game
 
 import org.junit.Test
 import org.kesslerdn.tictactoe.game.Mark
 import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.TrialPositionFactory;
 
 class TrialPositionFactoryTest extends GroovyTestCase {
 

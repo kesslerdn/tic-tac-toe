@@ -1,7 +1,5 @@
-package org.kesslerdn.tictactoe.ai.strategy.score
+package org.kesslerdn.tictactoe.game
 
-import org.kesslerdn.tictactoe.game.Mark
-import org.kesslerdn.tictactoe.game.Position
 import org.kesslerdn.tictactoe.util.MarkUtil
 import org.kesslerdn.tictactoe.util.PositionUtil
 

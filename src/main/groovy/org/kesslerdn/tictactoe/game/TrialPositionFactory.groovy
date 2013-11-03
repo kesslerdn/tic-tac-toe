@@ -1,6 +1,5 @@
-package org.kesslerdn.tictactoe.ai.strategy.score
+package org.kesslerdn.tictactoe.game
 
-import org.kesslerdn.tictactoe.game.Mark
 import org.springframework.stereotype.Component
 
 @Component

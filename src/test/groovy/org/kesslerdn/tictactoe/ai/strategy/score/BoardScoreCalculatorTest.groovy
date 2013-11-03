@@ -7,6 +7,7 @@ import org.junit.Test
 import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Mark
 import org.kesslerdn.tictactoe.game.Position
+import org.kesslerdn.tictactoe.game.TrialPosition
 
 
 class BoardScoreCalculatorTest extends GroovyTestCase {
@@ -28,7 +29,7 @@ class BoardScoreCalculatorTest extends GroovyTestCase {
 	}
 	
 	@Test
-	void testCalculate_FirstTurnWithCenterPositionOpen_TrialPosition5(){
+	void testCalculate(){
 		assert rows.size() == calculator.calculate(board, new TrialPosition(index:1, mark: Mark.O))
 	}
 }

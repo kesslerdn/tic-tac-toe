@@ -5,8 +5,8 @@ import static org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.kesslerdn.tictactoe.ai.strategy.score.TrialRowCalculation
-import org.kesslerdn.tictactoe.ai.strategy.score.TrialRow
 import org.kesslerdn.tictactoe.ai.strategy.score.calculation.row.OpponentSelectedRowCalculation;
+import org.kesslerdn.tictactoe.game.TrialRow;
 import org.kesslerdn.tictactoe.util.PositionUtil
 
 
