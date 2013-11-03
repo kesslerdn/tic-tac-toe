@@ -12,7 +12,7 @@ class BoardScoreCalculator implements BoardCalculator{
 	@Resource private RowCalculator rowCalculator
 	
 	@Override
-	public int calculate(Board board, Position position) {
+	int calculate(Board board, Position position) {
 		int total = 0
 		board.rows.each{row ->
 			 total += rowCalculator.calculate(row, position)

@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 
 import org.junit.Before
 import org.junit.Test
-import org.kesslerdn.tictactoe.Match;
+import org.kesslerdn.tictactoe.Match
 import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Score
 import org.kesslerdn.tictactoe.game.Tracker

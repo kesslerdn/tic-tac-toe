@@ -4,8 +4,8 @@ import static org.junit.Assert.*
 
 import org.junit.Test
 import org.kesslerdn.tictactoe.ai.strategy.score.TrialRowCalculation
-import org.kesslerdn.tictactoe.ai.strategy.score.calculation.row.OpponentDominatedRowCalculation;
-import org.kesslerdn.tictactoe.game.TrialRow;
+import org.kesslerdn.tictactoe.ai.strategy.score.calculation.row.OpponentDominatedRowCalculation
+import org.kesslerdn.tictactoe.game.TrialRow
 
 
 class OpponentDominatedRowCalculationTest extends GroovyTestCase {

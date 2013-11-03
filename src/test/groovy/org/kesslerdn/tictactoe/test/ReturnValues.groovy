@@ -12,17 +12,17 @@ class ReturnValues<T> implements Iterator<T> {
 	}
 	
 	@Override
-	public boolean hasNext() {
+	boolean hasNext() {
 		valuesIterator.hasNext()
 	}
 
 	@Override
-	public T next() {
+	T next() {
 		valuesIterator.next()
 	}
 
 	@Override
-	public void remove() {
+	void remove() {
 		throw new IllegalAccessException()
 	}
 }

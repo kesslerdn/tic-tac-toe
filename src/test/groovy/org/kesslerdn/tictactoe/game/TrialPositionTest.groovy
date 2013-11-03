@@ -1,7 +1,7 @@
 package org.kesslerdn.tictactoe.game
 
 import org.junit.Test
-import org.kesslerdn.tictactoe.game.TrialPosition;
+import org.kesslerdn.tictactoe.game.TrialPosition
 
 
 class TrialPositionTest extends GroovyTestCase {

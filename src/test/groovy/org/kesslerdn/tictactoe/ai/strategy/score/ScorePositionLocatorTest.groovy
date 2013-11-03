@@ -8,8 +8,8 @@ import org.kesslerdn.tictactoe.game.Board
 import org.kesslerdn.tictactoe.game.Mark
 import org.kesslerdn.tictactoe.game.Position
 import org.kesslerdn.tictactoe.game.PositionLocator
-import org.kesslerdn.tictactoe.game.TrialPosition;
-import org.kesslerdn.tictactoe.game.TrialPositionFactory;
+import org.kesslerdn.tictactoe.game.TrialPosition
+import org.kesslerdn.tictactoe.game.TrialPositionFactory
 import org.kesslerdn.tictactoe.game.position.TestPosition
 import org.kesslerdn.tictactoe.util.PositionUtil
 

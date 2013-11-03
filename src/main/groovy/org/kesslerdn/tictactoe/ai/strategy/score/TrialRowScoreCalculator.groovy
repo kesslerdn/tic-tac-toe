@@ -3,8 +3,8 @@ package org.kesslerdn.tictactoe.ai.strategy.score
 import javax.annotation.Resource
 
 import org.kesslerdn.tictactoe.game.Position
-import org.kesslerdn.tictactoe.game.TrialRow;
-import org.kesslerdn.tictactoe.game.TrialRowFactory;
+import org.kesslerdn.tictactoe.game.TrialRow
+import org.kesslerdn.tictactoe.game.TrialRowFactory
 import org.kesslerdn.tictactoe.util.PositionUtil
 import org.springframework.stereotype.Component
 
